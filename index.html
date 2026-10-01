@@ -304,30 +304,6 @@
       </div>
     </div>
 
-    <!-- 参考: 福井港(三国) 広域モニター (ナウファス117) -->
-    <div class="glass-card rounded-xl p-3 border border-slate-200 flex items-center justify-between shadow-sm">
-      <div class="flex items-center space-x-2.5">
-        <div class="w-8 h-8 rounded-lg bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-600">
-          <i class="fa-solid fa-compass text-sm"></i>
-        </div>
-        <div>
-          <div class="text-xs font-bold text-slate-800 flex items-center gap-1.5">
-            外海モニター：福井港 (三国・117)
-            <span class="text-[9px] bg-indigo-100 text-indigo-700 px-1.5 py-0.2 rounded font-semibold">先行指標</span>
-          </div>
-          <div class="text-[10px] text-slate-500">外海の波高・周期推移</div>
-        </div>
-      </div>
-      <div class="text-right">
-        <div class="flex items-baseline space-x-1 justify-end">
-          <span id="fukuiWave" class="font-teko text-2xl font-bold text-indigo-700 leading-none">1.28</span>
-          <span class="text-[10px] font-bold text-indigo-600">m</span>
-          <span class="text-xs text-slate-400 font-normal ml-1">/</span>
-          <span id="fukuiPeriod" class="text-xs font-bold text-indigo-900 ml-1">7.8秒</span>
-        </div>
-        <div class="text-[10px] text-slate-400 font-medium">波向: <span class="font-semibold text-slate-600">NNW ↓</span></div>
-      </div>
-    </div>
 
     <!-- 波レート説明カード -->
     <div class="p-3.5 rounded-xl bg-white border border-slate-200 text-slate-600 text-xs leading-relaxed space-y-2.5 shadow-sm">
@@ -639,10 +615,11 @@
 
         // LIVE_DATAの海天気実測・予報とマッチング (hourData & wavePoints)
         if (spotData && Array.isArray(spotData.hourData)) {
-          // offset >= 0 の未来予報は index = offset (基準時刻が先頭のため)
-          const hItem = (offset >= 0 && offset < spotData.hourData.length) 
-            ? spotData.hourData[offset] 
-            : spotData.hourData.find(h => h.time === timeLabel);
+          // 日付(dayLabel)と時刻(time)が完全一致する予報データを検索
+          const hItem = spotData.hourData.find(h => {
+            if (h.dayLabel && h.dayLabel !== dayLabel) return false;
+            return h.time === timeLabel;
+          }) || (offset >= 0 && offset < spotData.hourData.length ? spotData.hourData[offset] : null);
             
           if (hItem) {
             if (hItem.windDir) windDir = hItem.windDir;
@@ -791,7 +768,7 @@
       document.getElementById('heroRealDirArrow').textContent = getArrow(np.dir);
       document.getElementById('heroRealTime').textContent = np.time + ' 実測';
 
-      // 予報（LIVE_DATAがあれば実データ、なければデフォルト値）
+      // 予報（LIVE_DATAがあれば現在時刻に最も近い予報、なければデフォルト値）
       let defWave = rule.defaultForecast.wave;
       let defPeriod = rule.defaultForecast.period;
       let defWaveDir = rule.defaultForecast.waveDir;
@@ -800,18 +777,31 @@
       let fcTimeLabel = '予報';
 
       const spotData = LIVE_DATA && LIVE_DATA.spots ? LIVE_DATA.spots[currentSpotKey] : null;
-      if (spotData) {
-        if (spotData.hourData && spotData.hourData.length > 0) {
-          const firstH = spotData.hourData[0];
-          fcTimeLabel = firstH.time + ' 予報';
-          if (firstH.windDir) defWindDir = firstH.windDir;
-          if (firstH.windSpeed !== null && firstH.windSpeed !== undefined) defWindSpeed = Number(firstH.windSpeed);
-          if (firstH.wave !== null && firstH.wave !== undefined) defWave = firstH.wave;
-          if (firstH.period !== null && firstH.period !== undefined) defPeriod = firstH.period;
-          if (firstH.waveDir) defWaveDir = firstH.waveDir;
-        } else if (spotData.wavePoints && spotData.wavePoints.length > 0) {
-          defWave = spotData.wavePoints[0].wave;
+      if (spotData && spotData.hourData && spotData.hourData.length > 0) {
+        // 現在のJST時刻に合わせてマッチング
+        const nowObj = new Date();
+        if (LIVE_DATA.updatedAt) nowObj.setTime(new Date(LIVE_DATA.updatedAt).getTime());
+        const curM = nowObj.getMonth() + 1;
+        const curD = nowObj.getDate();
+        const curH = String(nowObj.getHours()).padStart(2, '0');
+        const curDayLabel = `${curM}/${curD}`;
+        const curTimeLabel = `${curH}:00`;
+
+        const matchedH = spotData.hourData.find(h => {
+          if (h.dayLabel && h.dayLabel !== curDayLabel) return false;
+          return h.time === curTimeLabel;
+        }) || spotData.hourData[0];
+
+        if (matchedH) {
+          fcTimeLabel = matchedH.time + ' 予報';
+          if (matchedH.windDir) defWindDir = matchedH.windDir;
+          if (matchedH.windSpeed !== null && matchedH.windSpeed !== undefined) defWindSpeed = Number(matchedH.windSpeed);
+          if (matchedH.wave !== null && matchedH.wave !== undefined) defWave = matchedH.wave;
+          if (matchedH.period !== null && matchedH.period !== undefined) defPeriod = matchedH.period;
+          if (matchedH.waveDir) defWaveDir = matchedH.waveDir;
         }
+      } else if (spotData && spotData.wavePoints && spotData.wavePoints.length > 0) {
+        defWave = spotData.wavePoints[0].wave;
       }
 
       document.getElementById('heroForecastTime').textContent = fcTimeLabel;
@@ -869,11 +859,6 @@
         document.getElementById('userAvgRate').textContent = '未報告';
         document.getElementById('userAvgSize').textContent = '—';
       }
-
-      // 三国モニター
-      const fk = NOWPHAS_SUMMARY.fukui;
-      document.getElementById('fukuiWave').textContent = fk.wave;
-      document.getElementById('fukuiPeriod').textContent = fk.period + '秒';
 
       renderTrendSvg(currentSpotKey);
       renderTimeline();

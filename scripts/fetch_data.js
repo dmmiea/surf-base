@@ -8,7 +8,7 @@ function fetchUrl(url, referer) {
   try {
     const curlCmd = process.platform === 'win32' ? 'curl.exe' : 'curl';
     const refHeader = referer ? `-H "Referer: ${referer}"` : '';
-    return execSync(`${curlCmd} -s -L "${url}" ${refHeader} -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"`, { maxBuffer: 10 * 1024 * 1024 }).toString('utf8');
+    return execSync(`${curlCmd} -s -L "${url}" ${refHeader} -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" -H "Accept-Language: ja"`, { maxBuffer: 10 * 1024 * 1024 }).toString('utf8');
   } catch (e) {
     console.error(`Failed to fetch ${url}:`, e.message);
     return null;
@@ -44,7 +44,35 @@ function parseNowphas(html) {
   return rows;
 }
 
-// 海天気予報パース
+function getNowphasData(stationId, jstNow) {
+  const getYmd = (d) => {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}${m}${day}`;
+  };
+
+  const todayYmd = getYmd(jstNow);
+  const yesterday = new Date(jstNow.getTime() - 24 * 3600 * 1000);
+  const yesterdayYmd = getYmd(yesterday);
+
+  const htmlToday = fetchUrl(`https://nowphas.mlit.go.jp/nip_yugiha/${stationId}/7/${todayYmd}`);
+  const rowsToday = htmlToday ? parseNowphas(htmlToday) : [];
+
+  let combined = [];
+  if (rowsToday.length < 36) {
+    const htmlYest = fetchUrl(`https://nowphas.mlit.go.jp/nip_yugiha/${stationId}/7/${yesterdayYmd}`);
+    const rowsYest = htmlYest ? parseNowphas(htmlYest) : [];
+    combined = rowsYest.concat(rowsToday);
+  } else {
+    combined = rowsToday;
+  }
+
+  const latest = combined.length > 0 ? combined[combined.length - 1] : { wave: '0.50', period: '5.0', dir: 'N', time: '00:00' };
+  return { latest, history: combined };
+}
+
+// 海天気予報パース（全日程・日毎ラベル正確抽出）
 function parseUmitenki(html) {
   const wavePoints = [];
   const waveRegex = /'time':\s*'([^']+)',\s*'points':\s*([0-9.]+)/g;
@@ -56,11 +84,26 @@ function parseUmitenki(html) {
   const hourData = [];
   const tables = html.match(/<table class="hour_yohou"[\s\S]*?<\/table>/g) || [];
 
-  let currentWave = null;
-  let currentPeriod = null;
-  let currentWaveDir = null;
-
   tables.forEach(t => {
+    const tPos = html.indexOf(t);
+    const before = html.slice(Math.max(0, tPos - 2000), tPos);
+    const headerM = before.match(/<div class="hour_yohou_header[^>]*>[\s\S]*?<\/div>/g);
+    let dayLabel = '';
+    if (headerM) {
+      const lastHeader = headerM[headerM.length - 1];
+      const h3M = lastHeader.match(/<h3[^>]*>([\s\S]*?)<\/h3>/);
+      if (h3M) {
+        const dDigits = h3M[1].match(/(\d+)[^\d]+(\d+)/);
+        if (dDigits) {
+          dayLabel = `${parseInt(dDigits[1], 10)}/${parseInt(dDigits[2], 10)}`;
+        }
+      }
+    }
+
+    let currentWave = null;
+    let currentPeriod = null;
+    let currentWaveDir = null;
+
     const trs = t.match(/<tr[\s\S]*?<\/tr>/g) || [];
     trs.forEach(tr => {
       const timeM = tr.match(/<td class="etc">(\d+)<\/td>/);
@@ -81,6 +124,7 @@ function parseUmitenki(html) {
       const weatherM = tr.match(/tenki_2017\/([^.]+)\.png/);
 
       hourData.push({
+        dayLabel,
         time,
         temp: tempM ? tempM[1] : null,
         windDir: windM ? windM[1] : null,
@@ -108,18 +152,13 @@ async function run() {
 
   // ナウファス取得（敦賀122、福井117）
   console.log('Fetching Nowphas 122 (敦賀)...');
-  const n122DatedHtml = fetchUrl(`https://nowphas.mlit.go.jp/nip_yugiha/122/7/${ymd}`);
-  const n122 = n122DatedHtml ? parseNowphas(n122DatedHtml) : [];
+  const np122 = getNowphasData('122', jstNow);
 
   console.log('Fetching Nowphas 117 (福井/三国)...');
-  const n117DatedHtml = fetchUrl(`https://nowphas.mlit.go.jp/nip_yugiha/117/7/${ymd}`);
-  const n117 = n117DatedHtml ? parseNowphas(n117DatedHtml) : [];
+  const np117 = getNowphasData('117', jstNow);
 
-  const latest122 = n122.length > 0 ? n122[n122.length - 1] : { wave: '0.84', period: '5.2', dir: 'NW', time: '22:00' };
-  const latest117 = n117.length > 0 ? n117[n117.length - 1] : { wave: '1.28', period: '7.8', dir: 'NNW', time: '22:00' };
-
-  console.log('Latest Nowphas 122:', latest122);
-  console.log('Latest Nowphas 117:', latest117);
+  console.log('Latest Nowphas 122:', np122.latest);
+  console.log('Latest Nowphas 117:', np117.latest);
 
   // 海天気取得
   const spots = {
@@ -143,12 +182,12 @@ async function run() {
     updatedAtLabel: `${yyyy}/${mm}/${dd} ${String(jstNow.getHours()).padStart(2, '0')}:${String(jstNow.getMinutes()).padStart(2, '0')}`,
     nowphas: {
       tsuruga: {
-        latest: latest122,
-        history: n122
+        latest: np122.latest,
+        history: np122.history
       },
       fukui: {
-        latest: latest117,
-        history: n117
+        latest: np117.latest,
+        history: np117.history
       }
     },
     spots: parsedSpots
