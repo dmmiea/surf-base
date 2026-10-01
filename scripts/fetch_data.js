@@ -15,6 +15,25 @@ function fetchUrl(url, referer) {
   }
 }
 
+function fetchUrlRaw(url, referer) {
+  try {
+    const curlCmd = process.platform === 'win32' ? 'curl.exe' : 'curl';
+    const refHeader = referer ? `-H "Referer: ${referer}"` : '';
+    return execSync(`${curlCmd} -s -L "${url}" ${refHeader} -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" -H "Accept-Language: ja"`, { maxBuffer: 10 * 1024 * 1024 });
+  } catch (e) {
+    console.error(`Failed to fetch ${url}:`, e.message);
+    return null;
+  }
+}
+
+function decodeShiftJis(buf) {
+  try {
+    return new TextDecoder('shift_jis').decode(buf);
+  } catch (e) {
+    return buf.toString('utf8');
+  }
+}
+
 // ナウファス実測パース
 function parseNowphas(html) {
   const rows = [];
@@ -72,8 +91,33 @@ function getNowphasData(stationId, jstNow) {
   return { latest, history: combined };
 }
 
-// 海天気予報パース（全日程・日毎ラベル正確抽出）
+// 潮汐・日出・日入情報抽出
+function extractTideAndSun(html) {
+  const tideM = html.match(/<li class="tide">([\s\S]*?)<\/li>/)?.[1];
+  const sunM = html.match(/<li class="sun">([\s\S]*?)<\/li>/)?.[1];
+  
+  const highMatch = tideM?.match(/満潮[^\d]*(\d\d:\d\d)/);
+  const lowMatch = tideM?.match(/干潮[^\d]*(\d\d:\d\d)/);
+  const tideNameMatch = tideM?.match(/\(([^)]+潮)\)/);
+  const sunMatch = sunM?.match(/(\d\d:\d\d)\/(\d\d:\d\d)/);
+
+  return {
+    tide: {
+      tideName: tideNameMatch ? tideNameMatch[1] : '小潮',
+      tideHigh: highMatch ? highMatch[1] : '04:25',
+      tideLow: lowMatch ? lowMatch[1] : '12:36'
+    },
+    sun: {
+      sunRise: sunMatch ? sunMatch[1] : '05:54',
+      sunSet: sunMatch ? sunMatch[2] : '17:38'
+    }
+  };
+}
+
+// 海天気予報パース（全日程・日毎ラベル正確抽出 & rowspan波高・周期保持）
 function parseUmitenki(html) {
+  const { tide, sun } = extractTideAndSun(html);
+
   const wavePoints = [];
   const waveRegex = /'time':\s*'([^']+)',\s*'points':\s*([0-9.]+)/g;
   let wm;
@@ -111,13 +155,24 @@ function parseUmitenki(html) {
       const hour = parseInt(timeM[1], 10);
       const time = (hour < 10 ? '0' : '') + hour + ':00';
 
-      const waveM = tr.match(/<\/div>\s*([0-9.]+)m\s*<div/);
-      const perM = tr.match(/<\/div>\s*[0-9.]+m\s*<div[^>]*>\s*([0-9.]+)/);
-      const dirM = tr.match(/wavesimulator\/blue_([a-z]+)\.png/);
-
-      if (waveM) currentWave = parseFloat(waveM[1]);
-      if (perM) currentPeriod = parseFloat(perM[1]);
-      if (dirM) currentWaveDir = dirM[1].toUpperCase();
+      // rowspan付き波高セルの更新チェック
+      const waveTd = tr.match(/<td class="etc"[^>]*rowspan="(\d+)"[^>]*>([\s\S]*?)<\/td>/);
+      if (waveTd) {
+        const waveM = waveTd[2].match(/([0-9.]+)m/);
+        const perM = waveTd[2].match(/([0-9.]+)(?:秒|&#13213;|b|s)/);
+        const dirM = waveTd[2].match(/wavesimulator\/blue_([a-z]+)\.png/);
+        if (waveM) currentWave = parseFloat(waveM[1]);
+        if (perM) currentPeriod = parseFloat(perM[1]);
+        if (dirM) currentWaveDir = dirM[1].toUpperCase();
+      } else {
+        // rowspanが無い単一行の場合
+        const waveM = tr.match(/<\/div>\s*([0-9.]+)m\s*<div/);
+        const perM = tr.match(/<\/div>\s*[0-9.]+m\s*<div[^>]*>\s*([0-9.]+)/);
+        const dirM = tr.match(/wavesimulator\/blue_([a-z]+)\.png/);
+        if (waveM) currentWave = parseFloat(waveM[1]);
+        if (perM) currentPeriod = parseFloat(perM[1]);
+        if (dirM) currentWaveDir = dirM[1].toUpperCase();
+      }
 
       const tempM = tr.match(/(\d+)℃/);
       const windM = tr.match(/sprite_[^_]+_([A-Z]+)_png.*?([0-9.]+)m/);
@@ -137,7 +192,7 @@ function parseUmitenki(html) {
     });
   });
 
-  return { wavePoints, hourData };
+  return { tide, sun, wavePoints, hourData };
 }
 
 async function run() {
@@ -171,9 +226,10 @@ async function run() {
   const parsedSpots = {};
   for (const [key, spot] of Object.entries(spots)) {
     console.log(`Fetching Umitenki for ${spot.name} (${spot.id})...`);
-    const html = fetchUrl(`https://www.umitenki.jp/tenki/${spot.id}/1hour`, `https://www.umitenki.jp/tenki/${spot.id}`);
-    if (html) {
-      parsedSpots[key] = parseUmitenki(html);
+    const rawBuf = fetchUrlRaw(`https://www.umitenki.jp/tenki/${spot.id}/1hour`, `https://www.umitenki.jp/tenki/${spot.id}`);
+    if (rawBuf) {
+      const decodedHtml = decodeShiftJis(rawBuf);
+      parsedSpots[key] = parseUmitenki(decodedHtml);
     }
   }
 

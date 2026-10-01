@@ -1,12 +1,12 @@
 {
-  "updatedAt": "2026-10-01T22:08:33.748Z",
-  "updatedAtLabel": "2026/10/02 07:08",
+  "updatedAt": "2026-10-01T22:56:55.485Z",
+  "updatedAtLabel": "2026/10/02 07:56",
   "nowphas": {
     "tsuruga": {
       "latest": {
-        "time": "06:40",
-        "wave": "1.07",
-        "period": "6.7",
+        "time": "07:20",
+        "wave": "1.02",
+        "period": "7.4",
         "dir": "WNW"
       },
       "history": [
@@ -567,14 +567,26 @@
           "wave": "1.07",
           "period": "6.7",
           "dir": "WNW"
+        },
+        {
+          "time": "07:00",
+          "wave": "1.03",
+          "period": "7.0",
+          "dir": "NW"
+        },
+        {
+          "time": "07:20",
+          "wave": "1.02",
+          "period": "7.4",
+          "dir": "WNW"
         }
       ]
     },
     "fukui": {
       "latest": {
-        "time": "06:40",
-        "wave": "1.42",
-        "period": "8.0",
+        "time": "07:20",
+        "wave": "1.22",
+        "period": "7.5",
         "dir": "NW"
       },
       "history": [
@@ -1135,26 +1147,3566 @@
           "wave": "1.42",
           "period": "8.0",
           "dir": "NW"
+        },
+        {
+          "time": "07:00",
+          "wave": "1.22",
+          "period": "7.6",
+          "dir": "NW"
+        },
+        {
+          "time": "07:20",
+          "wave": "1.22",
+          "period": "7.5",
+          "dir": "NW"
         }
       ]
     }
   },
   "spots": {
     "suishohama": {
-      "wavePoints": [],
-      "hourData": []
+      "tide": {
+        "tideName": "小潮",
+        "tideHigh": "04:25",
+        "tideLow": "12:36"
+      },
+      "sun": {
+        "sunRise": "05:54",
+        "sunSet": "17:38"
+      },
+      "wavePoints": [
+        {
+          "time": "02(金) 03:00",
+          "wave": 1
+        },
+        {
+          "time": "06:00",
+          "wave": 1
+        },
+        {
+          "time": "09:00",
+          "wave": 1.1
+        },
+        {
+          "time": "12:00",
+          "wave": 1
+        },
+        {
+          "time": "15:00",
+          "wave": 1
+        },
+        {
+          "time": "18:00",
+          "wave": 0.9
+        },
+        {
+          "time": "21:00",
+          "wave": 0.9
+        },
+        {
+          "time": "03(土) 00:00",
+          "wave": 1.2
+        },
+        {
+          "time": "03:00",
+          "wave": 1.3
+        },
+        {
+          "time": "06:00",
+          "wave": 1.3
+        },
+        {
+          "time": "09:00",
+          "wave": 1.1
+        },
+        {
+          "time": "12:00",
+          "wave": 1.1
+        },
+        {
+          "time": "15:00",
+          "wave": 1.1
+        },
+        {
+          "time": "18:00",
+          "wave": 1
+        },
+        {
+          "time": "21:00",
+          "wave": 0.8
+        },
+        {
+          "time": "04(日) 00:00",
+          "wave": 0.7
+        },
+        {
+          "time": "03:00",
+          "wave": 0.6
+        }
+      ],
+      "hourData": [
+        {
+          "dayLabel": "10/2",
+          "time": "08:00",
+          "temp": "20",
+          "windDir": "N",
+          "windSpeed": 6.6,
+          "wave": 1,
+          "period": 8.6,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "09:00",
+          "temp": "21",
+          "windDir": "N",
+          "windSpeed": 6.8,
+          "wave": 1.1,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "10:00",
+          "temp": "23",
+          "windDir": "NNW",
+          "windSpeed": 6.8,
+          "wave": 1.1,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "11:00",
+          "temp": "23",
+          "windDir": "NNW",
+          "windSpeed": 7,
+          "wave": 1.1,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "12:00",
+          "temp": "23",
+          "windDir": "NNW",
+          "windSpeed": 6.9,
+          "wave": 1,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "13:00",
+          "temp": "24",
+          "windDir": "NNW",
+          "windSpeed": 7.1,
+          "wave": 1,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "14:00",
+          "temp": "24",
+          "windDir": "NNW",
+          "windSpeed": 7,
+          "wave": 1,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "15:00",
+          "temp": "23",
+          "windDir": "NNW",
+          "windSpeed": 6.6,
+          "wave": 1,
+          "period": 6.8,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "16:00",
+          "temp": "23",
+          "windDir": "NNW",
+          "windSpeed": 6.2,
+          "wave": 1,
+          "period": 6.8,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "17:00",
+          "temp": "22",
+          "windDir": "NNW",
+          "windSpeed": 5.8,
+          "wave": 1,
+          "period": 6.8,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "18:00",
+          "temp": "21",
+          "windDir": "NNW",
+          "windSpeed": 5.8,
+          "wave": 0.9,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "19:00",
+          "temp": "21",
+          "windDir": "N",
+          "windSpeed": 5.9,
+          "wave": 0.9,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "20:00",
+          "temp": "21",
+          "windDir": "N",
+          "windSpeed": 6.2,
+          "wave": 0.9,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "21:00",
+          "temp": "20",
+          "windDir": "NNE",
+          "windSpeed": 5.7,
+          "wave": 0.9,
+          "period": 6.5,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "22:00",
+          "temp": "20",
+          "windDir": "NNE",
+          "windSpeed": 5.7,
+          "wave": 0.9,
+          "period": 6.5,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "23:00",
+          "temp": "19",
+          "windDir": "NNE",
+          "windSpeed": 5.6,
+          "wave": 0.9,
+          "period": 6.5,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "00:00",
+          "temp": "19",
+          "windDir": "NNE",
+          "windSpeed": 5.5,
+          "wave": 1.2,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "01:00",
+          "temp": "18",
+          "windDir": "NNE",
+          "windSpeed": 5.4,
+          "wave": 1.2,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "02:00",
+          "temp": "18",
+          "windDir": "NNE",
+          "windSpeed": 5.3,
+          "wave": 1.2,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "03:00",
+          "temp": "17",
+          "windDir": "NNE",
+          "windSpeed": 5.1,
+          "wave": 1.3,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "04:00",
+          "temp": "17",
+          "windDir": "NNE",
+          "windSpeed": 4.8,
+          "wave": 1.3,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "05:00",
+          "temp": "16",
+          "windDir": "NNE",
+          "windSpeed": 4.6,
+          "wave": 1.3,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "06:00",
+          "temp": "16",
+          "windDir": "NNE",
+          "windSpeed": 4.6,
+          "wave": 1.3,
+          "period": 8.5,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "07:00",
+          "temp": "16",
+          "windDir": "NNE",
+          "windSpeed": 4.4,
+          "wave": 1.3,
+          "period": 8.5,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "08:00",
+          "temp": "18",
+          "windDir": "NNE",
+          "windSpeed": 4.3,
+          "wave": 1.3,
+          "period": 8.5,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "09:00",
+          "temp": "20",
+          "windDir": "NNE",
+          "windSpeed": 4.4,
+          "wave": 1.1,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "10:00",
+          "temp": "21",
+          "windDir": "NNE",
+          "windSpeed": 4.2,
+          "wave": 1.1,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "11:00",
+          "temp": "23",
+          "windDir": "N",
+          "windSpeed": 3.7,
+          "wave": 1.1,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "12:00",
+          "temp": "23",
+          "windDir": "N",
+          "windSpeed": 3.6,
+          "wave": 1.1,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "13:00",
+          "temp": "23",
+          "windDir": "NNW",
+          "windSpeed": 4.3,
+          "wave": 1.1,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "14:00",
+          "temp": "24",
+          "windDir": "N",
+          "windSpeed": 5.4,
+          "wave": 1.1,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "15:00",
+          "temp": "23",
+          "windDir": "N",
+          "windSpeed": 5.2,
+          "wave": 1.1,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "16:00",
+          "temp": "23",
+          "windDir": "N",
+          "windSpeed": 4.3,
+          "wave": 1.1,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "17:00",
+          "temp": "22",
+          "windDir": "N",
+          "windSpeed": 4,
+          "wave": 1.1,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "18:00",
+          "temp": "21",
+          "windDir": "NNE",
+          "windSpeed": 3.4,
+          "wave": 1,
+          "period": 7,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "19:00",
+          "temp": "18",
+          "windDir": "NNE",
+          "windSpeed": 2.4,
+          "wave": 1,
+          "period": 7,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "20:00",
+          "temp": "18",
+          "windDir": "NE",
+          "windSpeed": 1.7,
+          "wave": 1,
+          "period": 7,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "21:00",
+          "temp": "17",
+          "windDir": "ENE",
+          "windSpeed": 1.3,
+          "wave": 0.8,
+          "period": 7,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "22:00",
+          "temp": "17",
+          "windDir": "E",
+          "windSpeed": 1.1,
+          "wave": 0.8,
+          "period": 7,
+          "waveDir": "NW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "23:00",
+          "temp": "16",
+          "windDir": "ESE",
+          "windSpeed": 1.4,
+          "wave": 0.8,
+          "period": 7,
+          "waveDir": "NW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "00:00",
+          "temp": "16",
+          "windDir": "ESE",
+          "windSpeed": 1.3,
+          "wave": 0.7,
+          "period": 5.9,
+          "waveDir": "NW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "01:00",
+          "temp": "16",
+          "windDir": "ESE",
+          "windSpeed": 1.7,
+          "wave": 0.7,
+          "period": 5.9,
+          "waveDir": "NW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "02:00",
+          "temp": "16",
+          "windDir": "ESE",
+          "windSpeed": 1.7,
+          "wave": 0.7,
+          "period": 5.9,
+          "waveDir": "NW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "03:00",
+          "temp": "16",
+          "windDir": "ESE",
+          "windSpeed": 1.3,
+          "wave": 0.6,
+          "period": 5.9,
+          "waveDir": "NW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "04:00",
+          "temp": "17",
+          "windDir": "ESE",
+          "windSpeed": 1.4,
+          "wave": 0.6,
+          "period": 5.9,
+          "waveDir": "NW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "05:00",
+          "temp": "16",
+          "windDir": "ESE",
+          "windSpeed": 1.7,
+          "wave": 0.6,
+          "period": 5.9,
+          "waveDir": "NW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "06:00",
+          "temp": "16",
+          "windDir": "ESE",
+          "windSpeed": 1.7,
+          "wave": 0.6,
+          "period": 5.9,
+          "waveDir": "NW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "07:00",
+          "temp": "17",
+          "windDir": "SE",
+          "windSpeed": 1.1,
+          "wave": 0.6,
+          "period": 5.9,
+          "waveDir": "NW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "08:00",
+          "temp": "19",
+          "windDir": "SE",
+          "windSpeed": 1.1,
+          "wave": 0.6,
+          "period": 5.9,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "09:00",
+          "temp": "21",
+          "windDir": "SSE",
+          "windSpeed": 0.8,
+          "wave": 0.5,
+          "period": 5.9,
+          "waveDir": "NW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "10:00",
+          "temp": "23",
+          "windDir": "S",
+          "windSpeed": 0.8,
+          "wave": 0.5,
+          "period": 5.9,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "11:00",
+          "temp": "24",
+          "windDir": "WSW",
+          "windSpeed": 1,
+          "wave": 0.5,
+          "period": 5.9,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "12:00",
+          "temp": "24",
+          "windDir": "W",
+          "windSpeed": 1.3,
+          "wave": 0.5,
+          "period": 5.8,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "13:00",
+          "temp": "25",
+          "windDir": null,
+          "windSpeed": null,
+          "wave": 0.5,
+          "period": 5.8,
+          "waveDir": "NW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "14:00",
+          "temp": "25",
+          "windDir": "E",
+          "windSpeed": 0.1,
+          "wave": 0.5,
+          "period": 5.8,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "15:00",
+          "temp": "24",
+          "windDir": "WSW",
+          "windSpeed": 1,
+          "wave": 0.4,
+          "period": 5.4,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "16:00",
+          "temp": "24",
+          "windDir": "S",
+          "windSpeed": 0.6,
+          "wave": 0.4,
+          "period": 5.4,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "17:00",
+          "temp": "23",
+          "windDir": "S",
+          "windSpeed": 1.7,
+          "wave": 0.4,
+          "period": 5.4,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "18:00",
+          "temp": "22",
+          "windDir": "SSE",
+          "windSpeed": 3.2,
+          "wave": 0.4,
+          "period": 5.4,
+          "waveDir": "NNW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "19:00",
+          "temp": "21",
+          "windDir": "SSE",
+          "windSpeed": 4.3,
+          "wave": 0.4,
+          "period": 5.4,
+          "waveDir": "NNW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "20:00",
+          "temp": "21",
+          "windDir": "SSE",
+          "windSpeed": 4.7,
+          "wave": 0.4,
+          "period": 5.4,
+          "waveDir": "NNW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "21:00",
+          "temp": "21",
+          "windDir": "SE",
+          "windSpeed": 4.7,
+          "wave": 0.3,
+          "period": 5,
+          "waveDir": "NNW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "22:00",
+          "temp": "21",
+          "windDir": "SE",
+          "windSpeed": 5.5,
+          "wave": 0.3,
+          "period": 5,
+          "waveDir": "NNW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "23:00",
+          "temp": "21",
+          "windDir": "SE",
+          "windSpeed": 5.7,
+          "wave": 0.3,
+          "period": 5,
+          "waveDir": "NNW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "00:00",
+          "temp": "21",
+          "windDir": "SE",
+          "windSpeed": 6.1,
+          "wave": 0.3,
+          "period": 5,
+          "waveDir": "NNW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "01:00",
+          "temp": "21",
+          "windDir": "SE",
+          "windSpeed": 6.6,
+          "wave": 0.3,
+          "period": 5,
+          "waveDir": "NNW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "02:00",
+          "temp": "21",
+          "windDir": "SE",
+          "windSpeed": 6.5,
+          "wave": 0.3,
+          "period": 5,
+          "waveDir": "NNW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "03:00",
+          "temp": "21",
+          "windDir": "SSE",
+          "windSpeed": 5.5,
+          "wave": 0.3,
+          "period": 4.1,
+          "waveDir": "NNW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "04:00",
+          "temp": "21",
+          "windDir": "SSE",
+          "windSpeed": 5.2,
+          "wave": 0.3,
+          "period": 4.1,
+          "waveDir": "NNW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "05:00",
+          "temp": "21",
+          "windDir": "SE",
+          "windSpeed": 4.7,
+          "wave": 0.3,
+          "period": 4.1,
+          "waveDir": "NNW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "06:00",
+          "temp": "21",
+          "windDir": "SE",
+          "windSpeed": 4.7,
+          "wave": 0.3,
+          "period": 4.1,
+          "waveDir": "NNW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "07:00",
+          "temp": "21",
+          "windDir": "SE",
+          "windSpeed": 4.2,
+          "wave": 0.3,
+          "period": 4.1,
+          "waveDir": "NNW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "08:00",
+          "temp": "21",
+          "windDir": "SE",
+          "windSpeed": 4,
+          "wave": 0.3,
+          "period": 4.1,
+          "waveDir": "NNW",
+          "weather": "kumori"
+        }
+      ]
     },
     "sugahama": {
-      "wavePoints": [],
-      "hourData": []
+      "tide": {
+        "tideName": "小潮",
+        "tideHigh": "04:25",
+        "tideLow": "12:36"
+      },
+      "sun": {
+        "sunRise": "05:54",
+        "sunSet": "17:38"
+      },
+      "wavePoints": [
+        {
+          "time": "02(金) 03:00",
+          "wave": 1.2
+        },
+        {
+          "time": "06:00",
+          "wave": 1.3
+        },
+        {
+          "time": "09:00",
+          "wave": 1.3
+        },
+        {
+          "time": "12:00",
+          "wave": 1.2
+        },
+        {
+          "time": "15:00",
+          "wave": 1.2
+        },
+        {
+          "time": "18:00",
+          "wave": 1.1
+        },
+        {
+          "time": "21:00",
+          "wave": 1.2
+        },
+        {
+          "time": "03(土) 00:00",
+          "wave": 1.5
+        },
+        {
+          "time": "03:00",
+          "wave": 1.6
+        },
+        {
+          "time": "06:00",
+          "wave": 1.6
+        },
+        {
+          "time": "09:00",
+          "wave": 1.4
+        },
+        {
+          "time": "12:00",
+          "wave": 1.4
+        },
+        {
+          "time": "15:00",
+          "wave": 1.3
+        },
+        {
+          "time": "18:00",
+          "wave": 1.2
+        },
+        {
+          "time": "21:00",
+          "wave": 1.1
+        },
+        {
+          "time": "04(日) 00:00",
+          "wave": 0.9
+        },
+        {
+          "time": "03:00",
+          "wave": 0.8
+        }
+      ],
+      "hourData": [
+        {
+          "dayLabel": "10/2",
+          "time": "08:00",
+          "temp": "19",
+          "windDir": "N",
+          "windSpeed": 6.4,
+          "wave": 1.3,
+          "period": 8.6,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "09:00",
+          "temp": "21",
+          "windDir": "N",
+          "windSpeed": 6.6,
+          "wave": 1.3,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "10:00",
+          "temp": "22",
+          "windDir": "NNW",
+          "windSpeed": 6.7,
+          "wave": 1.3,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "11:00",
+          "temp": "23",
+          "windDir": "NNW",
+          "windSpeed": 6.9,
+          "wave": 1.3,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "12:00",
+          "temp": "23",
+          "windDir": "NNW",
+          "windSpeed": 6.8,
+          "wave": 1.2,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "13:00",
+          "temp": "23",
+          "windDir": "NNW",
+          "windSpeed": 6.9,
+          "wave": 1.2,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "14:00",
+          "temp": "23",
+          "windDir": "NNW",
+          "windSpeed": 6.8,
+          "wave": 1.2,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "15:00",
+          "temp": "23",
+          "windDir": "NNW",
+          "windSpeed": 6.4,
+          "wave": 1.2,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "16:00",
+          "temp": "22",
+          "windDir": "NNW",
+          "windSpeed": 6,
+          "wave": 1.2,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "17:00",
+          "temp": "21",
+          "windDir": "NNW",
+          "windSpeed": 5.6,
+          "wave": 1.2,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "18:00",
+          "temp": "21",
+          "windDir": "NNW",
+          "windSpeed": 5.7,
+          "wave": 1.1,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "19:00",
+          "temp": "20",
+          "windDir": "N",
+          "windSpeed": 5.8,
+          "wave": 1.1,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "20:00",
+          "temp": "20",
+          "windDir": "N",
+          "windSpeed": 6.1,
+          "wave": 1.1,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "21:00",
+          "temp": "20",
+          "windDir": "NNE",
+          "windSpeed": 5.3,
+          "wave": 1.2,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "22:00",
+          "temp": "19",
+          "windDir": "NNE",
+          "windSpeed": 5.2,
+          "wave": 1.2,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "23:00",
+          "temp": "19",
+          "windDir": "NNE",
+          "windSpeed": 5.1,
+          "wave": 1.2,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "00:00",
+          "temp": "18",
+          "windDir": "NNE",
+          "windSpeed": 5.1,
+          "wave": 1.5,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "01:00",
+          "temp": "18",
+          "windDir": "NNE",
+          "windSpeed": 5,
+          "wave": 1.5,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "02:00",
+          "temp": "17",
+          "windDir": "NNE",
+          "windSpeed": 4.9,
+          "wave": 1.5,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "03:00",
+          "temp": "17",
+          "windDir": "NNE",
+          "windSpeed": 4.7,
+          "wave": 1.6,
+          "period": 8,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "04:00",
+          "temp": "16",
+          "windDir": "NNE",
+          "windSpeed": 4.4,
+          "wave": 1.6,
+          "period": 8,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "05:00",
+          "temp": "16",
+          "windDir": "NNE",
+          "windSpeed": 4,
+          "wave": 1.6,
+          "period": 8,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "06:00",
+          "temp": "15",
+          "windDir": "NNE",
+          "windSpeed": 4.1,
+          "wave": 1.6,
+          "period": 8.6,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "07:00",
+          "temp": "15",
+          "windDir": "NNE",
+          "windSpeed": 3.8,
+          "wave": 1.6,
+          "period": 8.6,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "08:00",
+          "temp": "17",
+          "windDir": "NNE",
+          "windSpeed": 3.8,
+          "wave": 1.6,
+          "period": 8.6,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "09:00",
+          "temp": "19",
+          "windDir": "NNE",
+          "windSpeed": 3.9,
+          "wave": 1.4,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "10:00",
+          "temp": "21",
+          "windDir": "N",
+          "windSpeed": 3.9,
+          "wave": 1.4,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "11:00",
+          "temp": "22",
+          "windDir": "N",
+          "windSpeed": 3.5,
+          "wave": 1.4,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "12:00",
+          "temp": "23",
+          "windDir": "NNW",
+          "windSpeed": 3.4,
+          "wave": 1.4,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "13:00",
+          "temp": "23",
+          "windDir": "NNW",
+          "windSpeed": 4.1,
+          "wave": 1.4,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "14:00",
+          "temp": "23",
+          "windDir": "NNW",
+          "windSpeed": 5.1,
+          "wave": 1.4,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "15:00",
+          "temp": "23",
+          "windDir": "NNW",
+          "windSpeed": 5.1,
+          "wave": 1.3,
+          "period": 7.9,
+          "waveDir": "NNW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "16:00",
+          "temp": "22",
+          "windDir": "N",
+          "windSpeed": 4,
+          "wave": 1.3,
+          "period": 7.9,
+          "waveDir": "NNW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "17:00",
+          "temp": "21",
+          "windDir": "N",
+          "windSpeed": 3.5,
+          "wave": 1.3,
+          "period": 7.9,
+          "waveDir": "NNW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "18:00",
+          "temp": "20",
+          "windDir": "NNE",
+          "windSpeed": 3,
+          "wave": 1.2,
+          "period": 7.9,
+          "waveDir": "NNW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "19:00",
+          "temp": "18",
+          "windDir": "NNE",
+          "windSpeed": 2,
+          "wave": 1.2,
+          "period": 7.9,
+          "waveDir": "NNW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "20:00",
+          "temp": "17",
+          "windDir": "NE",
+          "windSpeed": 1,
+          "wave": 1.2,
+          "period": 7.9,
+          "waveDir": "NNW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "21:00",
+          "temp": "17",
+          "windDir": "ENE",
+          "windSpeed": 0.9,
+          "wave": 1.1,
+          "period": 7.9,
+          "waveDir": "NNW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "22:00",
+          "temp": "16",
+          "windDir": "E",
+          "windSpeed": 0.9,
+          "wave": 1.1,
+          "period": 7.9,
+          "waveDir": "NNW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "23:00",
+          "temp": "16",
+          "windDir": "ESE",
+          "windSpeed": 1.2,
+          "wave": 1.1,
+          "period": 7.9,
+          "waveDir": "NNW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "00:00",
+          "temp": "16",
+          "windDir": "SE",
+          "windSpeed": 1.2,
+          "wave": 0.9,
+          "period": 7.3,
+          "waveDir": "NNW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "01:00",
+          "temp": "16",
+          "windDir": "ESE",
+          "windSpeed": 1.5,
+          "wave": 0.9,
+          "period": 7.3,
+          "waveDir": "NNW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "02:00",
+          "temp": "16",
+          "windDir": "ESE",
+          "windSpeed": 1.5,
+          "wave": 0.9,
+          "period": 7.3,
+          "waveDir": "NNW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "03:00",
+          "temp": "16",
+          "windDir": "ESE",
+          "windSpeed": 1.1,
+          "wave": 0.8,
+          "period": 7.3,
+          "waveDir": "NNW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "04:00",
+          "temp": "16",
+          "windDir": "ESE",
+          "windSpeed": 1.2,
+          "wave": 0.8,
+          "period": 7.3,
+          "waveDir": "NNW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "05:00",
+          "temp": "16",
+          "windDir": "SE",
+          "windSpeed": 1.3,
+          "wave": 0.8,
+          "period": 7.3,
+          "waveDir": "NNW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "06:00",
+          "temp": "16",
+          "windDir": "ESE",
+          "windSpeed": 1.5,
+          "wave": 0.7,
+          "period": 7.3,
+          "waveDir": "NNW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "07:00",
+          "temp": "17",
+          "windDir": "SE",
+          "windSpeed": 1.1,
+          "wave": 0.7,
+          "period": 7.3,
+          "waveDir": "NNW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "08:00",
+          "temp": "19",
+          "windDir": "SE",
+          "windSpeed": 0.9,
+          "wave": 0.7,
+          "period": 7.3,
+          "waveDir": "NNW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "09:00",
+          "temp": "21",
+          "windDir": "SE",
+          "windSpeed": 0.7,
+          "wave": 0.6,
+          "period": 7.3,
+          "waveDir": "NNW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "10:00",
+          "temp": "22",
+          "windDir": "S",
+          "windSpeed": 0.9,
+          "wave": 0.6,
+          "period": 7.3,
+          "waveDir": "NNW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "11:00",
+          "temp": "23",
+          "windDir": "SW",
+          "windSpeed": 0.7,
+          "wave": 0.6,
+          "period": 7.3,
+          "waveDir": "NNW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "12:00",
+          "temp": "24",
+          "windDir": "WSW",
+          "windSpeed": 0.9,
+          "wave": 0.6,
+          "period": 7.2,
+          "waveDir": "NNW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "13:00",
+          "temp": "24",
+          "windDir": "SSE",
+          "windSpeed": 0.2,
+          "wave": 0.6,
+          "period": 7.2,
+          "waveDir": "NNW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "14:00",
+          "temp": "24",
+          "windDir": "SE",
+          "windSpeed": 0.5,
+          "wave": 0.6,
+          "period": 7.2,
+          "waveDir": "NNW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "15:00",
+          "temp": "24",
+          "windDir": "SW",
+          "windSpeed": 0.9,
+          "wave": 0.5,
+          "period": 6.7,
+          "waveDir": "NNW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "16:00",
+          "temp": "23",
+          "windDir": "S",
+          "windSpeed": 1.1,
+          "wave": 0.5,
+          "period": 6.7,
+          "waveDir": "NNW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "17:00",
+          "temp": "22",
+          "windDir": "S",
+          "windSpeed": 2,
+          "wave": 0.5,
+          "period": 6.7,
+          "waveDir": "NNW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "18:00",
+          "temp": "21",
+          "windDir": "SSE",
+          "windSpeed": 3.2,
+          "wave": 0.4,
+          "period": 6.7,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "19:00",
+          "temp": "21",
+          "windDir": "SSE",
+          "windSpeed": 3.9,
+          "wave": 0.4,
+          "period": 6.7,
+          "waveDir": "N",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "20:00",
+          "temp": "20",
+          "windDir": "SSE",
+          "windSpeed": 4.3,
+          "wave": 0.4,
+          "period": 6.7,
+          "waveDir": "N",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "21:00",
+          "temp": "20",
+          "windDir": "SE",
+          "windSpeed": 4.3,
+          "wave": 0.4,
+          "period": 6.1,
+          "waveDir": "N",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "22:00",
+          "temp": "20",
+          "windDir": "SE",
+          "windSpeed": 5.1,
+          "wave": 0.4,
+          "period": 6.1,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "23:00",
+          "temp": "21",
+          "windDir": "SE",
+          "windSpeed": 5.2,
+          "wave": 0.4,
+          "period": 6.1,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "00:00",
+          "temp": "21",
+          "windDir": "SE",
+          "windSpeed": 5.6,
+          "wave": 0.4,
+          "period": 6.1,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "01:00",
+          "temp": "20",
+          "windDir": "SE",
+          "windSpeed": 6.1,
+          "wave": 0.4,
+          "period": 6.1,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "02:00",
+          "temp": "20",
+          "windDir": "SE",
+          "windSpeed": 6,
+          "wave": 0.4,
+          "period": 6.1,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "03:00",
+          "temp": "20",
+          "windDir": "SSE",
+          "windSpeed": 5,
+          "wave": 0.3,
+          "period": 3.6,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "04:00",
+          "temp": "20",
+          "windDir": "SE",
+          "windSpeed": 4.9,
+          "wave": 0.3,
+          "period": 3.6,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "05:00",
+          "temp": "20",
+          "windDir": "SE",
+          "windSpeed": 4.4,
+          "wave": 0.3,
+          "period": 3.6,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "06:00",
+          "temp": "20",
+          "windDir": "SE",
+          "windSpeed": 4.4,
+          "wave": 0.3,
+          "period": 3.6,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "07:00",
+          "temp": "21",
+          "windDir": "SE",
+          "windSpeed": 4,
+          "wave": 0.3,
+          "period": 3.6,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "08:00",
+          "temp": "21",
+          "windDir": "SE",
+          "windSpeed": 3.8,
+          "wave": 0.3,
+          "period": 3.6,
+          "waveDir": "N",
+          "weather": "kumori"
+        }
+      ]
     },
     "kurosaki": {
-      "wavePoints": [],
-      "hourData": []
+      "tide": {
+        "tideName": "小潮",
+        "tideHigh": "04:25",
+        "tideLow": "12:36"
+      },
+      "sun": {
+        "sunRise": "05:54",
+        "sunSet": "17:38"
+      },
+      "wavePoints": [
+        {
+          "time": "02(金) 03:00",
+          "wave": 1.2
+        },
+        {
+          "time": "06:00",
+          "wave": 1.3
+        },
+        {
+          "time": "09:00",
+          "wave": 1.3
+        },
+        {
+          "time": "12:00",
+          "wave": 1.2
+        },
+        {
+          "time": "15:00",
+          "wave": 1.2
+        },
+        {
+          "time": "18:00",
+          "wave": 1.1
+        },
+        {
+          "time": "21:00",
+          "wave": 1.2
+        },
+        {
+          "time": "03(土) 00:00",
+          "wave": 1.5
+        },
+        {
+          "time": "03:00",
+          "wave": 1.6
+        },
+        {
+          "time": "06:00",
+          "wave": 1.6
+        },
+        {
+          "time": "09:00",
+          "wave": 1.4
+        },
+        {
+          "time": "12:00",
+          "wave": 1.4
+        },
+        {
+          "time": "15:00",
+          "wave": 1.3
+        },
+        {
+          "time": "18:00",
+          "wave": 1.2
+        },
+        {
+          "time": "21:00",
+          "wave": 1.1
+        },
+        {
+          "time": "04(日) 00:00",
+          "wave": 0.9
+        },
+        {
+          "time": "03:00",
+          "wave": 0.8
+        }
+      ],
+      "hourData": [
+        {
+          "dayLabel": "10/2",
+          "time": "08:00",
+          "temp": "20",
+          "windDir": "N",
+          "windSpeed": 6.1,
+          "wave": 1.3,
+          "period": 8.6,
+          "waveDir": "WNW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "09:00",
+          "temp": "21",
+          "windDir": "N",
+          "windSpeed": 6.3,
+          "wave": 1.3,
+          "period": 7.9,
+          "waveDir": "WNW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "10:00",
+          "temp": "22",
+          "windDir": "NNW",
+          "windSpeed": 6.6,
+          "wave": 1.3,
+          "period": 7.9,
+          "waveDir": "WNW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "11:00",
+          "temp": "23",
+          "windDir": "NNW",
+          "windSpeed": 6.7,
+          "wave": 1.3,
+          "period": 7.9,
+          "waveDir": "WNW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "12:00",
+          "temp": "23",
+          "windDir": "NNW",
+          "windSpeed": 6.6,
+          "wave": 1.2,
+          "period": 7.9,
+          "waveDir": "WNW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "13:00",
+          "temp": "23",
+          "windDir": "NNW",
+          "windSpeed": 6.5,
+          "wave": 1.2,
+          "period": 7.9,
+          "waveDir": "WNW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "14:00",
+          "temp": "23",
+          "windDir": "NNW",
+          "windSpeed": 6.4,
+          "wave": 1.2,
+          "period": 7.9,
+          "waveDir": "WNW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "15:00",
+          "temp": "23",
+          "windDir": "NNW",
+          "windSpeed": 6.1,
+          "wave": 1.2,
+          "period": 7.3,
+          "waveDir": "WNW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "16:00",
+          "temp": "22",
+          "windDir": "NNW",
+          "windSpeed": 5.9,
+          "wave": 1.2,
+          "period": 7.3,
+          "waveDir": "WNW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "17:00",
+          "temp": "22",
+          "windDir": "NNW",
+          "windSpeed": 5.6,
+          "wave": 1.2,
+          "period": 7.3,
+          "waveDir": "WNW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "18:00",
+          "temp": "21",
+          "windDir": "NNW",
+          "windSpeed": 5.8,
+          "wave": 1.1,
+          "period": 7.3,
+          "waveDir": "WNW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "19:00",
+          "temp": "21",
+          "windDir": "N",
+          "windSpeed": 6,
+          "wave": 1.1,
+          "period": 7.3,
+          "waveDir": "WNW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "20:00",
+          "temp": "21",
+          "windDir": "N",
+          "windSpeed": 6.4,
+          "wave": 1.1,
+          "period": 7.3,
+          "waveDir": "WNW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "21:00",
+          "temp": "20",
+          "windDir": "NNE",
+          "windSpeed": 4.8,
+          "wave": 1.2,
+          "period": 7.3,
+          "waveDir": "WNW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "22:00",
+          "temp": "20",
+          "windDir": "NNE",
+          "windSpeed": 4.7,
+          "wave": 1.2,
+          "period": 7.3,
+          "waveDir": "WNW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "23:00",
+          "temp": "19",
+          "windDir": "NNE",
+          "windSpeed": 4.6,
+          "wave": 1.2,
+          "period": 7.3,
+          "waveDir": "WNW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "00:00",
+          "temp": "19",
+          "windDir": "NNE",
+          "windSpeed": 4.6,
+          "wave": 1.5,
+          "period": 7.9,
+          "waveDir": "WNW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "01:00",
+          "temp": "19",
+          "windDir": "NNE",
+          "windSpeed": 4.5,
+          "wave": 1.5,
+          "period": 7.9,
+          "waveDir": "WNW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "02:00",
+          "temp": "18",
+          "windDir": "NNE",
+          "windSpeed": 4.4,
+          "wave": 1.5,
+          "period": 7.9,
+          "waveDir": "WNW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "03:00",
+          "temp": "18",
+          "windDir": "NNE",
+          "windSpeed": 4.2,
+          "wave": 1.6,
+          "period": 7.9,
+          "waveDir": "WNW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "04:00",
+          "temp": "17",
+          "windDir": "NNE",
+          "windSpeed": 3.9,
+          "wave": 1.6,
+          "period": 7.9,
+          "waveDir": "WNW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "05:00",
+          "temp": "16",
+          "windDir": "NNE",
+          "windSpeed": 3.5,
+          "wave": 1.6,
+          "period": 7.9,
+          "waveDir": "WNW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "06:00",
+          "temp": "16",
+          "windDir": "NNE",
+          "windSpeed": 3.6,
+          "wave": 1.6,
+          "period": 8.6,
+          "waveDir": "WNW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "07:00",
+          "temp": "16",
+          "windDir": "NNE",
+          "windSpeed": 3.2,
+          "wave": 1.6,
+          "period": 8.6,
+          "waveDir": "WNW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "08:00",
+          "temp": "18",
+          "windDir": "NNE",
+          "windSpeed": 3.3,
+          "wave": 1.6,
+          "period": 8.6,
+          "waveDir": "WNW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "09:00",
+          "temp": "20",
+          "windDir": "N",
+          "windSpeed": 3.6,
+          "wave": 1.4,
+          "period": 7.9,
+          "waveDir": "WNW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "10:00",
+          "temp": "21",
+          "windDir": "N",
+          "windSpeed": 3.5,
+          "wave": 1.4,
+          "period": 7.9,
+          "waveDir": "WNW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "11:00",
+          "temp": "22",
+          "windDir": "N",
+          "windSpeed": 3.3,
+          "wave": 1.4,
+          "period": 7.9,
+          "waveDir": "WNW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "12:00",
+          "temp": "22",
+          "windDir": "NNW",
+          "windSpeed": 3.2,
+          "wave": 1.4,
+          "period": 7.9,
+          "waveDir": "WNW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "13:00",
+          "temp": "23",
+          "windDir": "NNW",
+          "windSpeed": 3.9,
+          "wave": 1.4,
+          "period": 7.9,
+          "waveDir": "WNW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "14:00",
+          "temp": "23",
+          "windDir": "NNW",
+          "windSpeed": 4.9,
+          "wave": 1.4,
+          "period": 7.9,
+          "waveDir": "WNW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "15:00",
+          "temp": "23",
+          "windDir": "NNW",
+          "windSpeed": 4.7,
+          "wave": 1.3,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "16:00",
+          "temp": "22",
+          "windDir": "N",
+          "windSpeed": 3.7,
+          "wave": 1.3,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "17:00",
+          "temp": "21",
+          "windDir": "N",
+          "windSpeed": 3,
+          "wave": 1.3,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "18:00",
+          "temp": "20",
+          "windDir": "NNE",
+          "windSpeed": 2.7,
+          "wave": 1.2,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "19:00",
+          "temp": "18",
+          "windDir": "N",
+          "windSpeed": 1.7,
+          "wave": 1.2,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "20:00",
+          "temp": "17",
+          "windDir": "NE",
+          "windSpeed": 0.7,
+          "wave": 1.2,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "21:00",
+          "temp": "16",
+          "windDir": "ENE",
+          "windSpeed": 0.6,
+          "wave": 1.1,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "22:00",
+          "temp": "16",
+          "windDir": "E",
+          "windSpeed": 0.7,
+          "wave": 1.1,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "23:00",
+          "temp": "15",
+          "windDir": "ESE",
+          "windSpeed": 1.1,
+          "wave": 1.1,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "00:00",
+          "temp": "15",
+          "windDir": "SE",
+          "windSpeed": 1.1,
+          "wave": 0.9,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "01:00",
+          "temp": "16",
+          "windDir": "SE",
+          "windSpeed": 1.2,
+          "wave": 0.9,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "02:00",
+          "temp": "16",
+          "windDir": "SE",
+          "windSpeed": 1.3,
+          "wave": 0.9,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "03:00",
+          "temp": "16",
+          "windDir": "SE",
+          "windSpeed": 1.1,
+          "wave": 0.8,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "04:00",
+          "temp": "16",
+          "windDir": "SE",
+          "windSpeed": 1.2,
+          "wave": 0.8,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "05:00",
+          "temp": "16",
+          "windDir": "SE",
+          "windSpeed": 1.2,
+          "wave": 0.8,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "06:00",
+          "temp": "16",
+          "windDir": "SE",
+          "windSpeed": 1.3,
+          "wave": 0.7,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "07:00",
+          "temp": "17",
+          "windDir": "SE",
+          "windSpeed": 1,
+          "wave": 0.7,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "08:00",
+          "temp": "19",
+          "windDir": "SE",
+          "windSpeed": 1,
+          "wave": 0.7,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "09:00",
+          "temp": "21",
+          "windDir": "SE",
+          "windSpeed": 0.8,
+          "wave": 0.6,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "10:00",
+          "temp": "22",
+          "windDir": "S",
+          "windSpeed": 1,
+          "wave": 0.6,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "11:00",
+          "temp": "24",
+          "windDir": "SSW",
+          "windSpeed": 0.6,
+          "wave": 0.6,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "12:00",
+          "temp": "24",
+          "windDir": "WSW",
+          "windSpeed": 0.5,
+          "wave": 0.5,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "13:00",
+          "temp": "24",
+          "windDir": "SE",
+          "windSpeed": 0.6,
+          "wave": 0.5,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "14:00",
+          "temp": "24",
+          "windDir": "SE",
+          "windSpeed": 0.7,
+          "wave": 0.5,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "15:00",
+          "temp": "24",
+          "windDir": "SSW",
+          "windSpeed": 1,
+          "wave": 0.5,
+          "period": 6.7,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "16:00",
+          "temp": "23",
+          "windDir": "S",
+          "windSpeed": 1.2,
+          "wave": 0.5,
+          "period": 6.7,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "17:00",
+          "temp": "22",
+          "windDir": "SSE",
+          "windSpeed": 2.2,
+          "wave": 0.5,
+          "period": 6.7,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "18:00",
+          "temp": "21",
+          "windDir": "SSE",
+          "windSpeed": 3.3,
+          "wave": 0.4,
+          "period": 6.7,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "19:00",
+          "temp": "21",
+          "windDir": "SSE",
+          "windSpeed": 3.9,
+          "wave": 0.4,
+          "period": 6.7,
+          "waveDir": "N",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "20:00",
+          "temp": "20",
+          "windDir": "SE",
+          "windSpeed": 4.2,
+          "wave": 0.4,
+          "period": 6.7,
+          "waveDir": "N",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "21:00",
+          "temp": "20",
+          "windDir": "SE",
+          "windSpeed": 4.2,
+          "wave": 0.4,
+          "period": 6.1,
+          "waveDir": "N",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "22:00",
+          "temp": "21",
+          "windDir": "SE",
+          "windSpeed": 5.1,
+          "wave": 0.4,
+          "period": 6.1,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "23:00",
+          "temp": "21",
+          "windDir": "SE",
+          "windSpeed": 5.2,
+          "wave": 0.4,
+          "period": 6.1,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "00:00",
+          "temp": "21",
+          "windDir": "SE",
+          "windSpeed": 5.5,
+          "wave": 0.4,
+          "period": 6.1,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "01:00",
+          "temp": "21",
+          "windDir": "SE",
+          "windSpeed": 6,
+          "wave": 0.4,
+          "period": 6.1,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "02:00",
+          "temp": "21",
+          "windDir": "SE",
+          "windSpeed": 5.8,
+          "wave": 0.4,
+          "period": 6.1,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "03:00",
+          "temp": "21",
+          "windDir": "SSE",
+          "windSpeed": 5.1,
+          "wave": 0.3,
+          "period": 3.3,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "04:00",
+          "temp": "21",
+          "windDir": "SE",
+          "windSpeed": 4.7,
+          "wave": 0.3,
+          "period": 3.3,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "05:00",
+          "temp": "20",
+          "windDir": "SE",
+          "windSpeed": 4.3,
+          "wave": 0.3,
+          "period": 3.3,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "06:00",
+          "temp": "20",
+          "windDir": "SE",
+          "windSpeed": 4.3,
+          "wave": 0.3,
+          "period": 3.3,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "07:00",
+          "temp": "21",
+          "windDir": "SE",
+          "windSpeed": 4,
+          "wave": 0.3,
+          "period": 3.3,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "08:00",
+          "temp": "21",
+          "windDir": "SE",
+          "windSpeed": 4,
+          "wave": 0.3,
+          "period": 3.3,
+          "waveDir": "N",
+          "weather": "kumori"
+        }
+      ]
     },
     "echizen": {
-      "wavePoints": [],
-      "hourData": []
+      "tide": {
+        "tideName": "小潮",
+        "tideHigh": "04:24",
+        "tideLow": "12:29"
+      },
+      "sun": {
+        "sunRise": "05:54",
+        "sunSet": "17:38"
+      },
+      "wavePoints": [
+        {
+          "time": "02(金) 03:00",
+          "wave": 1.4
+        },
+        {
+          "time": "06:00",
+          "wave": 1.4
+        },
+        {
+          "time": "09:00",
+          "wave": 1.3
+        },
+        {
+          "time": "12:00",
+          "wave": 1.1
+        },
+        {
+          "time": "15:00",
+          "wave": 1.1
+        },
+        {
+          "time": "18:00",
+          "wave": 1.2
+        },
+        {
+          "time": "21:00",
+          "wave": 1.5
+        },
+        {
+          "time": "03(土) 00:00",
+          "wave": 1.8
+        },
+        {
+          "time": "03:00",
+          "wave": 1.8
+        },
+        {
+          "time": "06:00",
+          "wave": 1.7
+        },
+        {
+          "time": "09:00",
+          "wave": 1.6
+        },
+        {
+          "time": "12:00",
+          "wave": 1.5
+        },
+        {
+          "time": "15:00",
+          "wave": 1.5
+        },
+        {
+          "time": "18:00",
+          "wave": 1.4
+        },
+        {
+          "time": "21:00",
+          "wave": 1.3
+        },
+        {
+          "time": "04(日) 00:00",
+          "wave": 1.1
+        },
+        {
+          "time": "03:00",
+          "wave": 0.9
+        }
+      ],
+      "hourData": [
+        {
+          "dayLabel": "10/2",
+          "time": "08:00",
+          "temp": "17",
+          "windDir": "NNE",
+          "windSpeed": 4.7,
+          "wave": 1.4,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "09:00",
+          "temp": "18",
+          "windDir": "NNE",
+          "windSpeed": 3.8,
+          "wave": 1.3,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "10:00",
+          "temp": "19",
+          "windDir": "N",
+          "windSpeed": 3.5,
+          "wave": 1.3,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "11:00",
+          "temp": "20",
+          "windDir": "NNW",
+          "windSpeed": 3.8,
+          "wave": 1.3,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "12:00",
+          "temp": "21",
+          "windDir": "NNW",
+          "windSpeed": 4,
+          "wave": 1.1,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "13:00",
+          "temp": "21",
+          "windDir": "NNW",
+          "windSpeed": 4,
+          "wave": 1.1,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "14:00",
+          "temp": "21",
+          "windDir": "NNW",
+          "windSpeed": 4,
+          "wave": 1.1,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "15:00",
+          "temp": "20",
+          "windDir": "NNW",
+          "windSpeed": 3.7,
+          "wave": 1.1,
+          "period": 7.3,
+          "waveDir": "WNW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "16:00",
+          "temp": "20",
+          "windDir": "NNW",
+          "windSpeed": 3.5,
+          "wave": 1.1,
+          "period": 7.3,
+          "waveDir": "WNW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "17:00",
+          "temp": "19",
+          "windDir": "NNW",
+          "windSpeed": 2.8,
+          "wave": 1.1,
+          "period": 7.3,
+          "waveDir": "WNW",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "18:00",
+          "temp": "18",
+          "windDir": "N",
+          "windSpeed": 5.9,
+          "wave": 1.2,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "19:00",
+          "temp": "18",
+          "windDir": "N",
+          "windSpeed": 6.9,
+          "wave": 1.2,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "20:00",
+          "temp": "17",
+          "windDir": "NNE",
+          "windSpeed": 6.6,
+          "wave": 1.2,
+          "period": 7.3,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "21:00",
+          "temp": "17",
+          "windDir": "NNE",
+          "windSpeed": 6.5,
+          "wave": 1.5,
+          "period": 7.8,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "22:00",
+          "temp": "17",
+          "windDir": "N",
+          "windSpeed": 6.3,
+          "wave": 1.5,
+          "period": 7.8,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/2",
+          "time": "23:00",
+          "temp": "16",
+          "windDir": "N",
+          "windSpeed": 6.2,
+          "wave": 1.5,
+          "period": 7.8,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "00:00",
+          "temp": "16",
+          "windDir": "N",
+          "windSpeed": 6.1,
+          "wave": 1.8,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "01:00",
+          "temp": "16",
+          "windDir": "NNE",
+          "windSpeed": 6.1,
+          "wave": 1.8,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "02:00",
+          "temp": "15",
+          "windDir": "NNE",
+          "windSpeed": 5.9,
+          "wave": 1.8,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "03:00",
+          "temp": "14",
+          "windDir": "NE",
+          "windSpeed": 5.5,
+          "wave": 1.8,
+          "period": 8.6,
+          "waveDir": "NW",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "04:00",
+          "temp": "14",
+          "windDir": "NE",
+          "windSpeed": 4.9,
+          "wave": 1.8,
+          "period": 8.6,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "05:00",
+          "temp": "14",
+          "windDir": "NE",
+          "windSpeed": 4.6,
+          "wave": 1.8,
+          "period": 8.6,
+          "waveDir": "NW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "06:00",
+          "temp": "14",
+          "windDir": "NE",
+          "windSpeed": 5,
+          "wave": 1.7,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "07:00",
+          "temp": "14",
+          "windDir": "NE",
+          "windSpeed": 5.1,
+          "wave": 1.7,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "08:00",
+          "temp": "16",
+          "windDir": "NE",
+          "windSpeed": 5.3,
+          "wave": 1.7,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "09:00",
+          "temp": "17",
+          "windDir": "NE",
+          "windSpeed": 5.8,
+          "wave": 1.6,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "10:00",
+          "temp": "18",
+          "windDir": "NNE",
+          "windSpeed": 6.1,
+          "wave": 1.6,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "11:00",
+          "temp": "20",
+          "windDir": "NNE",
+          "windSpeed": 6.3,
+          "wave": 1.6,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "12:00",
+          "temp": "20",
+          "windDir": "NNE",
+          "windSpeed": 6.5,
+          "wave": 1.5,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "13:00",
+          "temp": "20",
+          "windDir": "NNE",
+          "windSpeed": 6.5,
+          "wave": 1.5,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "14:00",
+          "temp": "20",
+          "windDir": "NNE",
+          "windSpeed": 6.5,
+          "wave": 1.5,
+          "period": 7.9,
+          "waveDir": "NW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "15:00",
+          "temp": "20",
+          "windDir": "NNE",
+          "windSpeed": 6.6,
+          "wave": 1.5,
+          "period": 7.9,
+          "waveDir": "NNW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "16:00",
+          "temp": "20",
+          "windDir": "NNE",
+          "windSpeed": 6.7,
+          "wave": 1.5,
+          "period": 7.9,
+          "waveDir": "NNW",
+          "weather": "kaisei"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "17:00",
+          "temp": "19",
+          "windDir": "NNE",
+          "windSpeed": 6.4,
+          "wave": 1.5,
+          "period": 7.9,
+          "waveDir": "NNW",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "18:00",
+          "temp": "18",
+          "windDir": "NE",
+          "windSpeed": 5.6,
+          "wave": 1.4,
+          "period": 7.9,
+          "waveDir": "N",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "19:00",
+          "temp": "17",
+          "windDir": "NNE",
+          "windSpeed": 6.3,
+          "wave": 1.4,
+          "period": 7.9,
+          "waveDir": "N",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "20:00",
+          "temp": "17",
+          "windDir": "NNE",
+          "windSpeed": 5.8,
+          "wave": 1.4,
+          "period": 7.9,
+          "waveDir": "N",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "21:00",
+          "temp": "17",
+          "windDir": "NE",
+          "windSpeed": 5.2,
+          "wave": 1.3,
+          "period": 7.3,
+          "waveDir": "N",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "22:00",
+          "temp": "16",
+          "windDir": "NE",
+          "windSpeed": 4.4,
+          "wave": 1.3,
+          "period": 7.3,
+          "waveDir": "N",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/3",
+          "time": "23:00",
+          "temp": "15",
+          "windDir": "NE",
+          "windSpeed": 3.4,
+          "wave": 1.3,
+          "period": 7.3,
+          "waveDir": "N",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "00:00",
+          "temp": "15",
+          "windDir": "NE",
+          "windSpeed": 2.7,
+          "wave": 1.1,
+          "period": 7.3,
+          "waveDir": "N",
+          "weather": "harema"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "01:00",
+          "temp": "14",
+          "windDir": "ENE",
+          "windSpeed": 2.2,
+          "wave": 1.1,
+          "period": 7.3,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "02:00",
+          "temp": "14",
+          "windDir": "E",
+          "windSpeed": 1.7,
+          "wave": 1.1,
+          "period": 7.3,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "03:00",
+          "temp": "14",
+          "windDir": "E",
+          "windSpeed": 1.3,
+          "wave": 0.9,
+          "period": 7.3,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "04:00",
+          "temp": "14",
+          "windDir": "E",
+          "windSpeed": 1.2,
+          "wave": 0.9,
+          "period": 7.3,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "05:00",
+          "temp": "13",
+          "windDir": "E",
+          "windSpeed": 1.1,
+          "wave": 0.9,
+          "period": 7.3,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "06:00",
+          "temp": "13",
+          "windDir": "E",
+          "windSpeed": 1.2,
+          "wave": 0.8,
+          "period": 7.3,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "07:00",
+          "temp": "14",
+          "windDir": "E",
+          "windSpeed": 0.8,
+          "wave": 0.8,
+          "period": 7.3,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "08:00",
+          "temp": "15",
+          "windDir": "E",
+          "windSpeed": 0.8,
+          "wave": 0.8,
+          "period": 7.3,
+          "waveDir": "N",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "09:00",
+          "temp": "18",
+          "windDir": "E",
+          "windSpeed": 0.6,
+          "wave": 0.7,
+          "period": 7.3,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "10:00",
+          "temp": "19",
+          "windDir": "NW",
+          "windSpeed": 0.1,
+          "wave": 0.7,
+          "period": 7.3,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "11:00",
+          "temp": "20",
+          "windDir": "WNW",
+          "windSpeed": 1.1,
+          "wave": 0.7,
+          "period": 7.3,
+          "waveDir": "N",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "12:00",
+          "temp": "21",
+          "windDir": "WNW",
+          "windSpeed": 1.9,
+          "wave": 0.6,
+          "period": 6.7,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "13:00",
+          "temp": "21",
+          "windDir": "NW",
+          "windSpeed": 1.6,
+          "wave": 0.6,
+          "period": 6.7,
+          "waveDir": "N",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "14:00",
+          "temp": "21",
+          "windDir": "N",
+          "windSpeed": 2.1,
+          "wave": 0.6,
+          "period": 6.7,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "15:00",
+          "temp": "21",
+          "windDir": "NNW",
+          "windSpeed": 2.7,
+          "wave": 0.6,
+          "period": 6.7,
+          "waveDir": "N",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "16:00",
+          "temp": "20",
+          "windDir": "N",
+          "windSpeed": 2.5,
+          "wave": 0.6,
+          "period": 6.7,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "17:00",
+          "temp": "20",
+          "windDir": "N",
+          "windSpeed": 2.4,
+          "wave": 0.6,
+          "period": 6.7,
+          "waveDir": "N",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "18:00",
+          "temp": "18",
+          "windDir": "NNE",
+          "windSpeed": 1.8,
+          "wave": 0.5,
+          "period": 6.7,
+          "waveDir": "N",
+          "weather": "haremakumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "19:00",
+          "temp": "18",
+          "windDir": "E",
+          "windSpeed": 1.3,
+          "wave": 0.5,
+          "period": 6.7,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "20:00",
+          "temp": "18",
+          "windDir": "SE",
+          "windSpeed": 1.1,
+          "wave": 0.5,
+          "period": 6.7,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "21:00",
+          "temp": "18",
+          "windDir": "SSE",
+          "windSpeed": 2.4,
+          "wave": 0.5,
+          "period": 6.1,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "22:00",
+          "temp": "18",
+          "windDir": "SSE",
+          "windSpeed": 3.4,
+          "wave": 0.5,
+          "period": 6.1,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/4",
+          "time": "23:00",
+          "temp": "18",
+          "windDir": "SSE",
+          "windSpeed": 3.6,
+          "wave": 0.5,
+          "period": 6.1,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "00:00",
+          "temp": "18",
+          "windDir": "SSE",
+          "windSpeed": 3.7,
+          "wave": 0.5,
+          "period": 6.1,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "01:00",
+          "temp": "18",
+          "windDir": "SSE",
+          "windSpeed": 3.4,
+          "wave": 0.5,
+          "period": 6.1,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "02:00",
+          "temp": "17",
+          "windDir": "SSE",
+          "windSpeed": 3.1,
+          "wave": 0.5,
+          "period": 6.1,
+          "waveDir": "N",
+          "weather": "kumori"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "03:00",
+          "temp": "17",
+          "windDir": "S",
+          "windSpeed": 2.8,
+          "wave": 0.5,
+          "period": 6.8,
+          "waveDir": "N",
+          "weather": "kumoriame"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "04:00",
+          "temp": "16",
+          "windDir": "S",
+          "windSpeed": 2.9,
+          "wave": 0.5,
+          "period": 6.8,
+          "waveDir": "N",
+          "weather": "kumoriame"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "05:00",
+          "temp": "16",
+          "windDir": "SSE",
+          "windSpeed": 2.9,
+          "wave": 0.5,
+          "period": 6.8,
+          "waveDir": "N",
+          "weather": "kumoriame"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "06:00",
+          "temp": "16",
+          "windDir": "SE",
+          "windSpeed": 2.5,
+          "wave": 0.5,
+          "period": 6.8,
+          "waveDir": "N",
+          "weather": "kumoriame"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "07:00",
+          "temp": "16",
+          "windDir": "SE",
+          "windSpeed": 1.9,
+          "wave": 0.5,
+          "period": 6.8,
+          "waveDir": "N",
+          "weather": "kumoriame"
+        },
+        {
+          "dayLabel": "10/5",
+          "time": "08:00",
+          "temp": "17",
+          "windDir": "ENE",
+          "windSpeed": 0.5,
+          "wave": 0.5,
+          "period": 6.8,
+          "waveDir": "N",
+          "weather": "kumoriame"
+        }
+      ]
     }
   }
 }

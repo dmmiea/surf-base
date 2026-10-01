@@ -755,11 +755,15 @@
       document.getElementById('distBadge').textContent = rule.dist;
 
       // 日の出・日の入り・タイド
-      document.getElementById('sunRiseTime').textContent = rule.sunRise;
-      document.getElementById('sunSetTime').textContent = rule.sunSet;
-      document.getElementById('tideNameBadge').textContent = rule.tideName;
-      document.getElementById('tideHigh').textContent = rule.tideHigh;
-      document.getElementById('tideLow').textContent = rule.tideLow;
+      const spotData = LIVE_DATA && LIVE_DATA.spots ? LIVE_DATA.spots[currentSpotKey] : null;
+      const curTide = (spotData && spotData.tide) ? spotData.tide : { tideName: rule.tideName, tideHigh: rule.tideHigh, tideLow: rule.tideLow };
+      const curSun = (spotData && spotData.sun) ? spotData.sun : { sunRise: rule.sunRise, sunSet: rule.sunSet };
+
+      document.getElementById('sunRiseTime').textContent = curSun.sunRise;
+      document.getElementById('sunSetTime').textContent = curSun.sunSet;
+      document.getElementById('tideNameBadge').textContent = curTide.tideName;
+      document.getElementById('tideHigh').textContent = curTide.tideHigh;
+      document.getElementById('tideLow').textContent = curTide.tideLow;
 
       // 実測
       document.getElementById('heroRealWave').textContent = np.wave;
