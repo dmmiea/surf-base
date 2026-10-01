@@ -54,22 +54,44 @@ function parseUmitenki(html) {
   }
 
   const hourData = [];
-  const trMatches = html.match(/<tr class="[^"]+">[\s\S]*?<\/tr>/g) || [];
-  for (const tr of trMatches) {
-    const timeM = tr.match(/<td class="etc">(\d+)<\/td>/);
-    if (!timeM) continue;
-    const hour = parseInt(timeM[1], 10);
-    const tempM = tr.match(/(\d+)℃/);
-    const windM = tr.match(/sprite_[^_]+_([A-Z]+)_png.*?([0-9.]+)m/);
-    const weatherM = tr.match(/tenki_2017\/([^.]+)\.png/);
-    hourData.push({
-      time: (hour < 10 ? '0' : '') + hour + ':00',
-      temp: tempM ? tempM[1] : null,
-      windDir: windM ? windM[1] : null,
-      windSpeed: windM ? parseFloat(windM[2]) : null,
-      weather: weatherM ? weatherM[1] : null
+  const tables = html.match(/<table class="hour_yohou"[\s\S]*?<\/table>/g) || [];
+
+  let currentWave = null;
+  let currentPeriod = null;
+  let currentWaveDir = null;
+
+  tables.forEach(t => {
+    const trs = t.match(/<tr[\s\S]*?<\/tr>/g) || [];
+    trs.forEach(tr => {
+      const timeM = tr.match(/<td class="etc">(\d+)<\/td>/);
+      if (!timeM) return;
+      const hour = parseInt(timeM[1], 10);
+      const time = (hour < 10 ? '0' : '') + hour + ':00';
+
+      const waveM = tr.match(/<\/div>\s*([0-9.]+)m\s*<div/);
+      const perM = tr.match(/<\/div>\s*[0-9.]+m\s*<div[^>]*>\s*([0-9.]+)/);
+      const dirM = tr.match(/wavesimulator\/blue_([a-z]+)\.png/);
+
+      if (waveM) currentWave = parseFloat(waveM[1]);
+      if (perM) currentPeriod = parseFloat(perM[1]);
+      if (dirM) currentWaveDir = dirM[1].toUpperCase();
+
+      const tempM = tr.match(/(\d+)℃/);
+      const windM = tr.match(/sprite_[^_]+_([A-Z]+)_png.*?([0-9.]+)m/);
+      const weatherM = tr.match(/tenki_2017\/([^.]+)\.png/);
+
+      hourData.push({
+        time,
+        temp: tempM ? tempM[1] : null,
+        windDir: windM ? windM[1] : null,
+        windSpeed: windM ? parseFloat(windM[2]) : null,
+        wave: currentWave,
+        period: currentPeriod,
+        waveDir: currentWaveDir,
+        weather: weatherM ? weatherM[1] : null
+      });
     });
-  }
+  });
 
   return { wavePoints, hourData };
 }

@@ -638,16 +638,21 @@
         // LIVE_DATAの海天気実測・予報とマッチング (hourData & wavePoints)
         if (spotData && Array.isArray(spotData.hourData)) {
           // offset >= 0 の未来予報は index = offset (基準時刻が先頭のため)
-          const hItem = spotData.hourData.find((h, idx) => {
-            if (offset >= 0 && idx === offset) return true;
-            return h.time === timeLabel;
-          });
+          const hItem = (offset >= 0 && offset < spotData.hourData.length) 
+            ? spotData.hourData[offset] 
+            : spotData.hourData.find(h => h.time === timeLabel);
+            
           if (hItem) {
             if (hItem.windDir) windDir = hItem.windDir;
             if (hItem.windSpeed !== null && hItem.windSpeed !== undefined) windSpeed = Number(hItem.windSpeed).toFixed(1);
+            if (hItem.wave !== null && hItem.wave !== undefined) fcWave = hItem.wave;
+            if (hItem.period !== null && hItem.period !== undefined) {
+              fcPeriodNum = hItem.period;
+              fcPeriod = hItem.period + '秒';
+            }
+            if (hItem.waveDir) fcWaveDir = hItem.waveDir;
           }
-        }
-        if (spotData && Array.isArray(spotData.wavePoints) && spotData.wavePoints.length > 0) {
+        } else if (spotData && Array.isArray(spotData.wavePoints) && spotData.wavePoints.length > 0) {
           // 最も近い予報波高を取得
           const wpMatch = spotData.wavePoints.find(p => p.time.endsWith(timeLabel));
           if (wpMatch && wpMatch.wave !== undefined) {
@@ -799,8 +804,10 @@
           fcTimeLabel = firstH.time + ' 予報';
           if (firstH.windDir) defWindDir = firstH.windDir;
           if (firstH.windSpeed !== null && firstH.windSpeed !== undefined) defWindSpeed = Number(firstH.windSpeed);
-        }
-        if (spotData.wavePoints && spotData.wavePoints.length > 0) {
+          if (firstH.wave !== null && firstH.wave !== undefined) defWave = firstH.wave;
+          if (firstH.period !== null && firstH.period !== undefined) defPeriod = firstH.period;
+          if (firstH.waveDir) defWaveDir = firstH.waveDir;
+        } else if (spotData.wavePoints && spotData.wavePoints.length > 0) {
           defWave = spotData.wavePoints[0].wave;
         }
       }
