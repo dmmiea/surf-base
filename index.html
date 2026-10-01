@@ -780,7 +780,6 @@
       let defWindDir = rule.defaultForecast.windDir;
       let fcTimeLabel = '予報';
 
-      const spotData = LIVE_DATA && LIVE_DATA.spots ? LIVE_DATA.spots[currentSpotKey] : null;
       if (spotData && spotData.hourData && spotData.hourData.length > 0) {
         // 現在のJST時刻に合わせてマッチング
         const nowObj = new Date();
