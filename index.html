@@ -58,8 +58,9 @@
           </div>
           <span id="lastUpdated" class="text-[9px] text-slate-400 font-medium">23:00 自動更新</span>
         </div>
-        <button onclick="refreshData()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 active:scale-95 border border-slate-200 flex items-center justify-center text-sky-600 transition shadow-sm">
+        <button onclick="refreshData()" class="px-2.5 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 active:scale-95 text-white font-bold text-xs flex items-center gap-1.5 transition shadow-sm" title="最新データを取得">
           <i id="syncIcon" class="fa-solid fa-rotate text-xs"></i>
+          <span>最新データ取得</span>
         </button>
       </div>
     </div>
@@ -512,9 +513,11 @@
     };
 
     const NOWPHAS_SUMMARY = {
-      tsuruga: { wave: '0.80', period: '1.6', dir: '****', time: '16:20' },
-      fukui: { wave: '0.46', period: '6.2', dir: 'N', time: '16:20' }
+      tsuruga: { wave: '0.27', period: '4.2', dir: 'WNW', time: '18:40' },
+      fukui: { wave: '0.56', period: '5.5', dir: 'N', time: '18:40' }
     };
+
+    let LIVE_DATA = null;
 
     // 複数サーファーの投稿データ蓄積ストア（LocalStorage自動永続化対応）
     const STORAGE_KEY = 'SURF_BASE_USER_REPORTS_V1';
@@ -599,7 +602,14 @@
       
       const timeline = [];
       const baseDate = new Date();
-      baseDate.setHours(22, 0, 0, 0); // 基準現在時刻 22:00
+      if (LIVE_DATA && LIVE_DATA.updatedAt) {
+        baseDate.setTime(new Date(LIVE_DATA.updatedAt).getTime());
+      }
+      const baseHours = baseDate.getHours();
+      baseDate.setMinutes(0, 0, 0);
+
+      const spotData = LIVE_DATA && LIVE_DATA.spots ? LIVE_DATA.spots[spotKey] : null;
+      const npHistory = LIVE_DATA && LIVE_DATA.nowphas && LIVE_DATA.nowphas[rule.nowphasRef] ? LIVE_DATA.nowphas[rule.nowphasRef].history : [];
 
       // -12h (過去12時間) から +84h (3.5日後) まで1時間刻み
       for (let offset = -12; offset <= 84; offset++) {
@@ -613,7 +623,7 @@
         const isPast = offset < 0;
         const isCurrent = offset === 0;
 
-        // 海天気予報（時間経過による自然な推移）
+        // 海天気予報（LIVE_DATAがあれば実データを使用、なければフォールバック推移）
         let fcWave = rule.defaultForecast.wave + Math.sin(offset * 0.12) * 0.35 - (offset * 0.003);
         fcWave = Math.max(0.4, Number(fcWave.toFixed(2)));
 
@@ -625,6 +635,26 @@
         let windDir = rule.defaultForecast.windDir;
         let windSpeed = (2.0 + Math.abs(Math.sin(offset * 0.15)) * 2.5).toFixed(1);
 
+        // LIVE_DATAの海天気実測・予報とマッチング (hourData & wavePoints)
+        if (spotData && Array.isArray(spotData.hourData)) {
+          // offset >= 0 の未来予報は index = offset (基準時刻が先頭のため)
+          const hItem = spotData.hourData.find((h, idx) => {
+            if (offset >= 0 && idx === offset) return true;
+            return h.time === timeLabel;
+          });
+          if (hItem) {
+            if (hItem.windDir) windDir = hItem.windDir;
+            if (hItem.windSpeed !== null && hItem.windSpeed !== undefined) windSpeed = Number(hItem.windSpeed).toFixed(1);
+          }
+        }
+        if (spotData && Array.isArray(spotData.wavePoints) && spotData.wavePoints.length > 0) {
+          // 最も近い予報波高を取得
+          const wpMatch = spotData.wavePoints.find(p => p.time.endsWith(timeLabel));
+          if (wpMatch && wpMatch.wave !== undefined) {
+            fcWave = wpMatch.wave;
+          }
+        }
+
         let realWave = '-';
         let realPeriod = '-';
         let realDir = '-';
@@ -633,17 +663,32 @@
         let checkPeriod = fcPeriodNum;
         let checkWaveDir = fcWaveDir;
 
+        // ナウファス実測履歴とのマッチング
         if (isPast || isCurrent) {
-          let base = isFukui ? 1.3 : (spotKey === 'sugahama' ? 1.7 : 0.85);
-          let rVal = (base + (offset * 0.01) + (Math.sin(offset) * 0.06)).toFixed(2);
-          realWave = rVal;
-          let rPer = (isFukui ? 7.8 : 5.2 + (Math.cos(offset) * 0.4)).toFixed(1);
-          realPeriod = rPer + '秒';
-          realDir = isFukui ? 'NNW' : 'NW';
+          let matchedNp = null;
+          if (npHistory && npHistory.length > 0) {
+            // その時間の正時、または直近20分・40分実測を検索
+            matchedNp = npHistory.slice().reverse().find(n => n.time.startsWith(hour));
+          }
 
-          checkWave = parseFloat(rVal);
-          checkPeriod = parseFloat(rPer);
-          checkWaveDir = realDir;
+          if (matchedNp) {
+            realWave = matchedNp.wave;
+            realPeriod = matchedNp.period + '秒';
+            realDir = matchedNp.dir;
+            checkWave = parseFloat(matchedNp.wave);
+            checkPeriod = parseFloat(matchedNp.period);
+            checkWaveDir = matchedNp.dir;
+          } else {
+            let base = isFukui ? 1.3 : (spotKey === 'sugahama' ? 1.7 : 0.85);
+            let rVal = (base + (offset * 0.01) + (Math.sin(offset) * 0.06)).toFixed(2);
+            realWave = rVal;
+            let rPer = (isFukui ? 7.8 : 5.2 + (Math.cos(offset) * 0.4)).toFixed(1);
+            realPeriod = rPer + '秒';
+            realDir = isFukui ? 'NNW' : 'NW';
+            checkWave = parseFloat(rVal);
+            checkPeriod = parseFloat(rPer);
+            checkWaveDir = realDir;
+          }
         }
 
         // ユーザー投稿があれば優先反映
@@ -652,6 +697,7 @@
           return r.time.startsWith(hour);
         });
 
+        const userVoteCount = reportsAtHour.length;
         let rateInfo = evaluateCondition(spotKey, checkWave, checkPeriod, checkWaveDir, windDir, windSpeed);
         let userSize = '';
         if (userVoteCount > 0) {
@@ -738,15 +784,35 @@
       document.getElementById('heroRealDirArrow').textContent = getArrow(np.dir);
       document.getElementById('heroRealTime').textContent = np.time + ' 実測';
 
-      // 予報
-      const def = rule.defaultForecast;
-      document.getElementById('heroForecastWave').textContent = def.wave.toFixed(2);
-      document.getElementById('heroForecastPeriod').textContent = def.period.toFixed(1) + '秒';
-      document.getElementById('heroForecastWaveDir').textContent = def.waveDir;
-      document.getElementById('heroForecastWaveDirArrow').textContent = getArrow(def.waveDir);
-      document.getElementById('heroWindSpeed').textContent = def.windSpeed + 'm';
-      document.getElementById('heroWindDir').textContent = def.windDir;
-      document.getElementById('heroWindDirArrow').textContent = getArrow(def.windDir);
+      // 予報（LIVE_DATAがあれば実データ、なければデフォルト値）
+      let defWave = rule.defaultForecast.wave;
+      let defPeriod = rule.defaultForecast.period;
+      let defWaveDir = rule.defaultForecast.waveDir;
+      let defWindSpeed = rule.defaultForecast.windSpeed;
+      let defWindDir = rule.defaultForecast.windDir;
+      let fcTimeLabel = '予報';
+
+      const spotData = LIVE_DATA && LIVE_DATA.spots ? LIVE_DATA.spots[currentSpotKey] : null;
+      if (spotData) {
+        if (spotData.hourData && spotData.hourData.length > 0) {
+          const firstH = spotData.hourData[0];
+          fcTimeLabel = firstH.time + ' 予報';
+          if (firstH.windDir) defWindDir = firstH.windDir;
+          if (firstH.windSpeed !== null && firstH.windSpeed !== undefined) defWindSpeed = Number(firstH.windSpeed);
+        }
+        if (spotData.wavePoints && spotData.wavePoints.length > 0) {
+          defWave = spotData.wavePoints[0].wave;
+        }
+      }
+
+      document.getElementById('heroForecastTime').textContent = fcTimeLabel;
+      document.getElementById('heroForecastWave').textContent = Number(defWave).toFixed(2);
+      document.getElementById('heroForecastPeriod').textContent = Number(defPeriod).toFixed(1) + '秒';
+      document.getElementById('heroForecastWaveDir').textContent = defWaveDir;
+      document.getElementById('heroForecastWaveDirArrow').textContent = getArrow(defWaveDir);
+      document.getElementById('heroWindSpeed').textContent = defWindSpeed + 'm';
+      document.getElementById('heroWindDir').textContent = defWindDir;
+      document.getElementById('heroWindDirArrow').textContent = getArrow(defWindDir);
 
       // レーティング評価実行
       const evalRes = evaluateCondition(
@@ -754,8 +820,8 @@
         parseFloat(np.wave),
         parseFloat(np.period),
         np.dir,
-        def.windDir,
-        def.windSpeed
+        defWindDir,
+        defWindSpeed
       );
 
       const badge = document.getElementById('surfConditionBadge');
@@ -765,7 +831,7 @@
       document.getElementById('conditionReason').textContent = evalRes.reason;
 
       // 差分計算
-      const diff = (parseFloat(np.wave) - def.wave).toFixed(2);
+      const diff = (parseFloat(np.wave) - Number(defWave)).toFixed(2);
       const diffElem = document.getElementById('diffValue');
       const diffComment = document.getElementById('diffComment');
       
@@ -993,7 +1059,12 @@
       const rule = SPOT_RULES[currentSpotKey];
       const isFukui = rule.nowphasRef === 'fukui';
       const baseDate = new Date();
-      baseDate.setHours(22, 0, 0, 0); // 基準現在時刻
+      if (LIVE_DATA && LIVE_DATA.updatedAt) {
+        baseDate.setTime(new Date(LIVE_DATA.updatedAt).getTime());
+      }
+      baseDate.setMinutes(0, 0, 0);
+
+      const npHistory = LIVE_DATA && LIVE_DATA.nowphas && LIVE_DATA.nowphas[rule.nowphasRef] ? LIVE_DATA.nowphas[rule.nowphasRef].history : [];
 
       // 過去12時間分（-11h 〜 0h/NOW）
       for (let offset = 0; offset >= -11; offset--) {
@@ -1005,9 +1076,21 @@
         const dayLabel = `${month}/${day}`;
         const isCurrent = offset === 0;
 
-        let base = isFukui ? 1.3 : (currentSpotKey === 'sugahama' ? 1.7 : 0.85);
-        let rVal = (base + (offset * 0.01) + (Math.sin(offset) * 0.06)).toFixed(2);
-        let rPer = (isFukui ? 7.8 : 5.2 + (Math.cos(offset) * 0.4)).toFixed(1);
+        let rVal = '-';
+        let rPer = '-';
+        let matchedNp = null;
+        if (npHistory && npHistory.length > 0) {
+          matchedNp = npHistory.slice().reverse().find(n => n.time.startsWith(hour));
+        }
+
+        if (matchedNp) {
+          rVal = matchedNp.wave;
+          rPer = matchedNp.period;
+        } else {
+          let base = isFukui ? 1.3 : (currentSpotKey === 'sugahama' ? 1.7 : 0.85);
+          rVal = (base + (offset * 0.01) + (Math.sin(offset) * 0.06)).toFixed(2);
+          rPer = (isFukui ? 7.8 : 5.2 + (Math.cos(offset) * 0.4)).toFixed(1);
+        }
 
         const reportsAtHour = (userReports[currentSpotKey] || []).filter(r => {
           if (r.dayLabel && r.dayLabel !== dayLabel) return false;
@@ -1157,6 +1240,7 @@
         const res = await fetch('data.json?t=' + Date.now());
         if (res.ok) {
           const data = await res.json();
+          LIVE_DATA = data;
           if (data.nowphas) {
             if (data.nowphas.tsuruga && data.nowphas.tsuruga.latest) {
               NOWPHAS_SUMMARY.tsuruga = data.nowphas.tsuruga.latest;

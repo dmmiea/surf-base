@@ -4,9 +4,11 @@ const path = require('path');
 
 console.log('=== SURF BASE: Live Data Scraper Starting ===');
 
-function fetchUrl(url) {
+function fetchUrl(url, referer) {
   try {
-    return execSync(`curl.exe -s -L "${url}" -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"`, { maxBuffer: 10 * 1024 * 1024 }).toString('utf8');
+    const curlCmd = process.platform === 'win32' ? 'curl.exe' : 'curl';
+    const refHeader = referer ? `-H "Referer: ${referer}"` : '';
+    return execSync(`${curlCmd} -s -L "${url}" ${refHeader} -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"`, { maxBuffer: 10 * 1024 * 1024 }).toString('utf8');
   } catch (e) {
     console.error(`Failed to fetch ${url}:`, e.message);
     return null;
@@ -108,7 +110,7 @@ async function run() {
   const parsedSpots = {};
   for (const [key, spot] of Object.entries(spots)) {
     console.log(`Fetching Umitenki for ${spot.name} (${spot.id})...`);
-    const html = fetchUrl(`https://www.umitenki.jp/tenki/${spot.id}/1hour`);
+    const html = fetchUrl(`https://www.umitenki.jp/tenki/${spot.id}/1hour`, `https://www.umitenki.jp/tenki/${spot.id}`);
     if (html) {
       parsedSpots[key] = parseUmitenki(html);
     }
