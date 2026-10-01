@@ -38,30 +38,32 @@
 </head>
 <body class="min-h-screen pb-20 antialiased selection:bg-sky-500 selection:text-white">
 
+  <!-- PULL TO REFRESH INDICATOR -->
+  <div id="pullIndicator" class="fixed top-0 left-0 right-0 z-50 flex items-center justify-center transition-all duration-300 pointer-events-none opacity-0 -translate-y-12">
+    <div class="bg-sky-600 text-white text-xs font-bold py-1.5 px-3.5 rounded-full shadow-lg flex items-center gap-2">
+      <i id="pullIcon" class="fa-solid fa-arrows-rotate text-sm transition-transform duration-200"></i>
+      <span id="pullText">引いて最新データに更新</span>
+    </div>
+  </div>
+
   <!-- TOP APP BAR -->
-  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 px-4 py-3 shadow-sm">
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 px-4 py-2.5 shadow-sm">
     <div class="max-w-md mx-auto flex items-center justify-between">
-      <div class="flex items-center space-x-2.5">
-        <div class="w-9 h-9 rounded-xl ocean-gradient flex items-center justify-center text-white shadow-md shadow-sky-500/20">
-          <i class="fa-solid fa-water text-base"></i>
+      <div class="flex items-center space-x-2">
+        <div class="w-8 h-8 rounded-xl ocean-gradient flex items-center justify-center text-white shadow-md shadow-sky-500/20">
+          <i class="fa-solid fa-water text-sm"></i>
         </div>
         <div>
           <span class="font-teko text-2xl font-bold tracking-wider text-sky-800 leading-none uppercase">SURF BASE</span>
         </div>
       </div>
       
-      <div class="flex items-center space-x-2">
-        <div class="text-right">
-          <div class="flex items-center justify-end space-x-1">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span class="text-[11px] font-bold text-emerald-600">LIVE</span>
-          </div>
-          <span id="lastUpdated" class="text-[9px] text-slate-400 font-medium">23:00 自動更新</span>
+      <div class="text-right whitespace-nowrap">
+        <div class="flex items-center justify-end space-x-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span class="text-[11px] font-bold text-emerald-600">LIVE</span>
         </div>
-        <button onclick="refreshData()" class="px-2.5 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 active:scale-95 text-white font-bold text-xs flex items-center gap-1.5 transition shadow-sm" title="最新データを取得">
-          <i id="syncIcon" class="fa-solid fa-rotate text-xs"></i>
-          <span>最新データ取得</span>
-        </button>
+        <span id="lastUpdated" class="text-[10px] text-slate-400 font-medium whitespace-nowrap block">23:00 自動更新</span>
       </div>
     </div>
   </header>
@@ -138,7 +140,7 @@
         <div class="bg-gradient-to-b from-emerald-50/70 to-white rounded-xl p-3 border border-emerald-200 shadow-sm relative">
           <div class="flex items-center justify-between mb-1">
             <span class="text-[10px] font-bold text-emerald-800 flex items-center gap-1">
-              <i class="fa-solid fa-circle-check text-emerald-600"></i> 実測 (NOWPHAS)
+              <i class="fa-solid fa-circle-check text-emerald-600"></i> 実測 [ナウファス]
             </span>
             <span id="heroRealTime" class="text-[10px] text-slate-500 font-medium">22:00</span>
           </div>
@@ -150,7 +152,7 @@
 
           <div class="mt-2 pt-2 border-t border-emerald-100/80 flex items-center justify-between text-[11px]">
             <div>
-              <span class="text-slate-400 block text-[9px] uppercase font-bold">周期 (実測)</span>
+              <span class="text-slate-400 block text-[9px] uppercase font-bold">周期</span>
               <strong id="heroRealPeriod" class="text-emerald-700 font-bold text-xs">5.2秒</strong>
             </div>
             <div class="text-right">
@@ -167,7 +169,7 @@
         <div class="bg-gradient-to-b from-sky-50/70 to-white rounded-xl p-3 border border-sky-200 shadow-sm relative">
           <div class="flex items-center justify-between mb-1">
             <span class="text-[10px] font-bold text-sky-800 flex items-center gap-1">
-              <i class="fa-solid fa-cloud-sun text-sky-600"></i> 予報 (海天気.jp)
+              <i class="fa-solid fa-cloud-sun text-sky-600"></i> 予報 [海天気]
             </span>
             <span id="heroForecastTime" class="text-[10px] text-slate-500 font-medium">21:00</span>
           </div>
@@ -179,18 +181,18 @@
 
           <div class="mt-2 pt-2 border-t border-sky-100/80 grid grid-cols-3 gap-1 text-[11px]">
             <div>
-              <span class="text-slate-400 block text-[9px] uppercase font-bold">周期 (予報)</span>
+              <span class="text-slate-400 block text-[9px] uppercase font-bold">周期</span>
               <strong id="heroForecastPeriod" class="text-sky-700 font-bold text-xs">5.5秒</strong>
             </div>
             <div class="text-center">
-              <span class="text-slate-400 block text-[9px] uppercase font-bold">波向 (予報)</span>
+              <span class="text-slate-400 block text-[9px] uppercase font-bold">波向</span>
               <strong class="text-sky-700 font-bold text-xs flex items-center justify-center gap-0.5">
                 <span id="heroForecastWaveDirArrow" class="inline-block text-sky-600"></span>
                 <span id="heroForecastWaveDir">NNW</span>
               </strong>
             </div>
             <div class="text-right">
-              <span class="text-slate-400 block text-[9px] uppercase font-bold">風向・風速</span>
+              <span class="text-slate-400 block text-[9px] uppercase font-bold">風</span>
               <strong class="text-slate-700 font-bold text-xs flex items-center justify-end gap-0.5 whitespace-nowrap">
                 <span id="heroWindDirArrow" class="inline-block text-sky-600"></span>
                 <span id="heroWindDir">E</span>
@@ -207,42 +209,42 @@
         <div id="diffBanner" class="py-1.5 px-3 rounded-xl bg-slate-50 border border-slate-200/90 flex items-center justify-between text-xs shadow-inner">
           <span class="text-slate-700 font-medium flex items-center gap-1.5">
             <i class="fa-solid fa-scale-balanced text-amber-500 text-xs"></i>
-            波高の差: <strong id="diffValue" class="text-slate-900 font-bold">-0.06m</strong>
+            予報差: <strong id="diffValue" class="text-slate-900 font-bold">-0.06m</strong>
           </span>
-          <span id="diffComment" class="text-[11px] text-slate-500 font-medium">海天気の予報とほぼ一致中</span>
+          <span id="diffComment" class="text-[11px] text-slate-500 font-medium">予報一致</span>
         </div>
 
         <div class="py-1.5 px-3 rounded-xl bg-sky-50/70 border border-sky-100 flex items-center justify-between text-xs">
           <span class="text-slate-700 font-medium flex items-center gap-1">
             <i class="fa-solid fa-ruler-vertical text-sky-600"></i>
-            推定サイズ: <strong id="waveSizeEstimate" class="text-sky-900 font-bold">腰〜胸</strong>
+            推定波: <strong id="waveSizeEstimate" class="text-sky-900 font-bold">腰〜胸</strong>
           </span>
-          <span id="conditionReason" class="text-[11px] text-sky-800 font-semibold">オフショア＆好周期！</span>
+          <span id="conditionReason" class="text-[11px] text-sky-800 font-semibold">オフショア＆好周期</span>
         </div>
       </div>
     </div>
 
-    <!-- みんなのリアル投稿サマリーカード（新機能） -->
-    <div class="glass-card rounded-2xl p-3.5 border border-amber-200/70 bg-gradient-to-r from-amber-50/60 to-white shadow-sm flex items-center justify-between">
-      <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-300 flex items-center justify-center text-amber-700 shadow-sm">
-          <i class="fa-solid fa-users text-lg"></i>
+    <!-- みんなのリアル投稿サマリーカード -->
+    <div class="glass-card rounded-2xl p-3 border border-amber-200/70 bg-gradient-to-r from-amber-50/60 to-white shadow-sm flex items-center justify-between">
+      <div class="flex items-center space-x-2.5">
+        <div class="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-300 flex items-center justify-center text-amber-700 shadow-sm">
+          <i class="fa-solid fa-users text-base"></i>
         </div>
         <div>
           <div class="flex items-center space-x-1.5">
-            <span class="text-xs font-bold text-slate-800">現場サーファーのリアル評価</span>
-            <span id="reportCountBadge" class="text-[9px] bg-amber-100 text-amber-800 font-bold px-1.5 py-0.2 rounded-full border border-amber-300">2件の投票</span>
+            <span class="text-xs font-bold text-slate-800">サーファー投票</span>
+            <span id="reportCountBadge" class="text-[9px] bg-amber-100 text-amber-800 font-bold px-1.5 py-0.2 rounded-full border border-amber-300">2票</span>
           </div>
           <div class="text-[11px] text-slate-500 mt-0.5 flex items-center gap-2">
-            <span>平均評価: <strong id="userAvgRate" class="text-emerald-700 font-black">GOOD</strong></span>
-            <span>サイズ感: <strong id="userAvgSize" class="text-slate-700 font-bold">腹〜胸</strong></span>
+            <span>評価: <strong id="userAvgRate" class="text-emerald-700 font-black">GOOD</strong></span>
+            <span>波感: <strong id="userAvgSize" class="text-slate-700 font-bold">腹〜胸</strong></span>
           </div>
         </div>
       </div>
 
       <button onclick="openReportModal()" class="py-2 px-3 rounded-xl bg-gradient-to-r from-sky-600 to-blue-600 text-white font-bold text-xs shadow-md shadow-sky-500/20 active:scale-95 transition flex items-center gap-1.5">
         <i class="fa-solid fa-pen-to-square"></i>
-        <span>波レポ投稿</span>
+        <span>波レポ</span>
       </button>
     </div>
 
@@ -251,7 +253,7 @@
       <div class="flex items-center justify-between">
         <h3 class="font-bold text-xs text-slate-800 flex items-center gap-1.5">
           <i class="fa-solid fa-chart-area text-sky-600"></i>
-          波高トレンド（実測12h ＋ 予報3.5日/84h）
+          波高推移（実測12h・予報3.5日）
         </h3>
         <div class="flex items-center space-x-3 text-[10px]">
           <span class="flex items-center gap-1 text-emerald-700 font-semibold">
@@ -277,23 +279,23 @@
       </div>
     </div>
 
-    <!-- 1時間ごと比較タイムライン（みんなの投稿実測Rate付き） -->
+    <!-- 1時間ごと答え合わせ ＆ 予報推移タイムライン -->
     <div class="space-y-2">
       <div class="flex items-center justify-between px-1">
         <h3 class="font-bold text-sm text-slate-800 flex items-center gap-1.5">
           <i class="fa-solid fa-table-list text-sky-600"></i>
-          1時間ごとの答え合わせ & 予報推移（3.5日分）
+          タイムライン（3.5日）
         </h3>
-        <span class="text-[10px] text-slate-500 font-medium">👥＝サーファー投票</span>
+        <span class="text-[10px] text-slate-500 font-medium">👥 投票</span>
       </div>
 
       <div class="glass-card rounded-2xl overflow-hidden border border-slate-200 shadow-md">
         <div class="grid grid-cols-12 text-center text-[10px] font-bold text-slate-600 bg-slate-100/90 py-2.5 px-1 border-b border-slate-200 tracking-wider">
           <div class="col-span-2 text-left pl-1">日時</div>
-          <div class="col-span-2 text-slate-700"><i class="fa-solid fa-wind mr-0.5 text-sky-600"></i>風向速</div>
-          <div class="col-span-3 text-sky-800 bg-sky-50/50 py-0.5 rounded">海天気【波・周期】</div>
+          <div class="col-span-2 text-slate-700"><i class="fa-solid fa-wind mr-0.5 text-sky-600"></i>風</div>
+          <div class="col-span-3 text-sky-800 bg-sky-50/50 py-0.5 rounded">予報【波・周期】</div>
           <div class="col-span-3 text-emerald-800 bg-emerald-50/50 py-0.5 rounded">実測【波・周期】</div>
-          <div class="col-span-2 text-slate-700">Rate・レポ</div>
+          <div class="col-span-2 text-slate-700">評価</div>
         </div>
 
         <div id="timelineList" class="divide-y divide-slate-100 max-h-[440px] overflow-y-auto hide-scrollbar text-xs">
@@ -843,22 +845,22 @@
       const diffComment = document.getElementById('diffComment');
       
       if (diff > 0.1) {
-        diffElem.textContent = `+${diff}m (実測が高い)`;
+        diffElem.textContent = `+${diff}m`;
         diffElem.className = 'text-emerald-700 font-bold';
-        diffComment.textContent = '予報よりサイズあり！狙い目';
+        diffComment.textContent = '実測高め・狙い目';
       } else if (diff < -0.15) {
-        diffElem.textContent = `${diff}m (予報より低め)`;
+        diffElem.textContent = `${diff}m`;
         diffElem.className = 'text-amber-700 font-bold';
-        diffComment.textContent = '湾内のウネリ減衰傾向あり';
+        diffComment.textContent = '湾内ウネリ減衰';
       } else {
-        diffElem.textContent = `${diff}m (ほぼ的中)`;
+        diffElem.textContent = `${diff}m`;
         diffElem.className = 'text-sky-700 font-bold';
-        diffComment.textContent = '海天気の予報と一致中';
+        diffComment.textContent = '予報一致';
       }
 
       // ユーザー投稿サマリー更新
       const spotReps = userReports[currentSpotKey];
-      document.getElementById('reportCountBadge').textContent = `${spotReps.length}件の投票`;
+      document.getElementById('reportCountBadge').textContent = `${spotReps.length}票`;
       if (spotReps.length > 0) {
         const last = spotReps[spotReps.length - 1];
         document.getElementById('userAvgRate').textContent = last.rate;
@@ -1267,14 +1269,77 @@
     }
 
     function refreshData() {
-      const icon = document.getElementById('syncIcon');
-      icon.classList.add('fa-spin');
-      fetchLiveData().finally(() => {
+      const pullIndicator = document.getElementById('pullIndicator');
+      const pullText = document.getElementById('pullText');
+      const pullIcon = document.getElementById('pullIcon');
+
+      pullIndicator.classList.remove('opacity-0', '-translate-y-12');
+      pullIndicator.classList.add('opacity-100', 'translate-y-4');
+      pullText.textContent = 'データ更新中...';
+      pullIcon.classList.add('fa-spin');
+
+      return fetchLiveData().finally(() => {
+        pullText.textContent = '更新完了！';
         setTimeout(() => {
-          icon.classList.remove('fa-spin');
-        }, 500);
+          pullIndicator.classList.add('opacity-0', '-translate-y-12');
+          pullIndicator.classList.remove('opacity-100', 'translate-y-4');
+          pullIcon.classList.remove('fa-spin');
+          pullText.textContent = '引いて最新データに更新';
+        }, 600);
       });
     }
+
+    // Pull-to-refresh（上から引っ張って更新）
+    let touchStartY = 0;
+    let isPulling = false;
+
+    window.addEventListener('touchstart', (e) => {
+      if (window.scrollY === 0) {
+        touchStartY = e.touches[0].clientY;
+        isPulling = true;
+      } else {
+        isPulling = false;
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (!isPulling || window.scrollY > 0) return;
+      const currentY = e.touches[0].clientY;
+      const diffY = currentY - touchStartY;
+      const pullIndicator = document.getElementById('pullIndicator');
+      const pullIcon = document.getElementById('pullIcon');
+      const pullText = document.getElementById('pullText');
+
+      if (diffY > 15) {
+        pullIndicator.classList.remove('opacity-0', '-translate-y-12');
+        pullIndicator.classList.add('opacity-100');
+        const pullProgress = Math.min(diffY, 70);
+        pullIndicator.style.transform = `translateY(${pullProgress}px)`;
+
+        if (diffY > 60) {
+          pullText.textContent = '指を離して更新';
+          pullIcon.style.transform = 'rotate(180deg)';
+        } else {
+          pullText.textContent = '引いて最新データに更新';
+          pullIcon.style.transform = 'rotate(0deg)';
+        }
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchend', (e) => {
+      if (!isPulling) return;
+      isPulling = false;
+      const pullIndicator = document.getElementById('pullIndicator');
+      pullIndicator.style.transform = '';
+
+      const changedY = e.changedTouches[0].clientY;
+      if (changedY - touchStartY > 60) {
+        refreshData();
+      } else {
+        pullIndicator.classList.add('opacity-0', '-translate-y-12');
+        pullIndicator.classList.remove('opacity-100');
+      }
+    }, { passive: true });
 
     renderSpot();
     fetchLiveData();
