@@ -137,62 +137,74 @@
       <div class="grid grid-cols-2 gap-3 pt-1">
         
         <!-- ナウファス実測カード -->
-        <div class="bg-gradient-to-b from-emerald-50/70 to-white rounded-xl p-3 border border-emerald-200 shadow-sm relative">
-          <div class="flex items-center justify-between mb-1">
-            <span class="text-[10px] font-bold text-emerald-800 flex items-center gap-1">
-              <i class="fa-solid fa-circle-check text-emerald-600"></i> 実測 [ナウファス]
-            </span>
-            <span id="heroRealTime" class="text-[10px] text-slate-500 font-medium">22:00</span>
-          </div>
-          
-          <div class="flex items-baseline space-x-1">
-            <span id="heroRealWave" class="font-teko text-4xl font-black text-slate-800 tracking-tight leading-none">0.84</span>
-            <span class="text-xs font-bold text-emerald-700">m</span>
+        <div class="bg-gradient-to-b from-emerald-50/70 to-white rounded-xl p-3 border border-emerald-200 shadow-sm relative flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[10px] font-bold text-emerald-800 flex items-center gap-1">
+                <i class="fa-solid fa-circle-check text-emerald-600"></i> 実測 [ナウファス]
+              </span>
+              <span id="heroRealTime" class="text-[10px] text-slate-500 font-medium">22:00</span>
+            </div>
+            
+            <div class="flex items-baseline space-x-1">
+              <span id="heroRealWave" class="font-teko text-4xl font-black text-slate-800 tracking-tight leading-none">0.84</span>
+              <span class="text-xs font-bold text-emerald-700">m</span>
+            </div>
           </div>
 
-          <div class="mt-2 pt-2 border-t border-emerald-100/80 flex items-center justify-between text-[11px]">
-            <div>
-              <span class="text-slate-400 block text-[9px] uppercase font-bold">周期</span>
-              <strong id="heroRealPeriod" class="text-emerald-700 font-bold text-xs">5.2秒</strong>
+          <div class="mt-2 pt-1.5 border-t border-emerald-100/80 space-y-1 text-[11px]">
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-slate-400 block text-[9px] uppercase font-bold">周期</span>
+                <strong id="heroRealPeriod" class="text-emerald-700 font-bold text-xs">5.2秒</strong>
+              </div>
+              <div class="text-right">
+                <span class="text-slate-400 block text-[9px] uppercase font-bold">波向</span>
+                <strong class="text-slate-700 font-bold text-xs flex items-center justify-end gap-0.5">
+                  <span id="heroRealDirArrow" class="inline-block text-emerald-700"></span>
+                  <span id="heroRealDir">NW</span>
+                </strong>
+              </div>
             </div>
-            <div class="text-right">
-              <span class="text-slate-400 block text-[9px] uppercase font-bold">波向</span>
-              <strong class="text-slate-700 font-bold text-xs flex items-center justify-end gap-1">
-                <span id="heroRealDirArrow" class="inline-block text-emerald-700"></span>
-                <span id="heroRealDir">NW</span>
-              </strong>
+            <div class="flex items-center justify-between text-[10px] pt-1 border-t border-emerald-50/80">
+              <span class="text-slate-400 font-bold text-[9px]">状態</span>
+              <span class="text-emerald-700 font-semibold text-[10px]">沿岸観測値</span>
             </div>
           </div>
         </div>
 
         <!-- 海天気予報カード -->
-        <div class="bg-gradient-to-b from-sky-50/70 to-white rounded-xl p-3 border border-sky-200 shadow-sm relative">
-          <div class="flex items-center justify-between mb-1">
-            <span class="text-[10px] font-bold text-sky-800 flex items-center gap-1">
-              <i class="fa-solid fa-cloud-sun text-sky-600"></i> 予報 [海天気]
-            </span>
-            <span id="heroForecastTime" class="text-[10px] text-slate-500 font-medium">21:00</span>
+        <div class="bg-gradient-to-b from-sky-50/70 to-white rounded-xl p-3 border border-sky-200 shadow-sm relative flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[10px] font-bold text-sky-800 flex items-center gap-1">
+                <i class="fa-solid fa-cloud-sun text-sky-600"></i> 予報 [海天気]
+              </span>
+              <span id="heroForecastTime" class="text-[10px] text-slate-500 font-medium">21:00</span>
+            </div>
+
+            <div class="flex items-baseline space-x-1">
+              <span id="heroForecastWave" class="font-teko text-4xl font-black text-slate-800 tracking-tight leading-none">0.90</span>
+              <span class="text-xs font-bold text-sky-700">m</span>
+            </div>
           </div>
 
-          <div class="flex items-baseline space-x-1">
-            <span id="heroForecastWave" class="font-teko text-4xl font-black text-slate-800 tracking-tight leading-none">0.90</span>
-            <span class="text-xs font-bold text-sky-700">m</span>
-          </div>
-
-          <div class="mt-2 pt-2 border-t border-sky-100/80 grid grid-cols-3 gap-1 text-[11px]">
-            <div>
-              <span class="text-slate-400 block text-[9px] uppercase font-bold">周期</span>
-              <strong id="heroForecastPeriod" class="text-sky-700 font-bold text-xs">5.5秒</strong>
+          <div class="mt-2 pt-1.5 border-t border-sky-100/80 space-y-1 text-[11px]">
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-slate-400 block text-[9px] uppercase font-bold">周期</span>
+                <strong id="heroForecastPeriod" class="text-sky-700 font-bold text-xs">5.5秒</strong>
+              </div>
+              <div class="text-right">
+                <span class="text-slate-400 block text-[9px] uppercase font-bold">波向</span>
+                <strong class="text-sky-700 font-bold text-xs flex items-center justify-end gap-0.5">
+                  <span id="heroForecastWaveDirArrow" class="inline-block text-sky-600"></span>
+                  <span id="heroForecastWaveDir">NNW</span>
+                </strong>
+              </div>
             </div>
-            <div class="text-center">
-              <span class="text-slate-400 block text-[9px] uppercase font-bold">波向</span>
-              <strong class="text-sky-700 font-bold text-xs flex items-center justify-center gap-0.5">
-                <span id="heroForecastWaveDirArrow" class="inline-block text-sky-600"></span>
-                <span id="heroForecastWaveDir">NNW</span>
-              </strong>
-            </div>
-            <div class="text-right">
-              <span class="text-slate-400 block text-[9px] uppercase font-bold">風</span>
+            <div class="flex items-center justify-between text-[10px] pt-1 border-t border-sky-50">
+              <span class="text-slate-400 font-bold text-[9px]">風</span>
               <strong class="text-slate-700 font-bold text-xs flex items-center justify-end gap-0.5 whitespace-nowrap">
                 <span id="heroWindDirArrow" class="inline-block text-sky-600"></span>
                 <span id="heroWindDir">E</span>
