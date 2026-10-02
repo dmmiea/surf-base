@@ -50,29 +50,38 @@ function decodeShiftJis(buf) {
   }
 }
 
-// ナウファス実測パース
+// ナウファス実測パース（推定補足値 isEstimated の検知対応）
 function parseNowphas(html) {
   const rows = [];
   const lines = html.split('\n');
   const trRegex = /<tr><td class="dt">(\d\d:\d\d)<\/td><td>(.*?)<\/td><td>(.*?)<\/td><td>(.*?)<\/td><td class="dt">(\d\d:\d\d)<\/td><td>(.*?)<\/td><td>(.*?)<\/td><td>(.*?)<\/td><\/tr>/;
   
+  const parseCell = (time, waveRaw, perRaw, dirRaw) => {
+    const isEstimated = /<span class="pr">|\(|\)/.test(waveRaw) || /<span class="pr">|\(|\)/.test(perRaw) || dirRaw.includes('****');
+    const clean = (s) => s.replace(/<[^>]+>/g, '').replace(/[()]/g, '').trim();
+    const wave = clean(waveRaw);
+    const period = clean(perRaw);
+    const dir = clean(dirRaw);
+    if (wave && wave !== '****' && wave !== '') {
+      return {
+        time,
+        wave,
+        period,
+        dir: (dir === '****' ? '-' : dir),
+        isEstimated
+      };
+    }
+    return null;
+  };
+
   for (const line of lines) {
     const m = line.match(trRegex);
     if (m) {
-      const clean = (s) => s.replace(/<[^>]+>/g, '').replace(/[()]/g, '').trim();
-      const wave1 = clean(m[2]);
-      const per1 = clean(m[3]);
-      const dir1 = clean(m[4]);
-      if (wave1 && wave1 !== '****' && wave1 !== '') {
-        rows.push({ time: m[1], wave: wave1, period: per1, dir: dir1 });
-      }
+      const item1 = parseCell(m[1], m[2], m[3], m[4]);
+      if (item1) rows.push(item1);
 
-      const wave2 = clean(m[6]);
-      const per2 = clean(m[7]);
-      const dir2 = clean(m[8]);
-      if (wave2 && wave2 !== '****' && wave2 !== '') {
-        rows.push({ time: m[5], wave: wave2, period: per2, dir: dir2 });
-      }
+      const item2 = parseCell(m[5], m[6], m[7], m[8]);
+      if (item2) rows.push(item2);
     }
   }
   rows.sort((a,b) => a.time.localeCompare(b.time));

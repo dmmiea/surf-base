@@ -660,25 +660,41 @@
         let checkPeriod = fcPeriodNum;
         let checkWaveDir = fcWaveDir;
 
-        // ナウファス実測履歴とのマッチング
+        let isEstimated = false;
+        // ナウファス実測履歴とのマッチング（通常実測を最優先・水圧推定補足値の識別対応）
         if (isPast || isCurrent) {
           let matchedNp = null;
           if (npHistory && npHistory.length > 0) {
-            // その時間の正時、または直近20分・40分実測を検索
-            matchedNp = npHistory.slice().reverse().find(n => n.time.startsWith(hour));
-            // NOW行で該当正時の実測が未反映の場合は、直近の最新実測（20分前・40分前）を採用
+            // その時間の正時、または直近20分・40分実測を検索（新しい順）
+            const candidates = npHistory.slice().reverse().filter(n => n.time.startsWith(hour));
+            // 優先度1: 通常の超音波実測値（推定値でないもの）
+            matchedNp = candidates.find(n => !n.isEstimated && n.dir && n.dir !== '-');
+            // 優先度2: 通常実測がなければ最新の候補（推定値含む）
+            if (!matchedNp && candidates.length > 0) {
+              matchedNp = candidates[0];
+            }
+            // NOW行で該当正時の実測が未反映の場合は、直近の最新実測を採用
             if (!matchedNp && isCurrent) {
               matchedNp = npHistory[npHistory.length - 1];
             }
           }
 
           if (matchedNp) {
+            isEstimated = !!matchedNp.isEstimated;
             realWave = matchedNp.wave;
-            realPeriod = matchedNp.period + '秒';
-            realDir = matchedNp.dir;
+            
+            // 周期の検証: 推定値かつ周期が3秒未満の異常値の場合は、予報周期を採用
+            const pVal = parseFloat(matchedNp.period);
+            if (isEstimated && (isNaN(pVal) || pVal < 3.0)) {
+              realPeriod = fcPeriod;
+            } else {
+              realPeriod = matchedNp.period + '秒';
+            }
+
+            realDir = matchedNp.dir && matchedNp.dir !== '-' ? matchedNp.dir : '-';
             checkWave = parseFloat(matchedNp.wave);
-            checkPeriod = parseFloat(matchedNp.period);
-            checkWaveDir = matchedNp.dir;
+            checkPeriod = !isNaN(pVal) && pVal >= 3.0 ? pVal : fcPeriodNum;
+            checkWaveDir = realDir !== '-' ? realDir : fcWaveDir;
           } else {
             // 実測値が存在しない過去時刻は「-」表示（架空の数値を捏造しない）
             realWave = '-';
@@ -734,6 +750,7 @@
           realWave,
           realPeriod,
           realDir,
+          isEstimated,
           rate: rateInfo.rating,
           rateColor: rateInfo.color,
           userVoteCount,
@@ -783,11 +800,13 @@
       document.getElementById('tideLow').textContent = curTide.tideLow;
 
       // 実測
-      document.getElementById('heroRealWave').textContent = np.wave;
-      document.getElementById('heroRealPeriod').textContent = np.period + '秒';
-      document.getElementById('heroRealDir').textContent = np.dir;
-      document.getElementById('heroRealDirArrow').textContent = getArrow(np.dir);
-      document.getElementById('heroRealTime').textContent = np.time + ' 実測';
+      const isEst = !!np.isEstimated;
+      document.getElementById('heroRealWave').textContent = isEst ? `(${np.wave})` : np.wave;
+      const npPeriodVal = parseFloat(np.period);
+      document.getElementById('heroRealPeriod').textContent = (isEst && (isNaN(npPeriodVal) || npPeriodVal < 3.0)) ? '—' : np.period + '秒';
+      document.getElementById('heroRealDir').textContent = np.dir && np.dir !== '-' ? np.dir : '—';
+      document.getElementById('heroRealDirArrow').textContent = np.dir && np.dir !== '-' ? getArrow(np.dir) : '';
+      document.getElementById('heroRealTime').textContent = np.time + (isEst ? ' 推定' : ' 実測');
 
       // 予報（LIVE_DATAがあれば現在時刻に最も近い予報、なければデフォルト値）
       let defWave = rule.defaultForecast.wave;
@@ -1002,10 +1021,11 @@
 
         let realContent = `<span class="text-slate-400 font-medium">-</span>`;
         if (row.realWave !== '-') {
+          const waveDisplay = row.isEstimated ? `(${row.realWave})` : row.realWave;
           realContent = `
-            <div class="flex items-center justify-center gap-0.5">
+            <div class="flex items-center justify-center gap-0.5" ${row.isEstimated ? 'title="水圧センサーによる推定値"' : ''}>
               ${row.realDir && row.realDir !== '-' ? `<span class="text-[10px] text-emerald-600 font-bold leading-none">${getArrow(row.realDir)}</span>` : ''}
-              <span class="font-teko text-base font-bold text-emerald-700 leading-none">${row.realWave}<span class="text-[9px] ml-0.5">m</span></span>
+              <span class="font-teko text-base font-bold text-emerald-700 leading-none">${waveDisplay}<span class="text-[9px] ml-0.5">m</span></span>
               <span class="text-[9px] text-slate-500 font-medium">(${row.realPeriod})</span>
             </div>
           `;
@@ -1104,15 +1124,21 @@
         let rPer = '-';
         let matchedNp = null;
         if (npHistory && npHistory.length > 0) {
-          matchedNp = npHistory.slice().reverse().find(n => n.time.startsWith(hour));
+          const candidates = npHistory.slice().reverse().filter(n => n.time.startsWith(hour));
+          matchedNp = candidates.find(n => !n.isEstimated && n.dir && n.dir !== '-');
+          if (!matchedNp && candidates.length > 0) {
+            matchedNp = candidates[0];
+          }
           if (!matchedNp && isCurrent) {
             matchedNp = npHistory[npHistory.length - 1];
           }
         }
 
         if (matchedNp) {
-          rVal = matchedNp.wave;
-          rPer = matchedNp.period;
+          const isEst = !!matchedNp.isEstimated;
+          rVal = isEst ? `(${matchedNp.wave})` : matchedNp.wave;
+          const pVal = parseFloat(matchedNp.period);
+          rPer = (isEst && (isNaN(pVal) || pVal < 3.0)) ? '—' : matchedNp.period;
         } else {
           rVal = '-';
           rPer = '-';
