@@ -19,7 +19,23 @@ function fetchUrlRaw(url, referer) {
   try {
     const curlCmd = process.platform === 'win32' ? 'curl.exe' : 'curl';
     const refHeader = referer ? `-H "Referer: ${referer}"` : '';
-    return execSync(`${curlCmd} -s -L "${url}" ${refHeader} -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" -H "Accept-Language: ja"`, { maxBuffer: 10 * 1024 * 1024 });
+    const headers = [
+      '-H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"',
+      '-H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8"',
+      '-H "Accept-Language: ja,en-US;q=0.9,en;q=0.8"',
+      '-H "Sec-Ch-Ua: \\"Chromium\\";v=\\"130\\", \\"Google Chrome\\";v=\\"130\\", \\"Not?A_Brand\\";v=\\"99\\""',
+      '-H "Sec-Ch-Ua-Mobile: ?0"',
+      '-H "Sec-Ch-Ua-Platform: \\"Windows\\""',
+      '-H "Sec-Fetch-Dest: document"',
+      '-H "Sec-Fetch-Mode: navigate"',
+      '-H "Sec-Fetch-Site: same-origin"',
+      '-H "Sec-Fetch-User: ?1"',
+      '-H "Upgrade-Insecure-Requests: 1"'
+    ].join(' ');
+
+    const res = execSync(`${curlCmd} -s -L ${refHeader} ${headers} "${url}"`, { maxBuffer: 10 * 1024 * 1024 });
+    console.log(`Fetched ${url} - size: ${res.length} bytes`);
+    return res;
   } catch (e) {
     console.error(`Failed to fetch ${url}:`, e.message);
     return null;
@@ -233,6 +249,51 @@ async function run() {
     }
   }
 
+  const outputPath = path.join(__dirname, '..', 'data.json');
+  let existingData = null;
+  try {
+    if (fs.existsSync(outputPath)) {
+      existingData = JSON.parse(fs.readFileSync(outputPath, 'utf8'));
+    }
+  } catch (e) {
+    console.warn('Could not read existing data.json:', e.message);
+  }
+
+  const finalSpots = {};
+  for (const [key, spot] of Object.entries(spots)) {
+    const newlyParsed = parsedSpots[key];
+    const existingSpot = existingData && existingData.spots ? existingData.spots[key] : null;
+
+    if (newlyParsed && newlyParsed.hourData && newlyParsed.hourData.length > 0) {
+      console.log(`[OK] Spot ${spot.name}: Parsed ${newlyParsed.hourData.length} hours successfully.`);
+      
+      // 過去データの消失を防ぐため、既存の hourData と新しく取得した hourData をマージ
+      const mergedMap = new Map();
+      if (existingSpot && Array.isArray(existingSpot.hourData)) {
+        for (const item of existingSpot.hourData) {
+          const itemKey = `${item.dayLabel} ${item.time}`;
+          mergedMap.set(itemKey, item);
+        }
+      }
+      for (const item of newlyParsed.hourData) {
+        const itemKey = `${item.dayLabel} ${item.time}`;
+        mergedMap.set(itemKey, item);
+      }
+
+      // マージした配列を整列（直近120時間分を保持）
+      const mergedHourData = Array.from(mergedMap.values());
+      newlyParsed.hourData = mergedHourData;
+      finalSpots[key] = newlyParsed;
+      console.log(`[OK] Spot ${spot.name}: Total combined hours after merge: ${mergedHourData.length}`);
+    } else if (existingSpot && existingSpot.hourData && existingSpot.hourData.length > 0) {
+      console.warn(`[WARN] Spot ${spot.name}: New fetch failed or empty. Preserving ${existingSpot.hourData.length} existing hours.`);
+      finalSpots[key] = existingSpot;
+    } else {
+      console.error(`[ERROR] Spot ${spot.name}: No existing hours and new fetch failed.`);
+      finalSpots[key] = newlyParsed || { tide: {}, sun: {}, wavePoints: [], hourData: [] };
+    }
+  }
+
   const outputData = {
     updatedAt: now.toISOString(),
     updatedAtLabel: `${yyyy}/${mm}/${dd} ${String(jstNow.getHours()).padStart(2, '0')}:${String(jstNow.getMinutes()).padStart(2, '0')}`,
@@ -246,10 +307,9 @@ async function run() {
         history: np117.history
       }
     },
-    spots: parsedSpots
+    spots: finalSpots
   };
 
-  const outputPath = path.join(__dirname, '..', 'data.json');
   fs.writeFileSync(outputPath, JSON.stringify(outputData, null, 2), 'utf8');
   console.log(`Saved output to ${outputPath}`);
 }
