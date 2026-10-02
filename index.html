@@ -1003,7 +1003,8 @@
         let realContent = `<span class="text-slate-400 font-medium">-</span>`;
         if (row.realWave !== '-') {
           realContent = `
-            <div class="flex items-center justify-center space-x-0.5">
+            <div class="flex items-center justify-center gap-0.5">
+              ${row.realDir && row.realDir !== '-' ? `<span class="text-[10px] text-emerald-600 font-bold leading-none">${getArrow(row.realDir)}</span>` : ''}
               <span class="font-teko text-base font-bold text-emerald-700 leading-none">${row.realWave}<span class="text-[9px] ml-0.5">m</span></span>
               <span class="text-[9px] text-slate-500 font-medium">(${row.realPeriod})</span>
             </div>
@@ -1039,7 +1040,8 @@
           </div>
 
           <!-- 海天気予報 【波高・周期】 -->
-          <div class="col-span-3 flex items-center justify-center space-x-0.5 bg-sky-50/50 py-1 rounded">
+          <div class="col-span-3 flex items-center justify-center gap-0.5 bg-sky-50/50 py-1 rounded">
+            ${row.fcWaveDir && row.fcWaveDir !== '-' ? `<span class="text-[10px] text-sky-600 font-bold leading-none">${getArrow(row.fcWaveDir)}</span>` : ''}
             <span class="font-teko text-base font-bold text-sky-800 leading-none">${row.fcWave}<span class="text-[9px] ml-0.5">m</span></span>
             <span class="text-[9px] text-sky-600 font-medium">(${row.fcPeriod})</span>
           </div>
