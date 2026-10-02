@@ -659,6 +659,10 @@
           if (npHistory && npHistory.length > 0) {
             // その時間の正時、または直近20分・40分実測を検索
             matchedNp = npHistory.slice().reverse().find(n => n.time.startsWith(hour));
+            // NOW行で該当正時の実測が未反映の場合は、直近の最新実測（20分前・40分前）を採用
+            if (!matchedNp && isCurrent) {
+              matchedNp = npHistory[npHistory.length - 1];
+            }
           }
 
           if (matchedNp) {
@@ -669,15 +673,13 @@
             checkPeriod = parseFloat(matchedNp.period);
             checkWaveDir = matchedNp.dir;
           } else {
-            let base = isFukui ? 1.3 : (spotKey === 'sugahama' ? 1.7 : 0.85);
-            let rVal = (base + (offset * 0.01) + (Math.sin(offset) * 0.06)).toFixed(2);
-            realWave = rVal;
-            let rPer = (isFukui ? 7.8 : 5.2 + (Math.cos(offset) * 0.4)).toFixed(1);
-            realPeriod = rPer + '秒';
-            realDir = isFukui ? 'NNW' : 'NW';
-            checkWave = parseFloat(rVal);
-            checkPeriod = parseFloat(rPer);
-            checkWaveDir = realDir;
+            // 実測値が存在しない過去時刻は「-」表示（架空の数値を捏造しない）
+            realWave = '-';
+            realPeriod = '-';
+            realDir = '-';
+            checkWave = fcWave;
+            checkPeriod = fcPeriodNum;
+            checkWaveDir = fcWaveDir;
           }
         }
 
@@ -881,19 +883,21 @@
       const rule = SPOT_RULES[spotKey];
       const maxVal = spotKey === 'sugahama' ? 3.0 : 2.0;
 
-      const pastWaves = [];
-      const futureWaves = [];
-      const base = spotKey === 'sugahama' ? 1.7 : (spotKey === 'echizen' ? 1.3 : 0.85);
+      const timeline = generateTimeline(spotKey);
+      const pastItems = timeline.filter(t => t.offset <= 0); // 過去12h〜現在
+      const futureItems = timeline.filter(t => t.offset >= 0); // 現在〜未来84h
 
-      for (let i = 12; i >= 0; i--) {
-        pastWaves.push(base - (i * 0.015) + Math.sin(i * 1.2) * 0.06);
-      }
-
+      // 実測値がある場合は実測値、なければ予報値
+      const pastWaves = pastItems.map(t => t.realWave !== '-' ? parseFloat(t.realWave) : t.fcWave);
       const currentWave = pastWaves[pastWaves.length - 1];
-      futureWaves.push(currentWave);
 
-      for (let i = 1; i <= 84; i += 3) {
-        futureWaves.push(currentWave + Math.sin(i * 0.12) * 0.35 - (i * 0.003));
+      // 未来84hは3時間おきにサンプリングしてグラフ化
+      const futureWaves = [currentWave];
+      for (let i = 3; i <= 84; i += 3) {
+        const item = futureItems.find(t => t.offset === i);
+        if (item) {
+          futureWaves.push(item.fcWave);
+        }
       }
 
       const W = 320;
@@ -1084,15 +1088,17 @@
         let matchedNp = null;
         if (npHistory && npHistory.length > 0) {
           matchedNp = npHistory.slice().reverse().find(n => n.time.startsWith(hour));
+          if (!matchedNp && isCurrent) {
+            matchedNp = npHistory[npHistory.length - 1];
+          }
         }
 
         if (matchedNp) {
           rVal = matchedNp.wave;
           rPer = matchedNp.period;
         } else {
-          let base = isFukui ? 1.3 : (currentSpotKey === 'sugahama' ? 1.7 : 0.85);
-          rVal = (base + (offset * 0.01) + (Math.sin(offset) * 0.06)).toFixed(2);
-          rPer = (isFukui ? 7.8 : 5.2 + (Math.cos(offset) * 0.4)).toFixed(1);
+          rVal = '-';
+          rPer = '-';
         }
 
         const reportsAtHour = (userReports[currentSpotKey] || []).filter(r => {
