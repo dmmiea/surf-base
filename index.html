@@ -63,7 +63,7 @@
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
           <span class="text-[11px] font-bold text-emerald-600">LIVE</span>
         </div>
-        <span id="lastUpdated" class="text-[10px] text-slate-400 font-medium whitespace-nowrap block">23:00 自動更新</span>
+        <span id="lastUpdated" class="text-[10px] text-slate-400 font-medium whitespace-nowrap block">--:--</span>
       </div>
     </div>
   </header>
@@ -100,7 +100,7 @@
           </div>
           <p class="text-[11px] text-slate-500 mt-0.5 flex items-center gap-1.5">
             <i class="fa-solid fa-satellite-dish text-sky-600 text-[10px]"></i>
-            ペア観測所: <strong id="nowphasName" class="text-slate-700 font-bold">敦賀港 (122)</strong>
+            観測: <strong id="nowphasName" class="text-slate-700 font-bold">敦賀港 (122)</strong>
             <span id="distBadge" class="text-[10px] text-sky-700 bg-sky-50 border border-sky-200/70 px-1.5 py-0.2 rounded font-semibold">約9km</span>
           </p>
         </div>
@@ -143,7 +143,7 @@
           <div>
             <div class="flex items-center justify-between mb-1">
               <span class="text-[10px] font-bold text-emerald-800 flex items-center gap-1">
-                <i class="fa-solid fa-circle-check text-emerald-600"></i> 実測 [ナウファス]
+                <i class="fa-solid fa-circle-check text-emerald-600"></i> 実測
               </span>
               <span id="heroRealTime" class="text-[10px] text-slate-500 font-medium">22:00</span>
             </div>
@@ -240,7 +240,7 @@
         </div>
         <div>
           <div class="flex items-center space-x-1.5">
-            <span class="text-xs font-bold text-slate-800">サーファー投票</span>
+            <span class="text-xs font-bold text-slate-800 tracking-wide">REPORT</span>
             <span id="reportCountBadge" class="text-[9px] bg-amber-100 text-amber-800 font-bold px-1.5 py-0.2 rounded-full border border-amber-300">2票</span>
           </div>
           <div class="text-[11px] text-slate-500 mt-0.5 flex items-center gap-2">
@@ -318,7 +318,7 @@
       <div class="flex items-center justify-between border-b border-slate-100 pb-1.5">
         <span class="font-bold text-slate-800 flex items-center gap-1.5 text-[11px]">
           <i class="fa-solid fa-circle-question text-sky-600"></i>
-          波レート（Rate）の色の見方・意味
+          WAVE rate
         </span>
       </div>
 
@@ -1302,7 +1302,8 @@
             }
           }
           if (data.updatedAtLabel) {
-            document.getElementById('lastUpdated').textContent = `${data.updatedAtLabel} 自動更新`;
+            const timeOnly = data.updatedAtLabel.split(' ')[1] || data.updatedAtLabel;
+            document.getElementById('lastUpdated').textContent = timeOnly;
           }
           renderSpot();
         }
