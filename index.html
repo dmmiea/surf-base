@@ -47,7 +47,7 @@
   </div>
 
   <!-- TOP APP BAR -->
-  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 px-4 py-2.5 shadow-sm">
+  <header class="bg-white/95 backdrop-blur-md border-b border-slate-200/80 px-4 py-2.5 shadow-sm">
     <div class="max-w-md mx-auto flex items-center justify-between">
       <div class="flex items-center space-x-2">
         <div class="w-8 h-8 rounded-xl ocean-gradient flex items-center justify-center text-white shadow-md shadow-sky-500/20">
@@ -69,22 +69,24 @@
   </header>
 
   <!-- MAIN CONTAINER -->
-  <main class="max-w-md mx-auto px-3.5 pt-3 space-y-3.5">
+  <main class="max-w-md mx-auto px-3.5 pt-1 space-y-3.5">
 
-    <!-- 4地点セレクタータブ（ポイント名のみ） -->
-    <div class="grid grid-cols-4 gap-1 p-1 bg-slate-200/80 rounded-2xl border border-slate-300/60 shadow-inner">
-      <button onclick="selectSpot('suishohama')" id="tab-suishohama" class="spot-tab py-2.5 px-1 text-center rounded-xl font-bold text-xs transition duration-200 bg-white text-sky-700 shadow-sm border border-slate-200">
-        <div class="font-bold text-sm">水晶浜</div>
-      </button>
-      <button onclick="selectSpot('sugahama')" id="tab-sugahama" class="spot-tab py-2.5 px-1 text-center rounded-xl font-bold text-xs transition duration-200 text-slate-600 hover:text-slate-900">
-        <div class="font-bold text-sm">菅浜</div>
-      </button>
-      <button onclick="selectSpot('kurosaki')" id="tab-kurosaki" class="spot-tab py-2.5 px-1 text-center rounded-xl font-bold text-xs transition duration-200 text-slate-600 hover:text-slate-900">
-        <div class="font-bold text-sm">黒崎</div>
-      </button>
-      <button onclick="selectSpot('echizen')" id="tab-echizen" class="spot-tab py-2.5 px-1 text-center rounded-xl font-bold text-xs transition duration-200 text-slate-600 hover:text-slate-900">
-        <div class="font-bold text-sm">越前ﾘｰﾌ</div>
-      </button>
+    <!-- 4地点セレクタータブ（上部固定 Sticky） -->
+    <div class="sticky top-0 z-40 bg-[#f1f5f9]/95 backdrop-blur-md -mx-3.5 px-3.5 pt-2 pb-1.5 shadow-sm">
+      <div class="grid grid-cols-4 gap-1 p-1 bg-slate-200/80 rounded-2xl border border-slate-300/60 shadow-inner">
+        <button onclick="selectSpot('suishohama')" id="tab-suishohama" class="spot-tab py-2.5 px-1 text-center rounded-xl font-bold text-xs transition duration-200 bg-white text-sky-700 shadow-sm border border-slate-200">
+          <div class="font-bold text-sm">水晶浜</div>
+        </button>
+        <button onclick="selectSpot('sugahama')" id="tab-sugahama" class="spot-tab py-2.5 px-1 text-center rounded-xl font-bold text-xs transition duration-200 text-slate-600 hover:text-slate-900">
+          <div class="font-bold text-sm">菅浜</div>
+        </button>
+        <button onclick="selectSpot('kurosaki')" id="tab-kurosaki" class="spot-tab py-2.5 px-1 text-center rounded-xl font-bold text-xs transition duration-200 text-slate-600 hover:text-slate-900">
+          <div class="font-bold text-sm">黒崎</div>
+        </button>
+        <button onclick="selectSpot('echizen')" id="tab-echizen" class="spot-tab py-2.5 px-1 text-center rounded-xl font-bold text-xs transition duration-200 text-slate-600 hover:text-slate-900">
+          <div class="font-bold text-sm">越前ﾘｰﾌ</div>
+        </button>
+      </div>
     </div>
 
     <!-- SPOT HERO SUMMARY CARD -->
