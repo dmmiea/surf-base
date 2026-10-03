@@ -1,0 +1,84 @@
+{
+  "suishohama": {
+    "name": "水晶浜",
+    "beachFacing": "W",
+    "minPlayWave": 0.7,
+    "chestHeadWave": 1,
+    "closeoutWave": 1.5,
+    "minPeriod": 5,
+    "bestPeriod": 7.5,
+    "offshoreWinds": [
+      "E",
+      "ENE",
+      "ESE"
+    ],
+    "bestWaveDirs": [
+      "NE",
+      "NNE",
+      "N",
+      "NNW",
+      "NW",
+      "WNW",
+      "W"
+    ]
+  },
+  "sugahama": {
+    "name": "菅浜",
+    "beachFacing": "NW",
+    "minPlayWave": 1.6,
+    "chestHeadWave": 1.8,
+    "closeoutWave": 2.6,
+    "minPeriod": 6,
+    "bestPeriod": 8,
+    "offshoreWinds": [
+      "E",
+      "ENE",
+      "ESE"
+    ],
+    "bestWaveDirs": [
+      "N",
+      "NNW",
+      "NW",
+      "WNW",
+      "W"
+    ]
+  },
+  "kurosaki": {
+    "name": "黒崎",
+    "beachFacing": "N",
+    "minPlayWave": 0.7,
+    "chestHeadWave": 1.3,
+    "closeoutWave": 1.8,
+    "minPeriod": 6,
+    "bestPeriod": 7.5,
+    "offshoreWinds": [
+      "SE",
+      "SSE",
+      "ESE"
+    ],
+    "bestWaveDirs": [
+      "N",
+      "NNE",
+      "NE"
+    ]
+  },
+  "echizen": {
+    "name": "越前リーフ",
+    "beachFacing": "W",
+    "minPlayWave": 0.9,
+    "chestHeadWave": 1.1,
+    "closeoutWave": 1.6,
+    "minPeriod": 6,
+    "bestPeriod": 7.5,
+    "offshoreWinds": [
+      "E",
+      "ENE",
+      "ESE"
+    ],
+    "bestWaveDirs": [
+      "NE",
+      "NNE",
+      "N"
+    ]
+  }
+}

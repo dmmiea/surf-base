@@ -350,6 +350,14 @@
       </div>
     </div>
 
+    <!-- 管理者リンク（最下部） -->
+    <footer class="pt-6 pb-4 text-center">
+      <a href="admin.html" class="text-[10px] text-slate-300 hover:text-slate-500 font-medium inline-flex items-center gap-1 transition">
+        <i class="fa-solid fa-lock text-[9px]"></i>
+        <span>管理者設定</span>
+      </a>
+    </footer>
+
   </main>
 
   <!-- 投稿用モーダルダイアログ（過去12時間・1時間ごとに波サイズ＆レート個別設定対応） -->
@@ -1287,8 +1295,25 @@
       renderSpot();
     }
 
+    async function fetchSpotRules() {
+      try {
+        const res = await fetch('spot_rules.json?t=' + Date.now());
+        if (res.ok) {
+          const rulesData = await res.json();
+          for (const key of Object.keys(rulesData)) {
+            if (SPOT_RULES[key]) {
+              Object.assign(SPOT_RULES[key], rulesData[key]);
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('Spot rules fetch fallback to defaults:', e);
+      }
+    }
+
     async function fetchLiveData() {
       try {
+        await fetchSpotRules();
         const res = await fetch('data.json?t=' + Date.now());
         if (res.ok) {
           const data = await res.json();
