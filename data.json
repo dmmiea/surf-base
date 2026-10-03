@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-10-03T05:08:36.769Z",
-  "updatedAtLabel": "2026/10/03 14:08",
+  "updatedAt": "2026-10-03T06:17:01.431Z",
+  "updatedAtLabel": "2026/10/03 15:17",
   "nowphas": {
     "tsuruga": {
       "latest": {
-        "time": "13:40",
-        "wave": "1.01",
+        "time": "14:40",
+        "wave": "1.02",
         "period": "6.9",
         "dir": "NW",
         "isEstimated": false
@@ -304,14 +304,35 @@
           "period": "6.9",
           "dir": "NW",
           "isEstimated": false
+        },
+        {
+          "time": "14:00",
+          "wave": "1.03",
+          "period": "6.6",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "14:20",
+          "wave": "0.92",
+          "period": "6.7",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "14:40",
+          "wave": "1.02",
+          "period": "6.9",
+          "dir": "NW",
+          "isEstimated": false
         }
       ]
     },
     "fukui": {
       "latest": {
-        "time": "13:40",
-        "wave": "1.30",
-        "period": "6.6",
+        "time": "14:40",
+        "wave": "1.22",
+        "period": "6.5",
         "dir": "NNW",
         "isEstimated": false
       },
@@ -607,6 +628,27 @@
           "time": "13:40",
           "wave": "1.30",
           "period": "6.6",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "14:00",
+          "wave": "1.19",
+          "period": "6.3",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "14:20",
+          "wave": "1.25",
+          "period": "6.4",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "14:40",
+          "wave": "1.22",
+          "period": "6.5",
           "dir": "NNW",
           "isEstimated": false
         }
