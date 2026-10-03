@@ -1,9 +1,9 @@
-﻿name: "Auto Fetch Surf Data & Deploy"
+name: "Auto Fetch Surf Data & Deploy"
 
 on:
   schedule:
-    # 毎正時（1時間ごと）に自動実行
-    - cron: '0 * * * *'
+    # 混雑ピーク(00分)を回避し、毎時17分・47分（30分ごと）に自動実行
+    - cron: '17,47 * * * *'
   workflow_dispatch: # 手動実行ボタンも有効化
   push:
     branches:
