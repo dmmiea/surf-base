@@ -131,7 +131,7 @@
 
         <div class="flex items-center space-x-1.5 text-right">
           <span id="tideNameBadge" class="text-[9px] bg-sky-100 text-sky-700 font-bold px-1.5 py-0.2 rounded">中潮</span>
-          <span class="text-[10px] text-slate-500 font-medium">満<strong id="tideHigh" class="text-slate-700">03:34</strong> / 干<strong id="tideLow" class="text-slate-700">10:47</strong></span>
+          <span class="text-[10px] text-slate-500 font-medium">HIGH <strong id="tideHigh" class="text-slate-700">03:34</strong> / LOW <strong id="tideLow" class="text-slate-700">10:47</strong></span>
         </div>
       </div>
 
@@ -143,7 +143,7 @@
           <div>
             <div class="flex items-center justify-between mb-1">
               <span class="text-[10px] font-bold text-emerald-800 flex items-center gap-1">
-                <i class="fa-solid fa-circle-check text-emerald-600"></i> 実測
+                <i class="fa-solid fa-circle-check text-emerald-600"></i> LIVE
               </span>
               <span id="heroRealTime" class="text-[10px] text-slate-500 font-medium">22:00</span>
             </div>
@@ -160,7 +160,7 @@
               <strong id="heroRealPeriod" class="text-emerald-700 font-bold text-xs">5.2秒</strong>
             </div>
             <div class="text-right">
-              <span class="text-slate-400 block text-[9px] uppercase font-bold">波向</span>
+              <span class="text-slate-400 block text-[9px] uppercase font-bold">SWELL</span>
               <strong class="text-slate-700 font-bold text-xs flex items-center justify-end gap-0.5">
                 <span id="heroRealDirArrow" class="inline-block text-emerald-700"></span>
                 <span id="heroRealDir">NW</span>
@@ -174,7 +174,7 @@
           <div>
             <div class="flex items-center justify-between mb-1">
               <span class="text-[10px] font-bold text-sky-800 flex items-center gap-1">
-                <i class="fa-solid fa-cloud-sun text-sky-600"></i> 予報 [海天気]
+                <i class="fa-solid fa-cloud-sun text-sky-600"></i> FORECAST
               </span>
               <span id="heroForecastTime" class="text-[10px] text-slate-500 font-medium">21:00</span>
             </div>
@@ -192,7 +192,7 @@
                 <strong id="heroForecastPeriod" class="text-sky-700 font-bold text-xs">5.5秒</strong>
               </div>
               <div class="text-right">
-                <span class="text-slate-400 block text-[9px] uppercase font-bold">波向</span>
+                <span class="text-slate-400 block text-[9px] uppercase font-bold">SWELL</span>
                 <strong class="text-sky-700 font-bold text-xs flex items-center justify-end gap-0.5">
                   <span id="heroForecastWaveDirArrow" class="inline-block text-sky-600"></span>
                   <span id="heroForecastWaveDir">NNW</span>
@@ -200,7 +200,7 @@
               </div>
             </div>
             <div class="flex items-center justify-between text-[10px] pt-1 border-t border-sky-50">
-              <span class="text-slate-400 font-bold text-[9px]">風</span>
+              <span class="text-slate-400 font-bold text-[9px]">WIND</span>
               <strong class="text-slate-700 font-bold text-xs flex items-center justify-end gap-0.5 whitespace-nowrap">
                 <span id="heroWindDirArrow" class="inline-block text-sky-600"></span>
                 <span id="heroWindDir">E</span>
@@ -225,7 +225,7 @@
         <div class="py-1.5 px-3 rounded-xl bg-sky-50/70 border border-sky-100 flex items-center justify-between text-xs">
           <span class="text-slate-700 font-medium flex items-center gap-1">
             <i class="fa-solid fa-ruler-vertical text-sky-600"></i>
-            推定波: <strong id="waveSizeEstimate" class="text-sky-900 font-bold">腰〜胸</strong>
+            SIZE: <strong id="waveSizeEstimate" class="text-sky-900 font-bold">腰〜胸</strong>
           </span>
           <span id="conditionReason" class="text-[11px] text-sky-800 font-semibold">オフショア＆好周期</span>
         </div>
@@ -244,15 +244,15 @@
             <span id="reportCountBadge" class="text-[9px] bg-amber-100 text-amber-800 font-bold px-1.5 py-0.2 rounded-full border border-amber-300">2票</span>
           </div>
           <div class="text-[11px] text-slate-500 mt-0.5 flex items-center gap-2">
-            <span>評価: <strong id="userAvgRate" class="text-emerald-700 font-black">GOOD</strong></span>
-            <span>波感: <strong id="userAvgSize" class="text-slate-700 font-bold">腹〜胸</strong></span>
+            <span>RATE: <strong id="userAvgRate" class="text-emerald-700 font-black">GOOD</strong></span>
+            <span>SIZE: <strong id="userAvgSize" class="text-slate-700 font-bold">腹〜胸</strong></span>
           </div>
         </div>
       </div>
 
       <button onclick="openReportModal()" class="py-2 px-3 rounded-xl bg-gradient-to-r from-sky-600 to-blue-600 text-white font-bold text-xs shadow-md shadow-sky-500/20 active:scale-95 transition flex items-center gap-1.5">
         <i class="fa-solid fa-pen-to-square"></i>
-        <span>波レポ</span>
+        <span>REPORT</span>
       </button>
     </div>
 
@@ -261,7 +261,7 @@
       <div class="flex items-center justify-between">
         <h3 class="font-bold text-xs text-slate-800 flex items-center gap-1.5">
           <i class="fa-solid fa-chart-area text-sky-600"></i>
-          波高推移（実測12h・予報3.5日）
+          WAVE TREND（実測12h・予報3.5日）
         </h3>
         <div class="flex items-center space-x-3 text-[10px]">
           <span class="flex items-center gap-1 text-emerald-700 font-semibold">
@@ -292,18 +292,18 @@
       <div class="flex items-center justify-between px-1">
         <h3 class="font-bold text-sm text-slate-800 flex items-center gap-1.5">
           <i class="fa-solid fa-table-list text-sky-600"></i>
-          タイムライン（3.5日）
+          TIMELINE（3.5日）
         </h3>
         <span class="text-[10px] text-slate-500 font-medium">👥 投票</span>
       </div>
 
       <div class="glass-card rounded-2xl overflow-hidden border border-slate-200 shadow-md">
         <div class="grid grid-cols-12 text-center text-[10px] font-bold text-slate-600 bg-slate-100/90 py-2.5 px-1 border-b border-slate-200 tracking-wider">
-          <div class="col-span-2 text-left pl-1">日時</div>
-          <div class="col-span-2 text-slate-700"><i class="fa-solid fa-wind mr-0.5 text-sky-600"></i>風</div>
-          <div class="col-span-3 text-sky-800 bg-sky-50/50 py-0.5 rounded">予報【波・周期】</div>
-          <div class="col-span-3 text-emerald-800 bg-emerald-50/50 py-0.5 rounded">実測【波・周期】</div>
-          <div class="col-span-2 text-slate-700">評価</div>
+          <div class="col-span-2 text-left pl-1">TIME</div>
+          <div class="col-span-2 text-slate-700"><i class="fa-solid fa-wind mr-0.5 text-sky-600"></i>WIND</div>
+          <div class="col-span-3 text-sky-800 bg-sky-50/50 py-0.5 rounded">FORECAST</div>
+          <div class="col-span-3 text-emerald-800 bg-emerald-50/50 py-0.5 rounded">LIVE</div>
+          <div class="col-span-2 text-slate-700">RATING</div>
         </div>
 
         <div id="timelineList" class="divide-y divide-slate-100 max-h-[440px] overflow-y-auto hide-scrollbar text-xs">
@@ -354,7 +354,7 @@
     <footer class="pt-6 pb-4 text-center">
       <a href="admin.html" class="text-[10px] text-slate-300 hover:text-slate-500 font-medium inline-flex items-center gap-1 transition">
         <i class="fa-solid fa-lock text-[9px]"></i>
-        <span>管理者設定</span>
+        <span>Admin</span>
       </a>
     </footer>
 
