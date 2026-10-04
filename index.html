@@ -673,17 +673,21 @@
         if (isPast || isCurrent) {
           let matchedNp = null;
           if (npHistory && npHistory.length > 0) {
-            // その時間の正時、または直近20分・40分実測を検索（新しい順）
-            const candidates = npHistory.slice().reverse().filter(n => n.time.startsWith(hour));
+            // その時間の正時、または直近20分・40分実測を検索（日付完全一致・新しい順）
+            const candidates = npHistory.slice().reverse().filter(n => {
+              if (n.dayLabel && n.dayLabel !== dayLabel) return false;
+              return n.time.startsWith(hour);
+            });
             // 優先度1: 通常の超音波実測値（推定値でないもの）
             matchedNp = candidates.find(n => !n.isEstimated && n.dir && n.dir !== '-');
             // 優先度2: 通常実測がなければ最新の候補（推定値含む）
             if (!matchedNp && candidates.length > 0) {
               matchedNp = candidates[0];
             }
-            // NOW行で該当正時の実測が未反映の場合は、直近の最新実測を採用
+            // NOW行で該当正時の実測が未反映の場合は、本日最新の実測を採用
             if (!matchedNp && isCurrent) {
-              matchedNp = npHistory[npHistory.length - 1];
+              const todayRecords = npHistory.filter(n => !n.dayLabel || n.dayLabel === dayLabel);
+              matchedNp = todayRecords.length > 0 ? todayRecords[todayRecords.length - 1] : npHistory[npHistory.length - 1];
             }
           }
 

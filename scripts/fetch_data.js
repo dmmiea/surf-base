@@ -50,12 +50,15 @@ function decodeShiftJis(buf) {
   }
 }
 
-// ナウファス実測パース（推定補足値 isEstimated の検知対応）
-function parseNowphas(html) {
+// ナウファス実測パース（推定補足値 isEstimated の検知対応 & 日付ラベル付与）
+function parseNowphas(html, dateObj) {
   const rows = [];
   const lines = html.split('\n');
   const trRegex = /<tr><td class="dt">(\d\d:\d\d)<\/td><td>(.*?)<\/td><td>(.*?)<\/td><td>(.*?)<\/td><td class="dt">(\d\d:\d\d)<\/td><td>(.*?)<\/td><td>(.*?)<\/td><td>(.*?)<\/td><\/tr>/;
   
+  const dayLabel = dateObj ? `${dateObj.getMonth() + 1}/${dateObj.getDate()}` : '';
+  const ymd = dateObj ? `${dateObj.getFullYear()}${String(dateObj.getMonth() + 1).padStart(2, '0')}${String(dateObj.getDate()).padStart(2, '0')}` : '';
+
   const parseCell = (time, waveRaw, perRaw, dirRaw) => {
     const isEstimated = /<span class="pr">|\(|\)/.test(waveRaw) || /<span class="pr">|\(|\)/.test(perRaw) || dirRaw.includes('****');
     const clean = (s) => s.replace(/<[^>]+>/g, '').replace(/[()]/g, '').trim();
@@ -65,6 +68,8 @@ function parseNowphas(html) {
     if (wave && wave !== '****' && wave !== '') {
       return {
         time,
+        dayLabel,
+        ymd,
         wave,
         period,
         dir: (dir === '****' ? '-' : dir),
@@ -101,12 +106,12 @@ function getNowphasData(stationId, jstNow) {
   const yesterdayYmd = getYmd(yesterday);
 
   const htmlToday = fetchUrl(`https://nowphas.mlit.go.jp/nip_yugiha/${stationId}/7/${todayYmd}`);
-  const rowsToday = htmlToday ? parseNowphas(htmlToday) : [];
+  const rowsToday = htmlToday ? parseNowphas(htmlToday, jstNow) : [];
 
   let combined = [];
   if (rowsToday.length < 36) {
     const htmlYest = fetchUrl(`https://nowphas.mlit.go.jp/nip_yugiha/${stationId}/7/${yesterdayYmd}`);
-    const rowsYest = htmlYest ? parseNowphas(htmlYest) : [];
+    const rowsYest = htmlYest ? parseNowphas(htmlYest, yesterday) : [];
     combined = rowsYest.concat(rowsToday);
   } else {
     combined = rowsToday;
