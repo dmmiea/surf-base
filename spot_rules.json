@@ -94,7 +94,8 @@
     "offshoreWinds": [
       "E",
       "ENE",
-      "ESE"
+      "ESE",
+      "SE"
     ],
     "bestWaveDirs": [
       "N",
@@ -121,7 +122,8 @@
     "offshoreWinds": [
       "SE",
       "SSE",
-      "ESE"
+      "ESE",
+      "S"
     ],
     "bestWaveDirs": [
       "N",
@@ -149,8 +151,10 @@
       "ESE"
     ],
     "bestWaveDirs": [
-      "NE",
-      "NNE",
+      "W",
+      "WNW",
+      "NW",
+      "NNW",
       "N"
     ],
     "nowphasRef": "fukui",
@@ -487,7 +491,7 @@
     "name": "寺沢",
     "areaGroup": "enshunada",
     "area": "愛知県豊橋市寺沢町・表浜",
-    "beachFacing": "SSW",
+    "beachFacing": "S",
     "minPlayWave": 0.6,
     "chestHeadWave": 1.2,
     "closeoutWave": 2,
@@ -495,7 +499,8 @@
     "bestPeriod": 8,
     "offshoreWinds": [
       "N",
-      "NNW"
+      "NNW",
+      "NNE"
     ],
     "bestWaveDirs": [
       "S",
@@ -596,6 +601,7 @@
       "N"
     ],
     "bestWaveDirs": [
+      "S",
       "SE",
       "ESE",
       "SW",

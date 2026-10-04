@@ -163,7 +163,7 @@ async function run() {
     const period = item.period || 5.0;
     const waveDir = item.waveDir || 'N';
     const windDir = item.windDir || 'N';
-    const windSpeed = item.windSpeed || 3.0;
+    const windSpeed = item.windSpeed ?? 3.0;
 
     if (wave >= rule.closeoutWave) return { rate: 'CLOSE', size: 'クローズ' };
     if (wave < rule.minPlayWave) return { rate: 'FLAT', size: 'サイズ不足' };
@@ -192,6 +192,13 @@ async function run() {
     try { history = JSON.parse(fs.readFileSync(historyPath, 'utf8')); } catch (e) {}
   }
 
+  // サーフィン可能時間帯（日の出〜日没目安: 05:00〜18:00）判定
+  function isSurfableTime(timeStr) {
+    if (!timeStr) return false;
+    const h = parseInt(timeStr.split(':')[0], 10);
+    return h >= 5 && h <= 18;
+  }
+
   // ==========================================
   // 各モードのペイロード生成ヘルパー
   // ==========================================
@@ -206,7 +213,7 @@ async function run() {
       return false;
     };
 
-    // A. 朝便: 今日これからの波 ＆ 明日の先取り予報
+    // A. 朝便: 今日これからの波 ＆ 明日の先取り予報 (05:00〜18:00限定)
     if (timingMode === 'morning' || (timingMode === 'test' && args.includes('--morning'))) {
       if (!sub.timing_morning && timingMode !== 'test') return null;
 
@@ -218,8 +225,8 @@ async function run() {
         const rule = spotRules[key];
         if (!rule || !Array.isArray(spot.hourData)) continue;
 
-        // 今日
-        const todayHours = spot.hourData.filter(h => h.dayLabel === todayLabel);
+        // 今日 (現在時刻以降かつサーフィン可能時間帯)
+        const todayHours = spot.hourData.filter(h => h.dayLabel === todayLabel && isSurfableTime(h.time) && parseInt(h.time.split(':')[0], 10) >= curHour);
         for (const h of todayHours) {
           const ev = evaluateForecast(key, h);
           if (ev.rate === 'BEST' || ev.rate === 'GOOD') {
@@ -229,8 +236,8 @@ async function run() {
           }
         }
 
-        // 明日
-        const tomorrowHours = spot.hourData.filter(h => h.dayLabel === tomorrowLabel);
+        // 明日 (日中サーフィン可能時間帯 05:00〜18:00)
+        const tomorrowHours = spot.hourData.filter(h => h.dayLabel === tomorrowLabel && isSurfableTime(h.time));
         for (const h of tomorrowHours) {
           const ev = evaluateForecast(key, h);
           if (ev.rate === 'BEST' || ev.rate === 'GOOD') {
@@ -267,7 +274,7 @@ async function run() {
       return null;
     }
 
-    // B. 夜便: 明日の朝イチ・日中狙い目予報
+    // B. 夜便: 明日の朝イチ・日中狙い目予報 (05:00〜18:00限定)
     if (timingMode === 'evening' || (timingMode === 'test' && args.includes('--evening'))) {
       if (!sub.timing_evening && timingMode !== 'test') return null;
 
@@ -278,7 +285,7 @@ async function run() {
         const rule = spotRules[key];
         if (!rule || !Array.isArray(spot.hourData)) continue;
 
-        const tomorrowHours = spot.hourData.filter(h => h.dayLabel === tomorrowLabel);
+        const tomorrowHours = spot.hourData.filter(h => h.dayLabel === tomorrowLabel && isSurfableTime(h.time));
         for (const h of tomorrowHours) {
           const ev = evaluateForecast(key, h);
           if (ev.rate === 'BEST' || ev.rate === 'GOOD') {
@@ -311,19 +318,28 @@ async function run() {
       };
     }
 
-    // D. 即時サイズアップ速報
+    // D. 即時サイズアップ速報 (現在時刻以降の直近データのみ)
     if (timingMode === 'instant') {
       if (!sub.timing_instant) return null;
 
       const newlyGood = [];
       const alertCutoffTime = Date.now() - 12 * 3600 * 1000;
+      const curTimeStr = `${String(curHour).padStart(2, '0')}:${String(curMin).padStart(2, '0')}`;
 
       for (const [key, spot] of Object.entries(surfData.spots || {})) {
         if (!isTargetSpot(key)) continue;
         const rule = spotRules[key];
         if (!rule || !Array.isArray(spot.hourData) || spot.hourData.length === 0) continue;
 
-        const nearHours = spot.hourData.slice(0, 6);
+        // 過去ログを除外し、現在時刻以降の直近サーフィン可能時間帯にフィルタリング
+        const futureHours = spot.hourData.filter(h => {
+          if (h.dayLabel === todayLabel) {
+            return h.time >= curTimeStr && isSurfableTime(h.time);
+          }
+          return isSurfableTime(h.time);
+        });
+
+        const nearHours = futureHours.slice(0, 6);
         for (const h of nearHours) {
           const ev = evaluateForecast(key, h);
           if (ev.rate === 'BEST' || ev.rate === 'GOOD') {

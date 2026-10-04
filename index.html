@@ -462,6 +462,154 @@
     </div>
   </div>
 
+  <!-- 波予報プッシュ通知設定モーダルダイアログ (PWA & Web Push 対応) -->
+  <div id="notificationModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-3">
+    <div class="bg-white rounded-3xl p-4 sm:p-5 w-full max-w-lg shadow-2xl border border-slate-100 space-y-3.5 max-h-[92vh] flex flex-col">
+      <!-- モーダルヘッダー -->
+      <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 rounded-lg bg-sky-500/10 text-sky-600 flex items-center justify-center">
+            <i class="fa-solid fa-bell text-sm"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-sm text-slate-800">波予報プッシュ通知設定</h3>
+            <p class="text-[10px] text-slate-400">朝夕の予報や波上がり速報をスマホへ自動通知</p>
+          </div>
+        </div>
+        <button onclick="closeNotificationModal()" class="w-7 h-7 rounded-full bg-slate-100 text-slate-400 hover:text-slate-600 flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark text-xs"></i>
+        </button>
+      </div>
+
+      <!-- スクロール可能ボディ -->
+      <div class="overflow-y-auto space-y-3.5 pr-1 text-xs">
+
+        <!-- iOS PWA ホーム画面追加ガイド (iOS Safari 通常ブラウザ時のみ表示) -->
+        <div id="iosPwaGuide" style="display: none;" class="p-3 bg-amber-50 rounded-2xl border border-amber-200 space-y-2">
+          <div class="flex items-center gap-1.5 text-amber-800 font-bold text-xs">
+            <i class="fa-brands fa-apple text-base"></i>
+            <span>iPhoneで通知を受け取る手順</span>
+          </div>
+          <p class="text-[11px] text-amber-900 leading-relaxed">
+            iOS Safariの仕様上、プッシュ通知を受信するには本アプリを<strong>「ホーム画面に追加」</strong>して起動する必要があります。
+          </p>
+          <div class="bg-white/90 p-2.5 rounded-xl text-[10.5px] text-amber-950 space-y-1.5 border border-amber-200/60">
+            <div class="flex items-center gap-2">
+              <span class="w-4 h-4 rounded-full bg-amber-200 text-amber-900 font-bold flex items-center justify-center text-[10px] flex-shrink-0">1</span>
+              <span>画面下部中央の <strong>共有ボタン</strong> <i class="fa-solid fa-arrow-up-from-bracket mx-0.5 text-sky-600"></i> をタップ</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-4 h-4 rounded-full bg-amber-200 text-amber-900 font-bold flex items-center justify-center text-[10px] flex-shrink-0">2</span>
+              <span>メニュー内の <strong>「ホーム画面に追加」</strong> <i class="fa-regular fa-square-plus mx-0.5 text-slate-700"></i> をタップ</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-4 h-4 rounded-full bg-amber-200 text-amber-900 font-bold flex items-center justify-center text-[10px] flex-shrink-0">3</span>
+              <span>ホーム画面の <strong>SURF BASE アイコン</strong> から起動し、ここで通知をONにする</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 接続ステータス & 有効化カード -->
+        <div class="p-3 bg-slate-50 rounded-2xl border border-slate-200/80 flex items-center justify-between gap-2">
+          <div class="space-y-0.5">
+            <span class="text-[10px] text-slate-400 font-medium block">通知ステータス</span>
+            <div id="notifStatusText" class="font-bold text-slate-700 text-xs">確認中...</div>
+          </div>
+          <button id="btnTogglePush" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-sky-600 hover:bg-sky-700 text-white shadow-sm active:scale-95 transition flex-shrink-0">
+            通知を有効にする
+          </button>
+        </div>
+
+        <!-- テスト通知送信ボタン (有効時のみ表示) -->
+        <div id="testNotifContainer" class="hidden flex items-center justify-between p-2.5 bg-emerald-50/80 rounded-2xl border border-emerald-200">
+          <div class="flex items-center gap-1.5 text-emerald-800">
+            <i class="fa-solid fa-circle-check text-emerald-600"></i>
+            <span class="text-[11px] font-bold">通知が接続されています</span>
+          </div>
+          <button onclick="triggerTestNotification()" class="px-2.5 py-1 bg-white hover:bg-emerald-100 text-emerald-700 text-[10.5px] font-bold rounded-lg border border-emerald-300 shadow-sm active:scale-95 transition flex items-center gap-1">
+            <i class="fa-solid fa-paper-plane text-[9px]"></i>
+            <span>テスト通知を試す</span>
+          </button>
+        </div>
+
+        <!-- 通知タイミング設定 -->
+        <div class="space-y-2">
+          <span class="text-[11px] font-bold text-slate-700 flex items-center gap-1">
+            <i class="fa-regular fa-clock text-sky-600"></i>
+            <span>受信タイミング</span>
+          </span>
+          <div class="grid grid-cols-1 gap-2 bg-slate-50/80 p-2.5 rounded-2xl border border-slate-200/80">
+            <label class="flex items-center justify-between cursor-pointer py-1">
+              <div>
+                <span class="text-xs font-bold text-slate-700">朝の波予報（09:00頃）</span>
+                <p class="text-[10px] text-slate-400">当日の午後の変化＋明日の波・風予報を先取り</p>
+              </div>
+              <input type="checkbox" id="timingMorning" checked class="w-4 h-4 text-sky-600 rounded focus:ring-sky-500">
+            </label>
+            <div class="border-t border-slate-200/60"></div>
+            <label class="flex items-center justify-between cursor-pointer py-1">
+              <div>
+                <span class="text-xs font-bold text-slate-700">夜の翌日まとめ（19:30頃）</span>
+                <p class="text-[10px] text-slate-400">明朝の狙い目時間帯と風向き・コンディション予測</p>
+              </div>
+              <input type="checkbox" id="timingEvening" checked class="w-4 h-4 text-sky-600 rounded focus:ring-sky-500">
+            </label>
+            <div class="border-t border-slate-200/60"></div>
+            <label class="flex items-center justify-between cursor-pointer py-1">
+              <div>
+                <span class="text-xs font-bold text-slate-700">波上がり速報（随時）</span>
+                <p class="text-[10px] text-slate-400">ナウファス実測値や風向きが好転した瞬間にプッシュ</p>
+              </div>
+              <input type="checkbox" id="timingInstant" checked class="w-4 h-4 text-sky-600 rounded focus:ring-sky-500">
+            </label>
+            <div class="border-t border-slate-200/60"></div>
+            <label class="flex items-center justify-between cursor-pointer py-1">
+              <div>
+                <span class="text-xs font-bold text-sky-800">🤖 AI自動ピックアップ通知</span>
+                <p class="text-[10px] text-slate-400">お気に入りスポット以外でも「今日一番良いポイント」をお知らせ</p>
+              </div>
+              <input type="checkbox" id="chkAutoPickup" checked class="w-4 h-4 text-sky-600 rounded focus:ring-sky-500">
+            </label>
+          </div>
+        </div>
+
+        <!-- お気に入りスポット選択 -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold text-slate-700 flex items-center gap-1">
+              <i class="fa-solid fa-location-dot text-rose-500"></i>
+              <span>通知を受け取るスポット（複数選択可）</span>
+            </span>
+            <button type="button" id="btnToggleAllFav" onclick="toggleAllFavSpots()" class="text-[10px] text-sky-700 bg-sky-50 px-2 py-0.5 rounded-md border border-sky-200 hover:bg-sky-100 font-bold transition">
+              全解除
+            </button>
+          </div>
+          <div id="favSpotList" class="flex flex-wrap gap-1.5 p-2 bg-slate-50/80 rounded-2xl border border-slate-200/80 max-h-36 overflow-y-auto">
+            <!-- JSで動的生成 -->
+          </div>
+        </div>
+
+        <!-- 保存完了フィードバックアラート -->
+        <div id="notifAutoSaveAlert" class="hidden p-2.5 rounded-xl bg-emerald-50 text-emerald-700 text-[10.5px] font-bold border border-emerald-200 flex items-center gap-1.5">
+          <i class="fa-solid fa-circle-check text-emerald-600"></i>
+          <span>サーバー（Supabase）へ通知設定を同期しました！</span>
+        </div>
+
+      </div>
+
+      <!-- 送信フッター -->
+      <div class="pt-2 border-t border-slate-100 flex items-center gap-2">
+        <button onclick="closeNotificationModal()" class="w-1/3 py-2.5 rounded-xl bg-slate-100 text-slate-600 font-bold text-xs hover:bg-slate-200 transition">
+          閉じる
+        </button>
+        <button onclick="saveNotificationPreferences()" class="w-2/3 py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-blue-600 text-white font-bold text-xs shadow-md shadow-sky-500/20 active:scale-95 transition flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-floppy-disk"></i>
+          <span>設定を保存する</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script>
     const DIR_ARROWS = {
       'N': '↓', 'NNE': '↙', 'NE': '↙', 'ENE': '←',
@@ -602,7 +750,7 @@
         nowphasRef: 'tsuruga',
         nowphasName: '敦賀港 (122)',
         dist: '約10km',
-        offshoreWinds: ['E', 'ENE', 'ESE'],
+        offshoreWinds: ['E', 'ENE', 'ESE', 'SE'],
         bestWaveDirs: ['N', 'NNW', 'NW', 'WNW', 'W'],
         minPlayWave: 1.6,
         chestHeadWave: 1.8,
@@ -621,7 +769,7 @@
         nowphasRef: 'tsuruga',
         nowphasName: '敦賀港 (122)',
         dist: '約12km',
-        offshoreWinds: ['SE', 'SSE', 'ESE'],
+        offshoreWinds: ['SE', 'SSE', 'ESE', 'S'],
         bestWaveDirs: ['N', 'NNE', 'NE'],
         minPlayWave: 0.7,
         chestHeadWave: 1.3,
@@ -643,13 +791,13 @@
         nowphasName: '福井港 (117)',
         dist: '約15km',
         offshoreWinds: ['E', 'ENE', 'ESE'],
-        bestWaveDirs: ['NE', 'NNE', 'N'],
+        bestWaveDirs: ['W', 'WNW', 'NW', 'NNW', 'N'],
         minPlayWave: 0.9,
         chestHeadWave: 1.1,
         closeoutWave: 1.6,
         minPeriod: 6.0,
         bestPeriod: 7.5,
-        defaultForecast: { wave: 1.1, period: 7.5, waveDir: 'NE', windDir: 'E', windSpeed: 2.8 },
+        defaultForecast: { wave: 1.1, period: 7.5, waveDir: 'NW', windDir: 'E', windSpeed: 2.8 },
         sunRise: '05:50', sunSet: '17:39', tideName: '中潮', tideHigh: '03:30', tideLow: '10:40'
       },
       takasu: {
@@ -911,11 +1059,11 @@
         name: '寺沢',
         areaGroup: 'enshunada',
         area: '愛知県豊橋市寺沢町・表浜',
-        beachFacing: 'SSW',
+        beachFacing: 'S',
         nowphasRef: 'isewan',
         nowphasName: '伊勢湾口沖 (816)',
         dist: '約30km',
-        offshoreWinds: ['N', 'NNW'],
+        offshoreWinds: ['N', 'NNW', 'NNE'],
         bestWaveDirs: ['S', 'SSW', 'SW'],
         minPlayWave: 0.6,
         chestHeadWave: 1.2,
@@ -992,7 +1140,7 @@
         nowphasName: '静岡御前崎沖 (812)',
         dist: '約30km',
         offshoreWinds: ['NNW', 'N'],
-        bestWaveDirs: ['SE', 'ESE', 'SW', 'SSW'],
+        bestWaveDirs: ['S', 'SE', 'ESE', 'SW', 'SSW'],
         minPlayWave: 0.6,
         chestHeadWave: 1.2,
         closeoutWave: 2.0,
@@ -1459,12 +1607,21 @@
       document.getElementById('heroWindDir').textContent = defWindDir;
       document.getElementById('heroWindDirArrow').textContent = getArrow(defWindDir);
 
+      // ナウファス実測値の有効性チェック（欠落時は予報値をフォールバック利用）
+      const realWaveNum = parseFloat(np.wave);
+      const realPeriodNum = parseFloat(np.period);
+      const isNpValid = !isNaN(realWaveNum) && !isNaN(realPeriodNum) && np.wave !== '-';
+
+      const evalWave = isNpValid ? realWaveNum : Number(defWave);
+      const evalPeriod = isNpValid ? realPeriodNum : Number(defPeriod);
+      const evalWaveDir = (isNpValid && np.dir && np.dir !== '-') ? np.dir : defWaveDir;
+
       // レーティング評価実行
       const evalRes = evaluateCondition(
         currentSpotKey,
-        parseFloat(np.wave),
-        parseFloat(np.period),
-        np.dir,
+        evalWave,
+        evalPeriod,
+        evalWaveDir,
         defWindDir,
         defWindSpeed
       );
@@ -1473,25 +1630,31 @@
       badge.className = `inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border text-xs font-bold mt-0.5 ${evalRes.badgeClass}`;
       badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full ${evalRes.dot} animate-ping"></span><span>${evalRes.rating}</span>`;
       document.getElementById('waveSizeEstimate').textContent = evalRes.size;
-      document.getElementById('conditionReason').textContent = evalRes.reason;
+      document.getElementById('conditionReason').textContent = isNpValid ? evalRes.reason : `${evalRes.reason}（予報参照）`;
 
-      // 差分計算
-      const diff = (parseFloat(np.wave) - Number(defWave)).toFixed(2);
+      // 差分計算（実測値が有効な場合のみ算出、欠落時はハイフン表示）
       const diffElem = document.getElementById('diffValue');
       const diffComment = document.getElementById('diffComment');
       
-      if (diff > 0.1) {
-        diffElem.textContent = `+${diff}m`;
-        diffElem.className = 'text-emerald-700 font-bold';
-        diffComment.textContent = '実測高め・狙い目';
-      } else if (diff < -0.15) {
-        diffElem.textContent = `${diff}m`;
-        diffElem.className = 'text-amber-700 font-bold';
-        diffComment.textContent = '湾内ウネリ減衰';
+      if (isNpValid && !isNaN(Number(defWave))) {
+        const diff = (realWaveNum - Number(defWave)).toFixed(2);
+        if (diff > 0.1) {
+          diffElem.textContent = `+${diff}m`;
+          diffElem.className = 'text-emerald-700 font-bold';
+          diffComment.textContent = '実測高め・狙い目';
+        } else if (diff < -0.15) {
+          diffElem.textContent = `${diff}m`;
+          diffElem.className = 'text-amber-700 font-bold';
+          diffComment.textContent = '湾内ウネリ減衰';
+        } else {
+          diffElem.textContent = `${diff}m`;
+          diffElem.className = 'text-sky-700 font-bold';
+          diffComment.textContent = '予報一致';
+        }
       } else {
-        diffElem.textContent = `${diff}m`;
-        diffElem.className = 'text-sky-700 font-bold';
-        diffComment.textContent = '予報一致';
+        diffElem.textContent = '—';
+        diffElem.className = 'text-slate-400 font-normal';
+        diffComment.textContent = '実測なし（予報のみ）';
       }
 
       // ユーザー投稿サマリー更新
@@ -2036,14 +2199,29 @@
       });
     }
 
+    // 端末・ブラウザ環境判定ユーティリティ
+    function checkDevicePushSupport() {
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      const isStandalone = !!(window.navigator.standalone || (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches));
+      const hasNotification = 'Notification' in window;
+      const hasSW = 'serviceWorker' in navigator;
+      return { isIOS, isStandalone, hasNotification, hasSW };
+    }
+
     function checkPushSubscriptionStatus() {
-      if (!('Notification' in window) || !('serviceWorker' in navigator)) {
+      const { isIOS, isStandalone, hasNotification, hasSW } = checkDevicePushSupport();
+
+      if (!hasSW || !hasNotification) {
         updateNotifUIStatus('unsupported');
         return;
       }
 
       if (Notification.permission === 'granted') {
         navigator.serviceWorker.ready.then(reg => {
+          if (!reg.pushManager) {
+            updateNotifUIStatus('unsupported');
+            return;
+          }
           reg.pushManager.getSubscription().then(sub => {
             if (sub) {
               currentSubscription = sub;
@@ -2051,7 +2229,11 @@
             } else {
               updateNotifUIStatus('ready_to_subscribe');
             }
+          }).catch(() => {
+            updateNotifUIStatus('ready_to_subscribe');
           });
+        }).catch(() => {
+          updateNotifUIStatus('unsupported');
         });
       } else if (Notification.permission === 'denied') {
         updateNotifUIStatus('denied');
@@ -2061,34 +2243,65 @@
     }
 
     function updateNotifUIStatus(status) {
+      // ヘッダーの緑丸ポッチ（モーダル要素の有無に関係なく安全に更新）
+      const dot = document.getElementById('notifStatusDot');
+      if (dot) {
+        if (status === 'granted') {
+          dot.classList.remove('hidden');
+        } else {
+          dot.classList.add('hidden');
+        }
+      }
+
       const statusText = document.getElementById('notifStatusText');
       const btnToggle = document.getElementById('btnTogglePush');
-      const dot = document.getElementById('notifStatusDot');
       const testContainer = document.getElementById('testNotifContainer');
-
       if (!statusText || !btnToggle) return;
+
+      const { isIOS, isStandalone } = checkDevicePushSupport();
 
       if (status === 'granted') {
         statusText.innerHTML = '<span class="text-emerald-600 font-bold">✅ 有効（自動受信中）</span>';
         btnToggle.textContent = '通知設定中';
-        btnToggle.className = 'px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300';
+        btnToggle.className = 'px-3 py-1.5 rounded-xl text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 cursor-default';
         btnToggle.onclick = null;
-        if (dot) dot.classList.remove('hidden');
+        btnToggle.disabled = false;
         if (testContainer) testContainer.classList.remove('hidden');
       } else if (status === 'denied') {
         statusText.innerHTML = '<span class="text-rose-600 font-bold">❌ ブラウザで拒否されています</span>';
         btnToggle.textContent = '設定から許可してください';
-        btnToggle.className = 'px-3 py-1 rounded-full text-xs font-bold bg-rose-50 text-rose-600 border border-rose-200';
+        btnToggle.className = 'px-3 py-1.5 rounded-xl text-xs font-bold bg-rose-50 text-rose-600 border border-rose-200 cursor-not-allowed';
+        btnToggle.onclick = null;
         btnToggle.disabled = true;
-        if (dot) dot.classList.add('hidden');
+        if (testContainer) testContainer.classList.add('hidden');
+      } else if (status === 'unsupported') {
+        if (isIOS && !isStandalone) {
+          statusText.innerHTML = '<span class="text-amber-600 font-bold">⚠️ ホーム画面への追加が必要です</span>';
+          btnToggle.textContent = '追加手順を見る';
+          btnToggle.className = 'px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-500 hover:bg-amber-600 text-white shadow-sm active:scale-95 transition';
+          btnToggle.disabled = false;
+          btnToggle.onclick = () => {
+            const guide = document.getElementById('iosPwaGuide');
+            if (guide) {
+              guide.style.display = 'block';
+              guide.scrollIntoView({ behavior: 'smooth' });
+            }
+          };
+        } else {
+          statusText.innerHTML = '<span class="text-slate-400 font-medium">⚠️ 非対応ブラウザです</span>';
+          btnToggle.textContent = '非対応';
+          btnToggle.className = 'px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-400 border border-slate-200 cursor-not-allowed';
+          btnToggle.onclick = null;
+          btnToggle.disabled = true;
+        }
         if (testContainer) testContainer.classList.add('hidden');
       } else {
+        // default / ready_to_subscribe
         statusText.textContent = '未有効化（タップして開始）';
         btnToggle.textContent = '通知を有効にする';
-        btnToggle.className = 'px-3.5 py-1.5 rounded-full text-xs font-bold bg-sky-600 text-white hover:bg-sky-700 shadow-sm active:scale-95';
+        btnToggle.className = 'px-3.5 py-1.5 rounded-xl text-xs font-bold bg-sky-600 hover:bg-sky-700 text-white shadow-sm active:scale-95 transition';
         btnToggle.onclick = requestPushSubscription;
         btnToggle.disabled = false;
-        if (dot) dot.classList.add('hidden');
         if (testContainer) testContainer.classList.add('hidden');
       }
     }
@@ -2150,7 +2363,19 @@
     }
 
     async function requestPushSubscription() {
-      if (!('Notification' in window)) {
+      const { isIOS, isStandalone, hasNotification } = checkDevicePushSupport();
+
+      if (isIOS && !isStandalone) {
+        alert('iPhoneで通知を受け取るには、Safariの「共有」ボタンから「ホーム画面に追加」を行ってアプリを起動してください。');
+        const guide = document.getElementById('iosPwaGuide');
+        if (guide) {
+          guide.style.display = 'block';
+          guide.scrollIntoView({ behavior: 'smooth' });
+        }
+        return;
+      }
+
+      if (!hasNotification) {
         alert('お使いのブラウザはWeb通知に対応していません。');
         return;
       }
@@ -2159,11 +2384,15 @@
         const permission = await Notification.requestPermission();
         if (permission !== 'granted') {
           updateNotifUIStatus('denied');
-          alert('通知が許可されませんでした。Safariまたは設定画面から通知を許可してください。');
+          alert('通知が許可されませんでした。ブラウザの設定から通知を許可してください。');
           return;
         }
 
         const reg = await navigator.serviceWorker.ready;
+        if (!reg.pushManager) {
+          throw new Error('PushManagerが利用できません');
+        }
+
         const sub = await reg.pushManager.subscribe({
           userVisibleOnly: true,
           applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY)
@@ -2173,7 +2402,7 @@
         updateNotifUIStatus('granted');
         const prefs = getNotificationPreferences();
         await saveSubscriptionToSupabase(sub, prefs);
-        alert('🎉 プッシュ通知の登録が完了しました！\n朝9:00（当日＋翌日予報）、夜19:30、波が上がった速報をお届けします。');
+        alert('🎉 プッシュ通知の登録が完了しました！\n朝9:00、夜19:30、波上がり速報をお届けします。');
       } catch (err) {
         console.error('Subscription error:', err);
         alert('プッシュ通知の登録中にエラーが発生しました: ' + err.message);
@@ -2193,7 +2422,11 @@
           badge: 'icons/icon-192.png',
           vibrate: [100, 50, 100],
           data: { url: './index.html' }
+        }).catch(err => {
+          alert('テスト通知送信エラー: ' + err.message);
         });
+      }).catch(err => {
+        alert('Service Workerの準備に失敗しました: ' + err.message);
       });
     }
 
@@ -2202,18 +2435,27 @@
       renderFavSpotSelector();
       loadNotificationPreferences();
 
-      // iOS PWA ガイドの表示切替（スタンドアロン起動時は非表示、Safariブラウザ時は表示）
-      const isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+      // iOS PWA ガイドの表示切替（iOSかつ非スタンドアロン時のみ表示）
+      const { isIOS, isStandalone } = checkDevicePushSupport();
       const guide = document.getElementById('iosPwaGuide');
       if (guide) {
-        guide.style.display = isStandalone ? 'none' : 'block';
+        guide.style.display = (isIOS && !isStandalone) ? 'block' : 'none';
       }
 
-      document.getElementById('notificationModal').classList.remove('hidden');
+      // reportModal と同様に hidden を削除し flex を追加
+      const modal = document.getElementById('notificationModal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
     }
 
     function closeNotificationModal() {
-      document.getElementById('notificationModal').classList.add('hidden');
+      const modal = document.getElementById('notificationModal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
     }
 
     function renderFavSpotSelector() {
@@ -2237,6 +2479,7 @@
 
     function onFavSpotChange(cb) {
       const label = cb.closest('label');
+      if (!label) return;
       if (cb.checked) {
         label.className = 'inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs cursor-pointer border transition bg-sky-600 text-white font-bold border-sky-600 shadow-sm';
       } else {
@@ -2253,7 +2496,10 @@
         c.checked = !allChecked;
         onFavSpotChange(c);
       });
-      document.getElementById('btnToggleAllFav').textContent = allChecked ? 'すべて選択' : '全解除';
+      const btn = document.getElementById('btnToggleAllFav');
+      if (btn) {
+        btn.textContent = allChecked ? 'すべて選択' : '全解除';
+      }
     }
 
     function getNotificationPreferences() {
