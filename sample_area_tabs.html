@@ -108,6 +108,12 @@
         </button>
       </div>
 
+      <!-- 2段目: 選択中エリアのポイント切り替えピル (動的切り替え) -->
+      <div id="spotTabBar" class="flex items-center gap-1.5 overflow-x-auto hide-scrollbar py-0.5 px-0.5">
+        <!-- JavaScriptで動的生成 -->
+      </div>
+    </div>
+
     <!-- SPOT HERO SUMMARY CARD -->
     <div class="glass-card rounded-2xl p-4 relative overflow-hidden border border-slate-200/90 shadow-md">
       <!-- ヘッダー情報 -->
@@ -1329,7 +1335,7 @@
 
     function renderSpot() {
       const rule = SPOT_RULES[currentSpotKey];
-      const np = NOWPHAS_SUMMARY[rule.nowphasRef];
+      const np = NOWPHAS_SUMMARY[rule.nowphasRef] || NOWPHAS_SUMMARY.tsuruga || { wave: '0.50', period: '5.0', dir: 'N', time: '00:00' };
 
       // ヒーロー情報
       document.getElementById('spotHeroName').textContent = rule.name;
@@ -1959,6 +1965,7 @@
       }
     }, { passive: true });
 
+    renderSpotTabs();
     renderSpot();
     fetchLiveData();
   </script>
