@@ -71,40 +71,67 @@
   <!-- MAIN CONTAINER -->
   <main class="max-w-md mx-auto px-3.5 pt-1 space-y-3.5">
 
-    <!-- 4地点セレクタータブ（上部固定 Sticky） -->
-    <div class="sticky top-0 z-40 bg-[#f1f5f9]/95 backdrop-blur-md -mx-3.5 px-3.5 pt-2 pb-1.5 shadow-sm">
-      <div class="grid grid-cols-4 gap-1 p-1 bg-slate-200/80 rounded-2xl border border-slate-300/60 shadow-inner">
-        <button onclick="selectSpot('suishohama')" id="tab-suishohama" class="spot-tab py-2.5 px-1 text-center rounded-xl font-bold text-xs transition duration-200 bg-white text-sky-700 shadow-sm border border-slate-200">
-          <div class="font-bold text-sm">水晶浜</div>
+    <!-- 2段エリア・ポイントセレクタータブ（上部固定 Sticky） -->
+    <div class="sticky top-0 z-40 bg-[#f1f5f9]/95 backdrop-blur-md -mx-3.5 px-3.5 pt-2 pb-2 shadow-sm space-y-1.5 border-b border-slate-200/60">
+      <!-- 1段目: エリア選択タブ (6大エリア) -->
+      <div class="grid grid-cols-3 gap-1 p-1 bg-slate-200/90 rounded-xl border border-slate-300/70 shadow-inner text-[11px] font-bold">
+        <button onclick="selectArea('takahama_wakasa')" id="area-tab-takahama_wakasa" class="area-tab py-2 px-0.5 text-center rounded-lg transition-all duration-200 text-slate-600 hover:text-slate-900 flex items-center justify-center whitespace-nowrap">
+          <span>高浜・若狭</span>
+          <span class="text-[9px] bg-slate-300 px-1 py-0.2 rounded-full text-slate-700 font-bold ml-1">2</span>
         </button>
-        <button onclick="selectSpot('sugahama')" id="tab-sugahama" class="spot-tab py-2.5 px-1 text-center rounded-xl font-bold text-xs transition duration-200 text-slate-600 hover:text-slate-900">
-          <div class="font-bold text-sm">菅浜</div>
+        <button onclick="selectArea('tsuruga_mihama')" id="area-tab-tsuruga_mihama" class="area-tab py-2 px-0.5 text-center rounded-lg transition-all duration-200 bg-sky-700 text-white shadow-sm flex items-center justify-center whitespace-nowrap">
+          <span>敦賀・美浜</span>
+          <span class="text-[9px] bg-sky-800/80 px-1 py-0.2 rounded-full text-sky-200 font-bold ml-1">3</span>
         </button>
-        <button onclick="selectSpot('kurosaki')" id="tab-kurosaki" class="spot-tab py-2.5 px-1 text-center rounded-xl font-bold text-xs transition duration-200 text-slate-600 hover:text-slate-900">
-          <div class="font-bold text-sm">黒崎</div>
+        <button onclick="selectArea('echizen_mikuni')" id="area-tab-echizen_mikuni" class="area-tab py-2 px-0.5 text-center rounded-lg transition-all duration-200 text-slate-600 hover:text-slate-900 flex items-center justify-center whitespace-nowrap">
+          <span>越前・三国</span>
+          <span class="text-[9px] bg-slate-300 px-1 py-0.2 rounded-full text-slate-700 font-bold ml-1">6</span>
         </button>
-        <button onclick="selectSpot('echizen')" id="tab-echizen" class="spot-tab py-2.5 px-1 text-center rounded-xl font-bold text-xs transition duration-200 text-slate-600 hover:text-slate-900">
-          <div class="font-bold text-sm">越前ﾘｰﾌ</div>
+        <button onclick="selectArea('ishikawa_noto')" id="area-tab-ishikawa_noto" class="area-tab py-2 px-0.5 text-center rounded-lg transition-all duration-200 text-slate-600 hover:text-slate-900 flex items-center justify-center whitespace-nowrap">
+          <span>石川・能登</span>
+          <span class="text-[9px] bg-slate-300 px-1 py-0.2 rounded-full text-slate-700 font-bold ml-1">5</span>
         </button>
+        <button onclick="selectArea('ise_shima')" id="area-tab-ise_shima" class="area-tab py-2 px-0.5 text-center rounded-lg transition-all duration-200 text-slate-600 hover:text-slate-900 flex items-center justify-center whitespace-nowrap">
+          <span>伊勢志摩</span>
+          <span class="text-[9px] bg-slate-300 px-1 py-0.2 rounded-full text-slate-700 font-bold ml-1">3</span>
+        </button>
+        <button onclick="selectArea('enshunada')" id="area-tab-enshunada" class="area-tab py-2 px-0.5 text-center rounded-lg transition-all duration-200 text-slate-600 hover:text-slate-900 flex items-center justify-center whitespace-nowrap">
+          <span>遠州灘</span>
+          <span class="text-[9px] bg-slate-300 px-1 py-0.2 rounded-full text-slate-700 font-bold ml-1">5</span>
+        </button>
+      </div>
+
+      <!-- 2段目: 選択中エリアのポイント切り替えピル (動的切り替え) -->
+      <div id="spotTabBar" class="flex items-center gap-1.5 overflow-x-auto hide-scrollbar py-1 px-0.5">
+        <!-- JavaScriptで動的生成 -->
       </div>
     </div>
 
     <!-- SPOT HERO SUMMARY CARD -->
     <div class="glass-card rounded-2xl p-4 relative overflow-hidden border border-slate-200/90 shadow-md">
       <!-- ヘッダー情報 -->
-      <div class="flex items-center justify-between pb-2.5 border-b border-slate-100">
-        <div>
-          <div class="flex items-center space-x-2">
-            <h2 id="spotHeroName" class="text-xl font-black text-slate-800 tracking-tight">水晶浜</h2>
-            <span id="spotAreaBadge" class="text-[10px] px-2 py-0.5 rounded-full bg-sky-50 text-sky-700 font-semibold border border-sky-200">敦賀半島西岸</span>
+      <div class="flex items-start justify-between pb-2.5 border-b border-slate-100 gap-2">
+        <div class="min-w-0 flex-1">
+          <!-- スポット名 ＆ エリア地域バッジ -->
+          <div class="flex items-baseline gap-1.5 flex-wrap">
+            <h2 id="spotHeroName" class="text-xl font-black text-slate-800 tracking-tight leading-tight">水晶浜</h2>
+            <span id="spotAreaBadge" class="text-[9.5px] px-1.5 py-0.2 rounded-md bg-slate-100 text-slate-600 font-semibold border border-slate-200/80">敦賀半島西岸</span>
           </div>
-          <p class="text-[11px] text-slate-500 mt-0.5 flex items-center gap-1.5">
-            <i class="fa-solid fa-satellite-dish text-sky-600 text-[10px]"></i>
-            観測: <strong id="nowphasName" class="text-slate-700 font-bold">敦賀港 (122)</strong>
-            <span id="distBadge" class="text-[10px] text-sky-700 bg-sky-50 border border-sky-200/70 px-1.5 py-0.2 rounded font-semibold">約9km</span>
-          </p>
+          <!-- 観測所 ＆ 海岸の向き (Beach Facing) -->
+          <div class="flex items-center gap-2 mt-1.5 flex-wrap text-[11px]">
+            <span class="inline-flex items-center gap-1 text-slate-600">
+              <i class="fa-solid fa-satellite-dish text-sky-600 text-[10px]"></i>
+              <strong id="nowphasName" class="text-slate-700 font-bold">敦賀港 (122)</strong>
+              <span id="distBadge" class="text-[9.5px] text-sky-700 bg-sky-50 border border-sky-200/70 px-1 py-0.2 rounded font-medium">約9km</span>
+            </span>
+            <span class="text-slate-300">|</span>
+            <span class="inline-flex items-center gap-1 text-amber-900 bg-amber-50/90 border border-amber-200/80 px-1.5 py-0.5 rounded font-bold text-[10px]">
+              <i class="fa-regular fa-compass text-amber-600 text-[11px]"></i>
+              <span>向き: <strong id="spotFacingBadge">西 (W)</strong></span>
+            </span>
+          </div>
         </div>
-        <div class="text-right">
+        <div class="text-right shrink-0">
           <div class="text-[9px] text-slate-400 uppercase font-bold tracking-wider">Surf Rating</div>
           <div id="surfConditionBadge" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 text-xs font-bold mt-0.5">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
@@ -429,15 +456,116 @@
       'W': '→', 'WNW': '↘', 'NW': '↘', 'NNW': '↓'
     };
 
+    
+    // ビーチの向き 日本語変換マップ
+    const FACING_LABELS = {
+      'N': '北 (N)',
+      'NNE': '北北東 (NNE)',
+      'NE': '北東 (NE)',
+      'ENE': '東北東 (ENE)',
+      'E': '東 (E)',
+      'ESE': '東南東 (ESE)',
+      'SE': '南東 (SE)',
+      'SSE': '南南東 (SSE)',
+      'S': '南 (S)',
+      'SSW': '南南西 (SSW)',
+      'SW': '南西 (SW)',
+      'WSW': '西南西 (WSW)',
+      'W': '西 (W)',
+      'WNW': '西北西 (WNW)',
+      'NW': '北西 (NW)',
+      'NNW': '北北西 (NNW)'
+    };
+
     function getArrow(dir) {
       return DIR_ARROWS[dir] || '・';
     }
 
+    // エリア定義（案B: 6大エリア）
+    const AREAS = {
+      takahama_wakasa: {
+        id: 'takahama_wakasa',
+        name: '高浜・若狭',
+        spots: ['nabae', 'toriihama']
+      },
+      tsuruga_mihama: {
+        id: 'tsuruga_mihama',
+        name: '敦賀・美浜',
+        spots: ['suishohama', 'sugahama', 'kurosaki']
+      },
+      echizen_mikuni: {
+        id: 'echizen_mikuni',
+        name: '越前・三国',
+        spots: ['echizen', 'takasu', 'mikuni', 'hamaji', 'namimatsu', 'shioya']
+      },
+      ishikawa_noto: {
+        id: 'ishikawa_noto',
+        name: '石川・能登',
+        spots: ['uchinada', 'taki_marina', 'taki_reef', 'shibagaki_pension', 'shibagaki_kita']
+      },
+      ise_shima: {
+        id: 'ise_shima',
+        name: '伊勢志摩',
+        spots: ['kounohama', 'ichigohama', 'nambari']
+      },
+      enshunada: {
+        id: 'enshunada',
+        name: '遠州灘',
+        spots: ['terasawa', 'shiomizaka', 'arai', 'maisaka', 'samejima']
+      }
+    };
+
+    let currentAreaKey = 'tsuruga_mihama';
+
+    // 全24ポイントのルール＆基本設定
     const SPOT_RULES = {
+      // 1. 【高浜・若狭】
+      nabae: {
+        id: '2082',
+        name: '難波江',
+        areaGroup: 'takahama_wakasa',
+        area: '大飯郡高浜町・内浦湾奥',
+        beachFacing: 'NE',
+        nowphasRef: 'tsuruga',
+        nowphasName: '敦賀港 (122)',
+        dist: '約42km',
+        offshoreWinds: ['SW', 'SSW', 'WSW', 'S'],
+        bestWaveDirs: ['NE', 'NNE', 'N'],
+        minPlayWave: 0.8,
+        chestHeadWave: 1.3,
+        closeoutWave: 2.0,
+        minPeriod: 5.5,
+        bestPeriod: 7.5,
+        defaultForecast: { wave: 1.1, period: 7.0, waveDir: 'NE', windDir: 'SW', windSpeed: 2.8 },
+        sunRise: '05:55', sunSet: '17:44', tideName: '中潮', tideHigh: '03:40', tideLow: '10:55'
+      },
+      toriihama: {
+        id: '2079',
+        name: '鳥居浜',
+        areaGroup: 'takahama_wakasa',
+        area: '大飯郡高浜町・鳥居浜海岸',
+        beachFacing: 'N',
+        nowphasRef: 'tsuruga',
+        nowphasName: '敦賀港 (122)',
+        dist: '約38km',
+        offshoreWinds: ['S', 'SSE', 'SSW', 'SE'],
+        bestWaveDirs: ['NNW', 'NW', 'WNW', 'N'],
+        minPlayWave: 0.7,
+        chestHeadWave: 1.2,
+        closeoutWave: 1.8,
+        minPeriod: 5.5,
+        bestPeriod: 7.5,
+        defaultForecast: { wave: 0.9, period: 6.8, waveDir: 'NNW', windDir: 'S', windSpeed: 2.5 },
+        sunRise: '05:55', sunSet: '17:44', tideName: '中潮', tideHigh: '03:40', tideLow: '10:55'
+      },
+
+      // 2. 【敦賀・美浜】
       suishohama: {
         id: '2067',
         name: '水晶浜',
-        area: '敦賀半島西岸',
+        areaGroup: 'tsuruga_mihama',
+        area: '敦賀半島西岸・竹波',
+        beachFacing: 'W',
         nowphasRef: 'tsuruga',
         nowphasName: '敦賀港 (122)',
         dist: '約9km',
@@ -454,7 +582,9 @@
       sugahama: {
         id: '2053',
         name: '菅浜',
-        area: '若狭・美浜',
+        areaGroup: 'tsuruga_mihama',
+        area: '若狭・美浜町菅浜',
+        beachFacing: 'NW',
         nowphasRef: 'tsuruga',
         nowphasName: '敦賀港 (122)',
         dist: '約10km',
@@ -471,7 +601,9 @@
       kurosaki: {
         id: '2033',
         name: '黒崎',
+        areaGroup: 'tsuruga_mihama',
         area: '敦賀半島西・坂尻',
+        beachFacing: 'N',
         nowphasRef: 'tsuruga',
         nowphasName: '敦賀港 (122)',
         dist: '約12km',
@@ -485,12 +617,16 @@
         defaultForecast: { wave: 1.2, period: 7.4, waveDir: 'N', windDir: 'SE', windSpeed: 2.4 },
         sunRise: '05:52', sunSet: '17:41', tideName: '中潮', tideHigh: '03:34', tideLow: '10:47'
       },
+
+      // 3. 【越前・三国】
       echizen: {
         id: '2054',
         name: '越前リーフ',
-        area: '越前海岸・福井市',
+        areaGroup: 'echizen_mikuni',
+        area: '越前海岸・丹生郡越前町',
+        beachFacing: 'W',
         nowphasRef: 'fukui',
-        nowphasName: '福井港/三国 (117)',
+        nowphasName: '福井港 (117)',
         dist: '約15km',
         offshoreWinds: ['E', 'ENE', 'ESE'],
         bestWaveDirs: ['NE', 'NNE', 'N'],
@@ -501,24 +637,377 @@
         bestPeriod: 7.5,
         defaultForecast: { wave: 1.1, period: 7.5, waveDir: 'NE', windDir: 'E', windSpeed: 2.8 },
         sunRise: '05:50', sunSet: '17:39', tideName: '中潮', tideHigh: '03:30', tideLow: '10:40'
+      },
+      takasu: {
+        id: '2062',
+        name: '鷹巣',
+        areaGroup: 'echizen_mikuni',
+        area: '福井市・鷹巣海水浴場',
+        beachFacing: 'WNW',
+        nowphasRef: 'fukui',
+        nowphasName: '福井港 (117)',
+        dist: '約12km',
+        offshoreWinds: ['E', 'ESE', 'SE'],
+        bestWaveDirs: ['WNW', 'NW', 'NNW', 'W'],
+        minPlayWave: 0.8,
+        chestHeadWave: 1.2,
+        closeoutWave: 1.8,
+        minPeriod: 5.5,
+        bestPeriod: 7.5,
+        defaultForecast: { wave: 1.0, period: 7.0, waveDir: 'WNW', windDir: 'E', windSpeed: 2.6 },
+        sunRise: '05:50', sunSet: '17:39', tideName: '中潮', tideHigh: '03:30', tideLow: '10:40'
+      },
+      mikuni: {
+        id: '2098',
+        name: '三国サンセット',
+        areaGroup: 'echizen_mikuni',
+        area: '坂井市三国町宿・米納津',
+        beachFacing: 'W',
+        nowphasRef: 'fukui',
+        nowphasName: '福井港 (117)',
+        dist: '約2km',
+        offshoreWinds: ['E', 'ENE', 'ESE'],
+        bestWaveDirs: ['W', 'WNW', 'NW', 'NNW'],
+        minPlayWave: 0.8,
+        chestHeadWave: 1.3,
+        closeoutWave: 2.0,
+        minPeriod: 5.5,
+        bestPeriod: 7.5,
+        defaultForecast: { wave: 1.2, period: 7.2, waveDir: 'WNW', windDir: 'E', windSpeed: 2.4 },
+        sunRise: '05:50', sunSet: '17:39', tideName: '中潮', tideHigh: '03:30', tideLow: '10:40'
+      },
+      hamaji: {
+        id: '2089',
+        name: '浜地',
+        areaGroup: 'echizen_mikuni',
+        area: '坂井市三国町・浜地海岸',
+        beachFacing: 'NW',
+        nowphasRef: 'fukui',
+        nowphasName: '福井港 (117)',
+        dist: '約4km',
+        offshoreWinds: ['S', 'SSE', 'SE'],
+        bestWaveDirs: ['W', 'WNW', 'NW'],
+        minPlayWave: 0.7,
+        chestHeadWave: 1.2,
+        closeoutWave: 2.0,
+        minPeriod: 5.0,
+        bestPeriod: 7.5,
+        defaultForecast: { wave: 1.0, period: 7.0, waveDir: 'NW', windDir: 'SSE', windSpeed: 2.2 },
+        sunRise: '05:50', sunSet: '17:39', tideName: '中潮', tideHigh: '03:30', tideLow: '10:40'
+      },
+      namimatsu: {
+        id: '1905',
+        name: '波松',
+        areaGroup: 'echizen_mikuni',
+        area: 'あわら市・波松海岸',
+        beachFacing: 'NW',
+        nowphasRef: 'fukui',
+        nowphasName: '福井港 (117)',
+        dist: '約8km',
+        offshoreWinds: ['ESE', 'SE', 'E'],
+        bestWaveDirs: ['W', 'WNW', 'NW'],
+        minPlayWave: 0.6,
+        chestHeadWave: 1.2,
+        closeoutWave: 1.8,
+        minPeriod: 5.0,
+        bestPeriod: 7.5,
+        defaultForecast: { wave: 1.1, period: 7.1, waveDir: 'WNW', windDir: 'ESE', windSpeed: 2.5 },
+        sunRise: '05:50', sunSet: '17:39', tideName: '中潮', tideHigh: '03:30', tideLow: '10:40'
+      },
+      shioya: {
+        id: '1905',
+        name: '塩谷',
+        areaGroup: 'echizen_mikuni',
+        area: 'あわら市/加賀市境・塩屋海岸',
+        beachFacing: 'WNW',
+        nowphasRef: 'fukui',
+        nowphasName: '福井港 (117)',
+        dist: '約10km',
+        offshoreWinds: ['SE', 'ESE', 'E'],
+        bestWaveDirs: ['W', 'WNW', 'NW'],
+        minPlayWave: 0.7,
+        chestHeadWave: 1.2,
+        closeoutWave: 2.0,
+        minPeriod: 5.5,
+        bestPeriod: 7.5,
+        defaultForecast: { wave: 1.0, period: 7.0, waveDir: 'WNW', windDir: 'SE', windSpeed: 2.3 },
+        sunRise: '05:50', sunSet: '17:39', tideName: '中潮', tideHigh: '03:30', tideLow: '10:40'
+      },
+
+      // 4. 【石川・能登】
+      uchinada: {
+        id: '1873',
+        name: '内灘',
+        areaGroup: 'ishikawa_noto',
+        area: '河北郡内灘町・内灘海岸',
+        beachFacing: 'WNW',
+        nowphasRef: 'kanazawa',
+        nowphasName: '金沢港 (106)',
+        dist: '約3km',
+        offshoreWinds: ['ESE', 'SE', 'E'],
+        bestWaveDirs: ['NW', 'WNW', 'W'],
+        minPlayWave: 0.7,
+        chestHeadWave: 1.3,
+        closeoutWave: 2.2,
+        minPeriod: 5.5,
+        bestPeriod: 7.5,
+        defaultForecast: { wave: 1.1, period: 7.2, waveDir: 'NW', windDir: 'ESE', windSpeed: 2.6 },
+        sunRise: '05:48', sunSet: '17:37', tideName: '中潮', tideHigh: '03:25', tideLow: '10:35'
+      },
+      taki_marina: {
+        id: '1931',
+        name: '滝マリーナ',
+        areaGroup: 'ishikawa_noto',
+        area: '羽咋市滝町・滝港マリーナ',
+        beachFacing: 'WSW',
+        nowphasRef: 'kanazawa',
+        nowphasName: '金沢港 (106)',
+        dist: '約35km',
+        offshoreWinds: ['NE', 'ENE', 'E'],
+        bestWaveDirs: ['W', 'WNW', 'NW'],
+        minPlayWave: 0.9,
+        chestHeadWave: 1.5,
+        closeoutWave: 2.8,
+        minPeriod: 6.0,
+        bestPeriod: 8.0,
+        defaultForecast: { wave: 1.3, period: 7.5, waveDir: 'WNW', windDir: 'ENE', windSpeed: 2.4 },
+        sunRise: '05:47', sunSet: '17:36', tideName: '中潮', tideHigh: '03:20', tideLow: '10:30'
+      },
+      taki_reef: {
+        id: '1929',
+        name: '滝リーフ',
+        areaGroup: 'ishikawa_noto',
+        area: '羽咋市滝町・滝港リーフ',
+        beachFacing: 'WSW',
+        nowphasRef: 'kanazawa',
+        nowphasName: '金沢港 (106)',
+        dist: '約35km',
+        offshoreWinds: ['NE', 'ENE', 'E'],
+        bestWaveDirs: ['W', 'WNW', 'NW'],
+        minPlayWave: 1.0,
+        chestHeadWave: 1.5,
+        closeoutWave: 2.8,
+        minPeriod: 6.5,
+        bestPeriod: 8.5,
+        defaultForecast: { wave: 1.4, period: 7.8, waveDir: 'WNW', windDir: 'NE', windSpeed: 2.5 },
+        sunRise: '05:47', sunSet: '17:36', tideName: '中潮', tideHigh: '03:20', tideLow: '10:30'
+      },
+      shibagaki_pension: {
+        id: '1910',
+        name: '柴垣 ペンション前',
+        tabName: '柴垣(ペンション)',
+        areaGroup: 'ishikawa_noto',
+        area: '羽咋市柴垣町・長手島南',
+        beachFacing: 'WSW',
+        nowphasRef: 'kanazawa',
+        nowphasName: '金沢港 (106)',
+        dist: '約40km',
+        offshoreWinds: ['ENE', 'E', 'ESE'],
+        bestWaveDirs: ['W', 'WNW'],
+        minPlayWave: 0.7,
+        chestHeadWave: 1.3,
+        closeoutWave: 2.0,
+        minPeriod: 5.5,
+        bestPeriod: 7.5,
+        defaultForecast: { wave: 1.0, period: 7.1, waveDir: 'W', windDir: 'E', windSpeed: 2.3 },
+        sunRise: '05:47', sunSet: '17:36', tideName: '中潮', tideHigh: '03:20', tideLow: '10:30'
+      },
+      shibagaki_kita: {
+        id: '1911',
+        name: '柴垣 北',
+        areaGroup: 'ishikawa_noto',
+        area: '羽咋市柴垣町・長手島北',
+        beachFacing: 'NW',
+        nowphasRef: 'kanazawa',
+        nowphasName: '金沢港 (106)',
+        dist: '約40km',
+        offshoreWinds: ['ESE', 'SE'],
+        bestWaveDirs: ['W', 'WNW', 'NW'],
+        minPlayWave: 0.6,
+        chestHeadWave: 1.2,
+        closeoutWave: 1.8,
+        minPeriod: 5.0,
+        bestPeriod: 7.5,
+        defaultForecast: { wave: 1.1, period: 7.2, waveDir: 'NW', windDir: 'SE', windSpeed: 2.4 },
+        sunRise: '05:47', sunSet: '17:36', tideName: '中潮', tideHigh: '03:20', tideLow: '10:30'
+      },
+
+      // 5. 【伊勢志摩】
+      kounohama: {
+        id: '7195',
+        name: '国府の浜',
+        areaGroup: 'ise_shima',
+        area: '志摩市阿児町国府・国府白浜',
+        beachFacing: 'ESE',
+        nowphasRef: 'isewan',
+        nowphasName: '伊勢湾口沖 (816)',
+        dist: '約25km',
+        offshoreWinds: ['W', 'WNW', 'WSW', 'NW'],
+        bestWaveDirs: ['E', 'ESE', 'SE'],
+        minPlayWave: 0.5,
+        chestHeadWave: 1.1,
+        closeoutWave: 1.9,
+        minPeriod: 5.5,
+        bestPeriod: 8.0,
+        defaultForecast: { wave: 0.9, period: 7.5, waveDir: 'ESE', windDir: 'WNW', windSpeed: 2.8 },
+        sunRise: '05:49', sunSet: '17:34', tideName: '中潮', tideHigh: '05:10', tideLow: '11:20'
+      },
+      ichigohama: {
+        id: '11991',
+        name: '市後浜',
+        areaGroup: 'ise_shima',
+        area: '志摩市志摩町・阿児町志島',
+        beachFacing: 'ESE',
+        nowphasRef: 'isewan',
+        nowphasName: '伊勢湾口沖 (816)',
+        dist: '約23km',
+        offshoreWinds: ['W', 'WNW', 'WSW'],
+        bestWaveDirs: ['E', 'ESE', 'SE'],
+        minPlayWave: 0.8,
+        chestHeadWave: 1.3,
+        closeoutWave: 2.3,
+        minPeriod: 6.0,
+        bestPeriod: 8.5,
+        defaultForecast: { wave: 1.1, period: 7.8, waveDir: 'ESE', windDir: 'W', windSpeed: 2.6 },
+        sunRise: '05:49', sunSet: '17:34', tideName: '中潮', tideHigh: '05:10', tideLow: '11:20'
+      },
+      nambari: {
+        id: '51130',
+        name: '南張',
+        areaGroup: 'ise_shima',
+        area: '志摩市浜島町南張',
+        beachFacing: 'S',
+        nowphasRef: 'owase',
+        nowphasName: '三重尾鷲沖 (811)',
+        dist: '約30km',
+        offshoreWinds: ['N', 'NNW', 'NNE'],
+        bestWaveDirs: ['S', 'SSW'],
+        minPlayWave: 1.3,
+        chestHeadWave: 1.6,
+        closeoutWave: 3.0,
+        minPeriod: 6.5,
+        bestPeriod: 9.0,
+        defaultForecast: { wave: 1.5, period: 8.2, waveDir: 'S', windDir: 'N', windSpeed: 2.5 },
+        sunRise: '05:50', sunSet: '17:35', tideName: '中潮', tideHigh: '05:15', tideLow: '11:25'
+      },
+
+      // 6. 【遠州灘】
+      terasawa: {
+        id: '3983',
+        name: '寺沢',
+        areaGroup: 'enshunada',
+        area: '愛知県豊橋市寺沢町・表浜',
+        beachFacing: 'SSW',
+        nowphasRef: 'isewan',
+        nowphasName: '伊勢湾口沖 (816)',
+        dist: '約30km',
+        offshoreWinds: ['N', 'NNW'],
+        bestWaveDirs: ['S', 'SSW', 'SW'],
+        minPlayWave: 0.6,
+        chestHeadWave: 1.2,
+        closeoutWave: 2.0,
+        minPeriod: 5.5,
+        bestPeriod: 8.0,
+        defaultForecast: { wave: 1.0, period: 7.2, waveDir: 'SSW', windDir: 'NNW', windSpeed: 3.0 },
+        sunRise: '05:46', sunSet: '17:31', tideName: '中潮', tideHigh: '05:00', tideLow: '11:10'
+      },
+      shiomizaka: {
+        id: '1183',
+        name: '潮見坂',
+        areaGroup: 'enshunada',
+        area: '静岡県湖西市白須賀・潮見坂',
+        beachFacing: 'S',
+        nowphasRef: 'omaezaki',
+        nowphasName: '静岡御前崎沖 (812)',
+        dist: '約50km',
+        offshoreWinds: ['N', 'NNW'],
+        bestWaveDirs: ['S', 'SSW', 'SE'],
+        minPlayWave: 0.6,
+        chestHeadWave: 1.2,
+        closeoutWave: 2.0,
+        minPeriod: 5.5,
+        bestPeriod: 8.0,
+        defaultForecast: { wave: 1.0, period: 7.3, waveDir: 'S', windDir: 'N', windSpeed: 3.1 },
+        sunRise: '05:45', sunSet: '17:30', tideName: '中潮', tideHigh: '04:55', tideLow: '11:05'
+      },
+      arai: {
+        id: '4891',
+        name: '新居',
+        areaGroup: 'enshunada',
+        area: '静岡県湖西市新居町・今切口西',
+        beachFacing: 'S',
+        nowphasRef: 'omaezaki',
+        nowphasName: '静岡御前崎沖 (812)',
+        dist: '約45km',
+        offshoreWinds: ['N', 'NW', 'NNW'],
+        bestWaveDirs: ['S', 'SE', 'SW'],
+        minPlayWave: 0.6,
+        chestHeadWave: 1.2,
+        closeoutWave: 2.2,
+        minPeriod: 6.0,
+        bestPeriod: 8.5,
+        defaultForecast: { wave: 1.1, period: 7.5, waveDir: 'S', windDir: 'NW', windSpeed: 2.9 },
+        sunRise: '05:45', sunSet: '17:30', tideName: '中潮', tideHigh: '04:55', tideLow: '11:05'
+      },
+      maisaka: {
+        id: '640',
+        name: '舞阪',
+        areaGroup: 'enshunada',
+        area: '静岡県浜松市中央区舞阪町・今切口東',
+        beachFacing: 'S',
+        nowphasRef: 'omaezaki',
+        nowphasName: '静岡御前崎沖 (812)',
+        dist: '約42km',
+        offshoreWinds: ['N', 'NNE', 'NNW'],
+        bestWaveDirs: ['S', 'SE', 'SW'],
+        minPlayWave: 0.6,
+        chestHeadWave: 1.2,
+        closeoutWave: 2.2,
+        minPeriod: 6.0,
+        bestPeriod: 8.5,
+        defaultForecast: { wave: 1.1, period: 7.5, waveDir: 'S', windDir: 'NNE', windSpeed: 2.8 },
+        sunRise: '05:45', sunSet: '17:30', tideName: '中潮', tideHigh: '04:55', tideLow: '11:05'
+      },
+      samejima: {
+        id: '2496',
+        name: '鮫島',
+        areaGroup: 'enshunada',
+        area: '静岡県磐田市鮫島・天竜川東',
+        beachFacing: 'S',
+        nowphasRef: 'omaezaki',
+        nowphasName: '静岡御前崎沖 (812)',
+        dist: '約30km',
+        offshoreWinds: ['NNW', 'N'],
+        bestWaveDirs: ['SE', 'ESE', 'SW', 'SSW'],
+        minPlayWave: 0.6,
+        chestHeadWave: 1.2,
+        closeoutWave: 2.0,
+        minPeriod: 5.5,
+        bestPeriod: 8.0,
+        defaultForecast: { wave: 1.0, period: 7.4, waveDir: 'SE', windDir: 'NNW', windSpeed: 3.2 },
+        sunRise: '05:44', sunSet: '17:29', tideName: '中潮', tideHigh: '04:50', tideLow: '11:00'
       }
     };
 
+    // ナウファス観測所サマリー（デフォルト値＆フォールバック）
     const NOWPHAS_SUMMARY = {
       tsuruga: { wave: '0.27', period: '4.2', dir: 'WNW', time: '18:40' },
-      fukui: { wave: '0.56', period: '5.5', dir: 'N', time: '18:40' }
+      fukui: { wave: '0.56', period: '5.5', dir: 'N', time: '18:40' },
+      kanazawa: { wave: '0.45', period: '5.0', dir: 'NW', time: '18:40' },
+      isewan: { wave: '0.62', period: '6.5', dir: 'SE', time: '18:40' },
+      omaezaki: { wave: '0.78', period: '7.2', dir: 'ESE', time: '18:40' },
+      owase: { wave: '0.85', period: '7.8', dir: 'SE', time: '18:40' }
     };
 
     let LIVE_DATA = null;
 
-    // 複数サーファーの投稿データ蓄積ストア（LocalStorage自動永続化対応）
+    // 複数サーファーの投稿データ蓄積ストア（全24スポット自動永続化対応）
     const STORAGE_KEY = 'SURF_BASE_USER_REPORTS_V1';
-    let userReports = {
-      suishohama: [],
-      sugahama: [],
-      kurosaki: [],
-      echizen: []
-    };
+    let userReports = {};
+    Object.keys(SPOT_RULES).forEach(k => {
+      userReports[k] = [];
+    });
+
 
     function loadSavedReports() {
       try {
@@ -552,22 +1041,16 @@
       }
 
       let sizeStr = '腰〜胸';
-      if (spotKey === 'suishohama') {
-        if (wave >= 1.2) sizeStr = '頭〜頭オーバー';
-        else if (wave >= 1.0) sizeStr = '胸〜肩・頭';
-        else sizeStr = '膝〜腰';
-      } else if (spotKey === 'sugahama') {
-        if (wave >= 2.2) sizeStr = '頭オーバー';
-        else if (wave >= 1.8) sizeStr = '胸〜肩';
-        else sizeStr = '腰〜腹';
-      } else if (spotKey === 'kurosaki') {
-        if (wave >= 1.4) sizeStr = '肩〜頭';
-        else if (wave >= 1.1) sizeStr = '胸〜肩';
-        else sizeStr = '膝〜腰';
-      } else if (spotKey === 'echizen') {
-        if (wave >= 1.3) sizeStr = '肩〜頭';
-        else if (wave >= 1.1) sizeStr = '胸〜肩（ファン！）';
-        else sizeStr = '腰〜腹';
+      if (wave >= rule.closeoutWave * 0.9) {
+        sizeStr = '頭オーバー〜クローズ寸前';
+      } else if (wave >= rule.chestHeadWave) {
+        sizeStr = '胸〜肩・頭';
+      } else if (wave >= (rule.minPlayWave + rule.chestHeadWave) / 2) {
+        sizeStr = '腰〜腹・胸';
+      } else if (wave >= rule.minPlayWave) {
+        sizeStr = '腿〜腰';
+      } else {
+        sizeStr = 'スネ〜膝';
       }
 
       const isOffshore = rule.offshoreWinds.includes(windDir);
@@ -600,8 +1083,29 @@
       const baseHours = baseDate.getHours();
       baseDate.setMinutes(0, 0, 0);
 
-      const spotData = LIVE_DATA && LIVE_DATA.spots ? LIVE_DATA.spots[spotKey] : null;
-      const npHistory = LIVE_DATA && LIVE_DATA.nowphas && LIVE_DATA.nowphas[rule.nowphasRef] ? LIVE_DATA.nowphas[rule.nowphasRef].history : [];
+      let spotData = LIVE_DATA && LIVE_DATA.spots ? LIVE_DATA.spots[spotKey] : null;
+      if (!spotData && LIVE_DATA && LIVE_DATA.spots) {
+        // サンプルプレビュー用: 同水域の代表スポットの予報データと連動させてシミュレート
+        let refKey = 'suishohama';
+        if (rule.nowphasRef === 'fukui') refKey = 'echizen';
+        else if (rule.nowphasRef === 'kanazawa') refKey = 'echizen';
+        else if (rule.nowphasRef === 'isewan' || rule.nowphasRef === 'omaezaki' || rule.nowphasRef === 'owase') refKey = 'suishohama';
+        
+        const refData = LIVE_DATA.spots[refKey];
+        if (refData) {
+          spotData = JSON.parse(JSON.stringify(refData));
+        }
+      }
+      
+      // ナウファス実測履歴の取得（指定の観測所、未取得時は敦賀または福井をフォールバック参照）
+      let npHistory = [];
+      if (LIVE_DATA && LIVE_DATA.nowphas) {
+        if (LIVE_DATA.nowphas[rule.nowphasRef] && LIVE_DATA.nowphas[rule.nowphasRef].history) {
+          npHistory = LIVE_DATA.nowphas[rule.nowphasRef].history;
+        } else if (LIVE_DATA.nowphas.tsuruga && LIVE_DATA.nowphas.tsuruga.history) {
+          npHistory = LIVE_DATA.nowphas.tsuruga.history;
+        }
+      }
 
       // -12h (過去12時間) から +84h (3.5日後) まで1時間刻み
       for (let offset = -12; offset <= 84; offset++) {
@@ -774,32 +1278,111 @@
 
     let currentSpotKey = 'suishohama';
 
+    // エリア切り替え関数
+    function selectArea(areaKey) {
+      if (!AREAS[areaKey]) return;
+      currentAreaKey = areaKey;
+
+      // 1段目エリアタブのアクティブ表示更新
+      document.querySelectorAll('.area-tab').forEach(btn => {
+        btn.classList.remove('bg-sky-700', 'text-white', 'shadow-sm');
+        btn.classList.add('text-slate-600');
+        const badge = btn.querySelector('span:last-child');
+        if (badge) {
+          badge.className = 'text-[9px] bg-slate-300 px-1 rounded-full text-slate-700 font-normal';
+        }
+      });
+      const activeAreaBtn = document.getElementById('area-tab-' + areaKey);
+      if (activeAreaBtn) {
+        activeAreaBtn.classList.remove('text-slate-600');
+        activeAreaBtn.classList.add('bg-sky-700', 'text-white', 'shadow-sm');
+        const badge = activeAreaBtn.querySelector('span:last-child');
+        if (badge) {
+          badge.className = 'text-[9px] bg-sky-800/80 px-1 rounded-full text-sky-200 font-normal';
+        }
+      }
+
+      // 2段目スポットタブの再描画
+      renderSpotTabs();
+
+      // エリア内の先頭スポットを選択
+      const firstSpot = AREAS[areaKey].spots[0];
+      selectSpot(firstSpot);
+    }
+
+    // 2段目スポットボタンの動的生成
+    function renderSpotTabs() {
+      const container = document.getElementById('spotTabBar');
+      if (!container) return;
+
+      const currentSpots = AREAS[currentAreaKey].spots;
+      container.innerHTML = currentSpots.map(key => {
+        const spot = SPOT_RULES[key];
+        const label = spot.tabName || spot.name;
+        const isActive = (key === currentSpotKey);
+        const activeClass = isActive 
+          ? 'bg-sky-600 text-white shadow-sm font-bold border-sky-600' 
+          : 'bg-white text-slate-600 hover:text-slate-900 border-slate-200 shadow-sm font-medium';
+        return `
+          <button onclick="selectSpot('${key}')" id="tab-${key}" class="spot-tab shrink-0 px-3.5 py-1.5 rounded-full text-xs transition duration-150 border ${activeClass} whitespace-nowrap">
+            <span>${label}</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    // スポット切り替え関数
     function selectSpot(spotKey) {
+      if (!SPOT_RULES[spotKey]) return;
       currentSpotKey = spotKey;
 
+      // もし選ばれたスポットが現在のエリアと異なるならエリアも同期
+      const spotAreaGroup = SPOT_RULES[spotKey].areaGroup;
+      if (spotAreaGroup && spotAreaGroup !== currentAreaKey) {
+        currentAreaKey = spotAreaGroup;
+        selectArea(currentAreaKey);
+        return;
+      }
+
+      // 2段目スポットタブのアクティブスタイル更新
       document.querySelectorAll('.spot-tab').forEach(btn => {
-        btn.classList.remove('bg-white', 'text-sky-700', 'shadow-sm', 'border', 'border-slate-200');
-        btn.classList.add('text-slate-600');
+        btn.classList.remove('bg-sky-600', 'text-white', 'shadow-sm', 'font-bold', 'border-sky-600');
+        btn.classList.add('bg-white', 'text-slate-600', 'border-slate-200', 'shadow-sm', 'font-medium');
       });
       const activeTab = document.getElementById('tab-' + spotKey);
-      activeTab.classList.remove('text-slate-600');
-      activeTab.classList.add('bg-white', 'text-sky-700', 'shadow-sm', 'border', 'border-slate-200');
+      if (activeTab) {
+        activeTab.classList.remove('bg-white', 'text-slate-600', 'border-slate-200', 'font-medium');
+        activeTab.classList.add('bg-sky-600', 'text-white', 'shadow-sm', 'font-bold', 'border-sky-600');
+      }
 
       renderSpot();
     }
 
     function renderSpot() {
       const rule = SPOT_RULES[currentSpotKey];
-      const np = NOWPHAS_SUMMARY[rule.nowphasRef];
+      const np = NOWPHAS_SUMMARY[rule.nowphasRef] || NOWPHAS_SUMMARY.tsuruga || { wave: '0.50', period: '5.0', dir: 'N', time: '00:00' };
 
       // ヒーロー情報
       document.getElementById('spotHeroName').textContent = rule.name;
       document.getElementById('spotAreaBadge').textContent = rule.area;
       document.getElementById('nowphasName').textContent = rule.nowphasName;
       document.getElementById('distBadge').textContent = rule.dist;
+      const facingElem = document.getElementById('spotFacingBadge');
+      if (facingElem) {
+        facingElem.textContent = FACING_LABELS[rule.beachFacing] || rule.beachFacing;
+      }
 
       // 日の出・日の入り・タイド
-      const spotData = LIVE_DATA && LIVE_DATA.spots ? LIVE_DATA.spots[currentSpotKey] : null;
+      let spotData = LIVE_DATA && LIVE_DATA.spots ? LIVE_DATA.spots[currentSpotKey] : null;
+      if (!spotData && LIVE_DATA && LIVE_DATA.spots) {
+        const refKey = (rule.nowphasRef === 'fukui') ? 'echizen' : 'suishohama';
+        const refData = LIVE_DATA.spots[refKey];
+        if (refData) {
+          spotData = JSON.parse(JSON.stringify(refData));
+          spotData.tide = { tideName: rule.tideName, tideHigh: rule.tideHigh, tideLow: rule.tideLow };
+          spotData.sun = { sunRise: rule.sunRise, sunSet: rule.sunSet };
+        }
+      }
       const curTide = (spotData && spotData.tide) ? spotData.tide : { tideName: rule.tideName, tideHigh: rule.tideHigh, tideLow: rule.tideLow };
       const curSun = (spotData && spotData.sun) ? spotData.sun : { sunRise: rule.sunRise, sunSet: rule.sunSet };
 
@@ -1321,12 +1904,11 @@
           const data = await res.json();
           LIVE_DATA = data;
           if (data.nowphas) {
-            if (data.nowphas.tsuruga && data.nowphas.tsuruga.latest) {
-              NOWPHAS_SUMMARY.tsuruga = data.nowphas.tsuruga.latest;
-            }
-            if (data.nowphas.fukui && data.nowphas.fukui.latest) {
-              NOWPHAS_SUMMARY.fukui = data.nowphas.fukui.latest;
-            }
+            ['tsuruga', 'fukui', 'kanazawa', 'isewan', 'omaezaki', 'owase'].forEach(k => {
+              if (data.nowphas[k] && data.nowphas[k].latest) {
+                NOWPHAS_SUMMARY[k] = data.nowphas[k].latest;
+              }
+            });
           }
           if (data.updatedAtLabel) {
             const timeOnly = data.updatedAtLabel.split(' ')[1] || data.updatedAtLabel;
@@ -1412,6 +1994,7 @@
       }
     }, { passive: true });
 
+    renderSpotTabs();
     renderSpot();
     fetchLiveData();
   </script>

@@ -1,6 +1,61 @@
 {
+  "nabae": {
+    "name": "難波江",
+    "areaGroup": "takahama_wakasa",
+    "area": "大飯郡高浜町・内浦湾奥",
+    "beachFacing": "NE",
+    "minPlayWave": 0.8,
+    "chestHeadWave": 1.3,
+    "closeoutWave": 2,
+    "minPeriod": 5.5,
+    "bestPeriod": 7.5,
+    "offshoreWinds": [
+      "SW",
+      "SSW",
+      "WSW",
+      "S"
+    ],
+    "bestWaveDirs": [
+      "NE",
+      "NNE",
+      "N"
+    ],
+    "nowphasRef": "tsuruga",
+    "nowphasName": "敦賀港 (122)",
+    "dist": "約42km",
+    "umitenkiId": "2082"
+  },
+  "toriihama": {
+    "name": "鳥居浜",
+    "areaGroup": "takahama_wakasa",
+    "area": "大飯郡高浜町・鳥居浜海岸",
+    "beachFacing": "N",
+    "minPlayWave": 0.7,
+    "chestHeadWave": 1.2,
+    "closeoutWave": 1.8,
+    "minPeriod": 5.5,
+    "bestPeriod": 7.5,
+    "offshoreWinds": [
+      "S",
+      "SSE",
+      "SSW",
+      "SE"
+    ],
+    "bestWaveDirs": [
+      "NNW",
+      "NW",
+      "WNW",
+      "N"
+    ],
+    "nowphasRef": "tsuruga",
+    "nowphasName": "敦賀港 (122)",
+    "dist": "約38km",
+    "umitenkiId": "2079"
+  },
   "suishohama": {
     "name": "水晶浜",
+    "areaGroup": "tsuruga_mihama",
+    "area": "敦賀半島西岸・竹波",
     "beachFacing": "W",
     "minPlayWave": 0.7,
     "chestHeadWave": 1,
@@ -20,10 +75,16 @@
       "NW",
       "WNW",
       "W"
-    ]
+    ],
+    "nowphasRef": "tsuruga",
+    "nowphasName": "敦賀港 (122)",
+    "dist": "約9km",
+    "umitenkiId": "2067"
   },
   "sugahama": {
     "name": "菅浜",
+    "areaGroup": "tsuruga_mihama",
+    "area": "若狭・美浜町菅浜",
     "beachFacing": "NW",
     "minPlayWave": 1.6,
     "chestHeadWave": 1.8,
@@ -41,10 +102,16 @@
       "NW",
       "WNW",
       "W"
-    ]
+    ],
+    "nowphasRef": "tsuruga",
+    "nowphasName": "敦賀港 (122)",
+    "dist": "約10km",
+    "umitenkiId": "2053"
   },
   "kurosaki": {
     "name": "黒崎",
+    "areaGroup": "tsuruga_mihama",
+    "area": "敦賀半島西・坂尻",
     "beachFacing": "N",
     "minPlayWave": 0.7,
     "chestHeadWave": 1.3,
@@ -60,10 +127,16 @@
       "N",
       "NNE",
       "NE"
-    ]
+    ],
+    "nowphasRef": "tsuruga",
+    "nowphasName": "敦賀港 (122)",
+    "dist": "約12km",
+    "umitenkiId": "2033"
   },
   "echizen": {
     "name": "越前リーフ",
+    "areaGroup": "echizen_mikuni",
+    "area": "越前海岸・丹生郡越前町",
     "beachFacing": "W",
     "minPlayWave": 0.9,
     "chestHeadWave": 1.1,
@@ -79,6 +152,458 @@
       "NE",
       "NNE",
       "N"
-    ]
+    ],
+    "nowphasRef": "fukui",
+    "nowphasName": "福井港 (117)",
+    "dist": "約15km",
+    "umitenkiId": "2054"
+  },
+  "takasu": {
+    "name": "鷹巣",
+    "areaGroup": "echizen_mikuni",
+    "area": "福井市・鷹巣海水浴場",
+    "beachFacing": "WNW",
+    "minPlayWave": 0.8,
+    "chestHeadWave": 1.2,
+    "closeoutWave": 1.8,
+    "minPeriod": 5.5,
+    "bestPeriod": 7.5,
+    "offshoreWinds": [
+      "E",
+      "ESE",
+      "SE"
+    ],
+    "bestWaveDirs": [
+      "WNW",
+      "NW",
+      "NNW",
+      "W"
+    ],
+    "nowphasRef": "fukui",
+    "nowphasName": "福井港 (117)",
+    "dist": "約12km",
+    "umitenkiId": "2062"
+  },
+  "mikuni": {
+    "name": "三国サンセット",
+    "areaGroup": "echizen_mikuni",
+    "area": "坂井市三国町宿・米納津",
+    "beachFacing": "W",
+    "minPlayWave": 0.8,
+    "chestHeadWave": 1.3,
+    "closeoutWave": 2,
+    "minPeriod": 5.5,
+    "bestPeriod": 7.5,
+    "offshoreWinds": [
+      "E",
+      "ENE",
+      "ESE"
+    ],
+    "bestWaveDirs": [
+      "W",
+      "WNW",
+      "NW",
+      "NNW"
+    ],
+    "nowphasRef": "fukui",
+    "nowphasName": "福井港 (117)",
+    "dist": "約2km",
+    "umitenkiId": "2098"
+  },
+  "hamaji": {
+    "name": "浜地",
+    "areaGroup": "echizen_mikuni",
+    "area": "坂井市三国町・浜地海岸",
+    "beachFacing": "NW",
+    "minPlayWave": 0.7,
+    "chestHeadWave": 1.2,
+    "closeoutWave": 2,
+    "minPeriod": 5,
+    "bestPeriod": 7.5,
+    "offshoreWinds": [
+      "S",
+      "SSE",
+      "SE"
+    ],
+    "bestWaveDirs": [
+      "W",
+      "WNW",
+      "NW"
+    ],
+    "nowphasRef": "fukui",
+    "nowphasName": "福井港 (117)",
+    "dist": "約4km",
+    "umitenkiId": "2089"
+  },
+  "namimatsu": {
+    "name": "波松",
+    "areaGroup": "echizen_mikuni",
+    "area": "あわら市・波松海岸",
+    "beachFacing": "NW",
+    "minPlayWave": 0.6,
+    "chestHeadWave": 1.2,
+    "closeoutWave": 1.8,
+    "minPeriod": 5,
+    "bestPeriod": 7.5,
+    "offshoreWinds": [
+      "ESE",
+      "SE",
+      "E"
+    ],
+    "bestWaveDirs": [
+      "W",
+      "WNW",
+      "NW"
+    ],
+    "nowphasRef": "fukui",
+    "nowphasName": "福井港 (117)",
+    "dist": "約8km",
+    "umitenkiId": "1905"
+  },
+  "shioya": {
+    "name": "塩谷",
+    "areaGroup": "echizen_mikuni",
+    "area": "あわら市/加賀市境・塩屋海岸",
+    "beachFacing": "WNW",
+    "minPlayWave": 0.7,
+    "chestHeadWave": 1.2,
+    "closeoutWave": 2,
+    "minPeriod": 5.5,
+    "bestPeriod": 7.5,
+    "offshoreWinds": [
+      "SE",
+      "ESE",
+      "E"
+    ],
+    "bestWaveDirs": [
+      "W",
+      "WNW",
+      "NW"
+    ],
+    "nowphasRef": "fukui",
+    "nowphasName": "福井港 (117)",
+    "dist": "約10km",
+    "umitenkiId": "1905"
+  },
+  "uchinada": {
+    "name": "内灘",
+    "areaGroup": "ishikawa_noto",
+    "area": "河北郡内灘町・内灘海岸",
+    "beachFacing": "WNW",
+    "minPlayWave": 0.7,
+    "chestHeadWave": 1.3,
+    "closeoutWave": 2.2,
+    "minPeriod": 5.5,
+    "bestPeriod": 7.5,
+    "offshoreWinds": [
+      "ESE",
+      "SE",
+      "E"
+    ],
+    "bestWaveDirs": [
+      "NW",
+      "WNW",
+      "W"
+    ],
+    "nowphasRef": "kanazawa",
+    "nowphasName": "金沢港 (106)",
+    "dist": "約3km",
+    "umitenkiId": "1873"
+  },
+  "taki_marina": {
+    "name": "滝マリーナ",
+    "areaGroup": "ishikawa_noto",
+    "area": "羽咋市滝町・滝港マリーナ",
+    "beachFacing": "WSW",
+    "minPlayWave": 0.9,
+    "chestHeadWave": 1.5,
+    "closeoutWave": 2.8,
+    "minPeriod": 6,
+    "bestPeriod": 8,
+    "offshoreWinds": [
+      "NE",
+      "ENE",
+      "E"
+    ],
+    "bestWaveDirs": [
+      "W",
+      "WNW",
+      "NW"
+    ],
+    "nowphasRef": "kanazawa",
+    "nowphasName": "金沢港 (106)",
+    "dist": "約35km",
+    "umitenkiId": "1931"
+  },
+  "taki_reef": {
+    "name": "滝リーフ",
+    "areaGroup": "ishikawa_noto",
+    "area": "羽咋市滝町・滝港リーフ",
+    "beachFacing": "WSW",
+    "minPlayWave": 1,
+    "chestHeadWave": 1.5,
+    "closeoutWave": 2.8,
+    "minPeriod": 6.5,
+    "bestPeriod": 8.5,
+    "offshoreWinds": [
+      "NE",
+      "ENE",
+      "E"
+    ],
+    "bestWaveDirs": [
+      "W",
+      "WNW",
+      "NW"
+    ],
+    "nowphasRef": "kanazawa",
+    "nowphasName": "金沢港 (106)",
+    "dist": "約35km",
+    "umitenkiId": "1929"
+  },
+  "shibagaki_pension": {
+    "name": "柴垣 ペンション前",
+    "areaGroup": "ishikawa_noto",
+    "area": "羽咋市柴垣町・長手島南",
+    "beachFacing": "WSW",
+    "minPlayWave": 0.7,
+    "chestHeadWave": 1.3,
+    "closeoutWave": 2,
+    "minPeriod": 5.5,
+    "bestPeriod": 7.5,
+    "offshoreWinds": [
+      "ENE",
+      "E",
+      "ESE"
+    ],
+    "bestWaveDirs": [
+      "W",
+      "WNW"
+    ],
+    "nowphasRef": "kanazawa",
+    "nowphasName": "金沢港 (106)",
+    "dist": "約40km",
+    "umitenkiId": "1910"
+  },
+  "shibagaki_kita": {
+    "name": "柴垣 北",
+    "areaGroup": "ishikawa_noto",
+    "area": "羽咋市柴垣町・長手島北",
+    "beachFacing": "NW",
+    "minPlayWave": 0.6,
+    "chestHeadWave": 1.2,
+    "closeoutWave": 1.8,
+    "minPeriod": 5,
+    "bestPeriod": 7.5,
+    "offshoreWinds": [
+      "ESE",
+      "SE"
+    ],
+    "bestWaveDirs": [
+      "W",
+      "WNW",
+      "NW"
+    ],
+    "nowphasRef": "kanazawa",
+    "nowphasName": "金沢港 (106)",
+    "dist": "約40km",
+    "umitenkiId": "1911"
+  },
+  "kounohama": {
+    "name": "国府の浜",
+    "areaGroup": "ise_shima",
+    "area": "志摩市阿児町国府・国府白浜",
+    "beachFacing": "ESE",
+    "minPlayWave": 0.5,
+    "chestHeadWave": 1.1,
+    "closeoutWave": 1.9,
+    "minPeriod": 5.5,
+    "bestPeriod": 8,
+    "offshoreWinds": [
+      "W",
+      "WNW",
+      "WSW",
+      "NW"
+    ],
+    "bestWaveDirs": [
+      "E",
+      "ESE",
+      "SE"
+    ],
+    "nowphasRef": "isewan",
+    "nowphasName": "伊勢湾口沖 (816)",
+    "dist": "約25km",
+    "umitenkiId": "7195"
+  },
+  "ichigohama": {
+    "name": "市後浜",
+    "areaGroup": "ise_shima",
+    "area": "志摩市志摩町・阿児町志島",
+    "beachFacing": "ESE",
+    "minPlayWave": 0.8,
+    "chestHeadWave": 1.3,
+    "closeoutWave": 2.3,
+    "minPeriod": 6,
+    "bestPeriod": 8.5,
+    "offshoreWinds": [
+      "W",
+      "WNW",
+      "WSW"
+    ],
+    "bestWaveDirs": [
+      "E",
+      "ESE",
+      "SE"
+    ],
+    "nowphasRef": "isewan",
+    "nowphasName": "伊勢湾口沖 (816)",
+    "dist": "約23km",
+    "umitenkiId": "11991"
+  },
+  "nambari": {
+    "name": "南張",
+    "areaGroup": "ise_shima",
+    "area": "志摩市浜島町南張",
+    "beachFacing": "S",
+    "minPlayWave": 1.3,
+    "chestHeadWave": 1.6,
+    "closeoutWave": 3,
+    "minPeriod": 6.5,
+    "bestPeriod": 9,
+    "offshoreWinds": [
+      "N",
+      "NNW",
+      "NNE"
+    ],
+    "bestWaveDirs": [
+      "S",
+      "SSW"
+    ],
+    "nowphasRef": "owase",
+    "nowphasName": "三重尾鷲沖 (811)",
+    "dist": "約30km",
+    "umitenkiId": "51130"
+  },
+  "terasawa": {
+    "name": "寺沢",
+    "areaGroup": "enshunada",
+    "area": "愛知県豊橋市寺沢町・表浜",
+    "beachFacing": "SSW",
+    "minPlayWave": 0.6,
+    "chestHeadWave": 1.2,
+    "closeoutWave": 2,
+    "minPeriod": 5.5,
+    "bestPeriod": 8,
+    "offshoreWinds": [
+      "N",
+      "NNW"
+    ],
+    "bestWaveDirs": [
+      "S",
+      "SSW",
+      "SW"
+    ],
+    "nowphasRef": "isewan",
+    "nowphasName": "伊勢湾口沖 (816)",
+    "dist": "約30km",
+    "umitenkiId": "3983"
+  },
+  "shiomizaka": {
+    "name": "潮見坂",
+    "areaGroup": "enshunada",
+    "area": "静岡県湖西市白須賀・潮見坂",
+    "beachFacing": "S",
+    "minPlayWave": 0.6,
+    "chestHeadWave": 1.2,
+    "closeoutWave": 2,
+    "minPeriod": 5.5,
+    "bestPeriod": 8,
+    "offshoreWinds": [
+      "N",
+      "NNW"
+    ],
+    "bestWaveDirs": [
+      "S",
+      "SSW",
+      "SE"
+    ],
+    "nowphasRef": "omaezaki",
+    "nowphasName": "静岡御前崎沖 (812)",
+    "dist": "約50km",
+    "umitenkiId": "1183"
+  },
+  "arai": {
+    "name": "新居",
+    "areaGroup": "enshunada",
+    "area": "静岡県湖西市新居町・今切口西",
+    "beachFacing": "S",
+    "minPlayWave": 0.6,
+    "chestHeadWave": 1.2,
+    "closeoutWave": 2.2,
+    "minPeriod": 6,
+    "bestPeriod": 8.5,
+    "offshoreWinds": [
+      "N",
+      "NW",
+      "NNW"
+    ],
+    "bestWaveDirs": [
+      "S",
+      "SE",
+      "SW"
+    ],
+    "nowphasRef": "omaezaki",
+    "nowphasName": "静岡御前崎沖 (812)",
+    "dist": "約45km",
+    "umitenkiId": "4891"
+  },
+  "maisaka": {
+    "name": "舞阪",
+    "areaGroup": "enshunada",
+    "area": "静岡県浜松市中央区舞阪町・今切口東",
+    "beachFacing": "S",
+    "minPlayWave": 0.6,
+    "chestHeadWave": 1.2,
+    "closeoutWave": 2.2,
+    "minPeriod": 6,
+    "bestPeriod": 8.5,
+    "offshoreWinds": [
+      "N",
+      "NNE",
+      "NNW"
+    ],
+    "bestWaveDirs": [
+      "S",
+      "SE",
+      "SW"
+    ],
+    "nowphasRef": "omaezaki",
+    "nowphasName": "静岡御前崎沖 (812)",
+    "dist": "約42km",
+    "umitenkiId": "640"
+  },
+  "samejima": {
+    "name": "鮫島",
+    "areaGroup": "enshunada",
+    "area": "静岡県磐田市鮫島・天竜川東",
+    "beachFacing": "S",
+    "minPlayWave": 0.6,
+    "chestHeadWave": 1.2,
+    "closeoutWave": 2,
+    "minPeriod": 5.5,
+    "bestPeriod": 8,
+    "offshoreWinds": [
+      "NNW",
+      "N"
+    ],
+    "bestWaveDirs": [
+      "SE",
+      "ESE",
+      "SW",
+      "SSW"
+    ],
+    "nowphasRef": "omaezaki",
+    "nowphasName": "静岡御前崎沖 (812)",
+    "dist": "約30km",
+    "umitenkiId": "2496"
   }
 }

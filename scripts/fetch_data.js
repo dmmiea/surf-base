@@ -235,22 +235,62 @@ async function run() {
 
   console.log(`Current JST Date: ${ymd}`);
 
-  // ナウファス取得（敦賀122、福井117）
-  console.log('Fetching Nowphas 122 (敦賀)...');
+  // ナウファス取得（全6観測所）
+  console.log('Fetching Nowphas 122 (敦賀港)...');
   const np122 = getNowphasData('122', jstNow);
 
-  console.log('Fetching Nowphas 117 (福井/三国)...');
+  console.log('Fetching Nowphas 117 (福井港)...');
   const np117 = getNowphasData('117', jstNow);
 
-  console.log('Latest Nowphas 122:', np122.latest);
-  console.log('Latest Nowphas 117:', np117.latest);
+  console.log('Fetching Nowphas 106 (金沢港)...');
+  const np106 = getNowphasData('106', jstNow);
 
-  // 海天気取得
+  console.log('Fetching Nowphas 816 (伊勢湾口沖GPS)...');
+  const np816 = getNowphasData('816', jstNow);
+
+  console.log('Fetching Nowphas 812 (静岡御前崎沖GPS)...');
+  const np812 = getNowphasData('812', jstNow);
+
+  console.log('Fetching Nowphas 811 (三重尾鷲沖GPS)...');
+  const np811 = getNowphasData('811', jstNow);
+
+  // 海天気取得（全24スポット）
   const spots = {
+    // 1. 高浜・若狭
+    nabae: { id: '2082', name: '難波江' },
+    toriihama: { id: '2079', name: '鳥居浜' },
+
+    // 2. 敦賀・美浜
     suishohama: { id: '2067', name: '水晶浜' },
     sugahama: { id: '2053', name: '菅浜' },
     kurosaki: { id: '2033', name: '黒崎' },
-    echizen: { id: '2054', name: '越前リーフ' }
+
+    // 3. 越前・三国
+    echizen: { id: '2054', name: '越前リーフ' },
+    takasu: { id: '2062', name: '鷹巣' },
+    mikuni: { id: '2098', name: '三国サンセット' },
+    hamaji: { id: '2089', name: '浜地' },
+    namimatsu: { id: '1905', name: '波松' },
+    shioya: { id: '1905', name: '塩谷' },
+
+    // 4. 石川・能登
+    uchinada: { id: '1873', name: '内灘' },
+    taki_marina: { id: '1931', name: '滝マリーナ' },
+    taki_reef: { id: '1929', name: '滝リーフ' },
+    shibagaki_pension: { id: '1910', name: '柴垣 ペンション前' },
+    shibagaki_kita: { id: '1911', name: '柴垣 北' },
+
+    // 5. 伊勢志摩
+    kounohama: { id: '7195', name: '国府の浜' },
+    ichigohama: { id: '11991', name: '市後浜' },
+    nambari: { id: '51130', name: '南張' },
+
+    // 6. 遠州灘
+    terasawa: { id: '3983', name: '寺沢' },
+    shiomizaka: { id: '1183', name: '潮見坂' },
+    arai: { id: '4891', name: '新居' },
+    maisaka: { id: '640', name: '舞阪' },
+    samejima: { id: '2496', name: '鮫島' }
   };
 
   const parsedSpots = {};
@@ -261,6 +301,8 @@ async function run() {
       const decodedHtml = decodeShiftJis(rawBuf);
       parsedSpots[key] = parseUmitenki(decodedHtml);
     }
+    // 連続アクセス間隔（150ms待機）
+    try { execSync('node -e "setTimeout(()=>{}, 150)"'); } catch (e) {}
   }
 
   const outputPath = path.join(__dirname, '..', 'data.json');
@@ -271,6 +313,16 @@ async function run() {
     }
   } catch (e) {
     console.warn('Could not read existing data.json:', e.message);
+  }
+
+  // 市後浜(11991)・南張(51130)の予報テーブルが海天気側で取得できない場合、近隣の国府の浜(7195)のデータをフォールバックとして適用
+  if ((!parsedSpots.ichigohama || !parsedSpots.ichigohama.hourData || parsedSpots.ichigohama.hourData.length === 0) && parsedSpots.kounohama) {
+    console.log('[FALLBACK] ichigohama forecast not available from Umitenki, copying from kounohama...');
+    parsedSpots.ichigohama = JSON.parse(JSON.stringify(parsedSpots.kounohama));
+  }
+  if ((!parsedSpots.nambari || !parsedSpots.nambari.hourData || parsedSpots.nambari.hourData.length === 0) && parsedSpots.kounohama) {
+    console.log('[FALLBACK] nambari forecast not available from Umitenki, copying from kounohama...');
+    parsedSpots.nambari = JSON.parse(JSON.stringify(parsedSpots.kounohama));
   }
 
   const finalSpots = {};
@@ -319,6 +371,22 @@ async function run() {
       fukui: {
         latest: np117.latest,
         history: np117.history
+      },
+      kanazawa: {
+        latest: np106.latest,
+        history: np106.history
+      },
+      isewan: {
+        latest: np816.latest,
+        history: np816.history
+      },
+      omaezaki: {
+        latest: np812.latest,
+        history: np812.history
+      },
+      owase: {
+        latest: np811.latest,
+        history: np811.history
       }
     },
     spots: finalSpots
