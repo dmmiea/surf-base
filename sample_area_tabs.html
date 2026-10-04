@@ -1,0 +1,1966 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>SURF BASE - 波レポ投稿＆答え合わせダッシュボード</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+    
+    body {
+      font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f1f5f9;
+      color: #1e293b;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .font-teko {
+      font-family: 'Teko', sans-serif;
+      letter-spacing: 0.03em;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
+    }
+    .ocean-gradient {
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #075985 100%);
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-20 antialiased selection:bg-sky-500 selection:text-white">
+
+  <!-- PULL TO REFRESH INDICATOR -->
+  <div id="pullIndicator" class="fixed top-0 left-0 right-0 z-50 flex items-center justify-center transition-all duration-300 pointer-events-none opacity-0 -translate-y-12">
+    <div class="bg-sky-600 text-white text-xs font-bold py-1.5 px-3.5 rounded-full shadow-lg flex items-center gap-2">
+      <i id="pullIcon" class="fa-solid fa-arrows-rotate text-sm transition-transform duration-200"></i>
+      <span id="pullText">引いて最新データに更新</span>
+    </div>
+  </div>
+
+  <!-- TOP APP BAR -->
+  <header class="bg-white/95 backdrop-blur-md border-b border-slate-200/80 px-4 py-2.5 shadow-sm">
+    <div class="max-w-md mx-auto flex items-center justify-between">
+      <div class="flex items-center space-x-2">
+        <div class="w-8 h-8 rounded-xl ocean-gradient flex items-center justify-center text-white shadow-md shadow-sky-500/20">
+          <i class="fa-solid fa-water text-sm"></i>
+        </div>
+        <div>
+          <span class="font-teko text-2xl font-bold tracking-wider text-sky-800 leading-none uppercase">SURF BASE</span><span class="ml-2 text-[10px] bg-gradient-to-r from-sky-600 to-indigo-600 text-white font-bold px-2 py-0.5 rounded-full shadow-sm">エリア別タブ SAMPLE</span>
+        </div>
+      </div>
+      
+      <div class="text-right whitespace-nowrap">
+        <div class="flex items-center justify-end space-x-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span class="text-[11px] font-bold text-emerald-600">LIVE</span>
+        </div>
+        <span id="lastUpdated" class="text-[10px] text-slate-400 font-medium whitespace-nowrap block">--:--</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-md mx-auto px-3.5 pt-1 space-y-3.5">
+
+    <!-- 4地点セレクタータブ（上部固定 Sticky） -->
+    <!-- 2段エリア・ポイントセレクタータブ（上部固定 Sticky） -->
+    <div class="sticky top-0 z-40 bg-[#f1f5f9]/95 backdrop-blur-md -mx-3.5 px-3.5 pt-2 pb-2 shadow-sm space-y-1.5 border-b border-slate-200/60">
+      <!-- 1段目: エリア選択タブ (6大エリア) -->
+      <div class="grid grid-cols-3 gap-1 p-1 bg-slate-200/90 rounded-xl border border-slate-300/70 shadow-inner text-xs font-bold">
+        <button onclick="selectArea('takahama_wakasa')" id="area-tab-takahama_wakasa" class="area-tab py-1.5 px-1 text-center rounded-lg transition-all duration-200 text-slate-600 hover:text-slate-900 flex items-center justify-center gap-1">
+          <i class="fa-solid fa-location-dot text-[10px]"></i>
+          <span>高浜・若狭</span>
+          <span class="text-[9px] bg-slate-300 px-1 rounded-full text-slate-700 font-normal">2</span>
+        </button>
+        <button onclick="selectArea('tsuruga_mihama')" id="area-tab-tsuruga_mihama" class="area-tab py-1.5 px-1 text-center rounded-lg transition-all duration-200 bg-sky-700 text-white shadow-sm flex items-center justify-center gap-1">
+          <i class="fa-solid fa-location-dot text-[10px]"></i>
+          <span>敦賀・美浜</span>
+          <span class="text-[9px] bg-sky-800/80 px-1 rounded-full text-sky-200 font-normal">3</span>
+        </button>
+        <button onclick="selectArea('echizen_mikuni')" id="area-tab-echizen_mikuni" class="area-tab py-1.5 px-1 text-center rounded-lg transition-all duration-200 text-slate-600 hover:text-slate-900 flex items-center justify-center gap-1">
+          <i class="fa-solid fa-location-dot text-[10px]"></i>
+          <span>越前・三国</span>
+          <span class="text-[9px] bg-slate-300 px-1 rounded-full text-slate-700 font-normal">6</span>
+        </button>
+        <button onclick="selectArea('ishikawa_noto')" id="area-tab-ishikawa_noto" class="area-tab py-1.5 px-1 text-center rounded-lg transition-all duration-200 text-slate-600 hover:text-slate-900 flex items-center justify-center gap-1">
+          <i class="fa-solid fa-location-dot text-[10px]"></i>
+          <span>石川・能登</span>
+          <span class="text-[9px] bg-slate-300 px-1 rounded-full text-slate-700 font-normal">5</span>
+        </button>
+        <button onclick="selectArea('ise_shima')" id="area-tab-ise_shima" class="area-tab py-1.5 px-1 text-center rounded-lg transition-all duration-200 text-slate-600 hover:text-slate-900 flex items-center justify-center gap-1">
+          <i class="fa-solid fa-location-dot text-[10px]"></i>
+          <span>伊勢志摩</span>
+          <span class="text-[9px] bg-slate-300 px-1 rounded-full text-slate-700 font-normal">3</span>
+        </button>
+        <button onclick="selectArea('enshunada')" id="area-tab-enshunada" class="area-tab py-1.5 px-1 text-center rounded-lg transition-all duration-200 text-slate-600 hover:text-slate-900 flex items-center justify-center gap-1">
+          <i class="fa-solid fa-location-dot text-[10px]"></i>
+          <span>遠州灘</span>
+          <span class="text-[9px] bg-slate-300 px-1 rounded-full text-slate-700 font-normal">5</span>
+        </button>
+      </div>
+
+    <!-- SPOT HERO SUMMARY CARD -->
+    <div class="glass-card rounded-2xl p-4 relative overflow-hidden border border-slate-200/90 shadow-md">
+      <!-- ヘッダー情報 -->
+      <div class="flex items-center justify-between pb-2.5 border-b border-slate-100">
+        <div>
+          <div class="flex items-center space-x-2">
+            <h2 id="spotHeroName" class="text-xl font-black text-slate-800 tracking-tight">水晶浜</h2>
+            <span id="spotAreaBadge" class="text-[10px] px-2 py-0.5 rounded-full bg-sky-50 text-sky-700 font-semibold border border-sky-200">敦賀半島西岸</span>
+          </div>
+          <p class="text-[11px] text-slate-500 mt-0.5 flex items-center gap-1.5">
+            <i class="fa-solid fa-satellite-dish text-sky-600 text-[10px]"></i>
+            観測: <strong id="nowphasName" class="text-slate-700 font-bold">敦賀港 (122)</strong>
+            <span id="distBadge" class="text-[10px] text-sky-700 bg-sky-50 border border-sky-200/70 px-1.5 py-0.2 rounded font-semibold">約9km</span>
+          </p>
+        </div>
+        <div class="text-right">
+          <div class="text-[9px] text-slate-400 uppercase font-bold tracking-wider">Surf Rating</div>
+          <div id="surfConditionBadge" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 text-xs font-bold mt-0.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
+            <span id="conditionText">BEST</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 日の出・日の入り ＆ 潮汐（タイド）バー -->
+      <div class="my-2.5 py-1.5 px-3 rounded-xl bg-slate-50/90 border border-slate-200/70 flex items-center justify-between text-xs">
+        <div class="flex items-center space-x-3 text-slate-600">
+          <span class="flex items-center gap-1">
+            <i class="fa-solid fa-sun text-amber-500 text-[11px]"></i>
+            <strong id="sunRiseTime" class="text-slate-800 font-bold">05:52</strong>
+          </span>
+          <span class="text-slate-300">|</span>
+          <span class="flex items-center gap-1">
+            <i class="fa-solid fa-moon text-indigo-400 text-[11px]"></i>
+            <strong id="sunSetTime" class="text-slate-800 font-bold">17:41</strong>
+          </span>
+        </div>
+
+        <div class="flex items-center space-x-1.5 text-right">
+          <span id="tideNameBadge" class="text-[9px] bg-sky-100 text-sky-700 font-bold px-1.5 py-0.2 rounded">中潮</span>
+          <span class="text-[10px] text-slate-500 font-medium">HIGH <strong id="tideHigh" class="text-slate-700">03:34</strong> / LOW <strong id="tideLow" class="text-slate-700">10:47</strong></span>
+        </div>
+      </div>
+
+      <!-- メイン指標: 実測 VS 予報 (波高 & 周期を完全対比) -->
+      <div class="grid grid-cols-2 gap-3 pt-1">
+        
+        <!-- ナウファス実測カード -->
+        <div class="bg-gradient-to-b from-emerald-50/70 to-white rounded-xl p-3 border border-emerald-200 shadow-sm relative flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[10px] font-bold text-emerald-800 flex items-center gap-1">
+                <i class="fa-solid fa-circle-check text-emerald-600"></i> LIVE
+              </span>
+              <span id="heroRealTime" class="text-[10px] text-slate-500 font-medium">22:00</span>
+            </div>
+            
+            <div class="flex items-baseline space-x-1">
+              <span id="heroRealWave" class="font-teko text-4xl font-black text-slate-800 tracking-tight leading-none">0.84</span>
+              <span class="text-xs font-bold text-emerald-700">m</span>
+            </div>
+          </div>
+
+          <div class="mt-2 pt-1.5 border-t border-emerald-100/80 flex items-center justify-between text-[11px]">
+            <div>
+              <span class="text-slate-400 block text-[9px] uppercase font-bold">周期</span>
+              <strong id="heroRealPeriod" class="text-emerald-700 font-bold text-xs">5.2秒</strong>
+            </div>
+            <div class="text-right">
+              <span class="text-slate-400 block text-[9px] uppercase font-bold">SWELL</span>
+              <strong class="text-slate-700 font-bold text-xs flex items-center justify-end gap-0.5">
+                <span id="heroRealDirArrow" class="inline-block text-emerald-700"></span>
+                <span id="heroRealDir">NW</span>
+              </strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- 海天気予報カード -->
+        <div class="bg-gradient-to-b from-sky-50/70 to-white rounded-xl p-3 border border-sky-200 shadow-sm relative flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[10px] font-bold text-sky-800 flex items-center gap-1">
+                <i class="fa-solid fa-cloud-sun text-sky-600"></i> FORECAST
+              </span>
+              <span id="heroForecastTime" class="text-[10px] text-slate-500 font-medium">21:00</span>
+            </div>
+
+            <div class="flex items-baseline space-x-1">
+              <span id="heroForecastWave" class="font-teko text-4xl font-black text-slate-800 tracking-tight leading-none">0.90</span>
+              <span class="text-xs font-bold text-sky-700">m</span>
+            </div>
+          </div>
+
+          <div class="mt-2 pt-1.5 border-t border-sky-100/80 space-y-1 text-[11px]">
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-slate-400 block text-[9px] uppercase font-bold">周期</span>
+                <strong id="heroForecastPeriod" class="text-sky-700 font-bold text-xs">5.5秒</strong>
+              </div>
+              <div class="text-right">
+                <span class="text-slate-400 block text-[9px] uppercase font-bold">SWELL</span>
+                <strong class="text-sky-700 font-bold text-xs flex items-center justify-end gap-0.5">
+                  <span id="heroForecastWaveDirArrow" class="inline-block text-sky-600"></span>
+                  <span id="heroForecastWaveDir">NNW</span>
+                </strong>
+              </div>
+            </div>
+            <div class="flex items-center justify-between text-[10px] pt-1 border-t border-sky-50">
+              <span class="text-slate-400 font-bold text-[9px]">WIND</span>
+              <strong class="text-slate-700 font-bold text-xs flex items-center justify-end gap-0.5 whitespace-nowrap">
+                <span id="heroWindDirArrow" class="inline-block text-sky-600"></span>
+                <span id="heroWindDir">E</span>
+                <span id="heroWindSpeed" class="ml-0.5">2.5m</span>
+              </strong>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 予報誤差 ＆ 推定サイズ -->
+      <div class="mt-3 space-y-1.5">
+        <div id="diffBanner" class="py-1.5 px-3 rounded-xl bg-slate-50 border border-slate-200/90 flex items-center justify-between text-xs shadow-inner">
+          <span class="text-slate-700 font-medium flex items-center gap-1.5">
+            <i class="fa-solid fa-scale-balanced text-amber-500 text-xs"></i>
+            予報差: <strong id="diffValue" class="text-slate-900 font-bold">-0.06m</strong>
+          </span>
+          <span id="diffComment" class="text-[11px] text-slate-500 font-medium">予報一致</span>
+        </div>
+
+        <div class="py-1.5 px-3 rounded-xl bg-sky-50/70 border border-sky-100 flex items-center justify-between text-xs">
+          <span class="text-slate-700 font-medium flex items-center gap-1">
+            <i class="fa-solid fa-ruler-vertical text-sky-600"></i>
+            SIZE: <strong id="waveSizeEstimate" class="text-sky-900 font-bold">腰〜胸</strong>
+          </span>
+          <span id="conditionReason" class="text-[11px] text-sky-800 font-semibold">オフショア＆好周期</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- みんなのリアル投稿サマリーカード -->
+    <div class="glass-card rounded-2xl p-3 border border-amber-200/70 bg-gradient-to-r from-amber-50/60 to-white shadow-sm flex items-center justify-between">
+      <div class="flex items-center space-x-2.5">
+        <div class="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-300 flex items-center justify-center text-amber-700 shadow-sm">
+          <i class="fa-solid fa-users text-base"></i>
+        </div>
+        <div>
+          <div class="flex items-center space-x-1.5">
+            <span class="text-xs font-bold text-slate-800 tracking-wide">REPORT</span>
+            <span id="reportCountBadge" class="text-[9px] bg-amber-100 text-amber-800 font-bold px-1.5 py-0.2 rounded-full border border-amber-300">2票</span>
+          </div>
+          <div class="text-[11px] text-slate-500 mt-0.5 flex items-center gap-2">
+            <span>RATE: <strong id="userAvgRate" class="text-emerald-700 font-black">GOOD</strong></span>
+            <span>SIZE: <strong id="userAvgSize" class="text-slate-700 font-bold">腹〜胸</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <button onclick="openReportModal()" class="py-2 px-3 rounded-xl bg-gradient-to-r from-sky-600 to-blue-600 text-white font-bold text-xs shadow-md shadow-sky-500/20 active:scale-95 transition flex items-center gap-1.5">
+        <i class="fa-solid fa-pen-to-square"></i>
+        <span>REPORT</span>
+      </button>
+    </div>
+
+    <!-- 波高推移ミニグラフカード -->
+    <div class="glass-card rounded-2xl p-3.5 border border-slate-200 shadow-sm space-y-2">
+      <div class="flex items-center justify-between">
+        <h3 class="font-bold text-xs text-slate-800 flex items-center gap-1.5">
+          <i class="fa-solid fa-chart-area text-sky-600"></i>
+          WAVE TREND（実測12h・予報3.5日）
+        </h3>
+        <div class="flex items-center space-x-3 text-[10px]">
+          <span class="flex items-center gap-1 text-emerald-700 font-semibold">
+            <span class="w-2.5 h-1 rounded bg-emerald-500 inline-block"></span>実測
+          </span>
+          <span class="flex items-center gap-1 text-sky-700 font-semibold">
+            <span class="w-2.5 h-1 rounded bg-sky-500 border border-dashed border-sky-600 inline-block"></span>予報
+          </span>
+        </div>
+      </div>
+
+      <div class="relative w-full h-24 bg-slate-50/80 rounded-xl border border-slate-200/60 p-1 flex flex-col justify-between overflow-hidden">
+        <svg id="trendSvg" class="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 320 80"></svg>
+      </div>
+
+      <div class="flex justify-between text-[9px] text-slate-400 font-medium px-1">
+        <span>12h前</span>
+        <span class="text-sky-700 font-bold">NOW</span>
+        <span>明日</span>
+        <span>明後日</span>
+        <span>3日後</span>
+        <span>3.5日後</span>
+      </div>
+    </div>
+
+    <!-- 1時間ごと答え合わせ ＆ 予報推移タイムライン -->
+    <div class="space-y-2">
+      <div class="flex items-center justify-between px-1">
+        <h3 class="font-bold text-sm text-slate-800 flex items-center gap-1.5">
+          <i class="fa-solid fa-table-list text-sky-600"></i>
+          TIMELINE（3.5日）
+        </h3>
+        <span class="text-[10px] text-slate-500 font-medium">👥 投票</span>
+      </div>
+
+      <div class="glass-card rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+        <div class="grid grid-cols-12 text-center text-[10px] font-bold text-slate-600 bg-slate-100/90 py-2.5 px-1 border-b border-slate-200 tracking-wider">
+          <div class="col-span-2 text-left pl-1">TIME</div>
+          <div class="col-span-2 text-slate-700"><i class="fa-solid fa-wind mr-0.5 text-sky-600"></i>WIND</div>
+          <div class="col-span-3 text-sky-800 bg-sky-50/50 py-0.5 rounded">FORECAST</div>
+          <div class="col-span-3 text-emerald-800 bg-emerald-50/50 py-0.5 rounded">LIVE</div>
+          <div class="col-span-2 text-slate-700">RATING</div>
+        </div>
+
+        <div id="timelineList" class="divide-y divide-slate-100 max-h-[440px] overflow-y-auto hide-scrollbar text-xs">
+          <!-- JSで動的生成 -->
+        </div>
+      </div>
+    </div>
+
+
+    <!-- 波レート説明カード -->
+    <div class="p-3.5 rounded-xl bg-white border border-slate-200 text-slate-600 text-xs leading-relaxed space-y-2.5 shadow-sm">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-1.5">
+        <span class="font-bold text-slate-800 flex items-center gap-1.5 text-[11px]">
+          <i class="fa-solid fa-circle-question text-sky-600"></i>
+          WAVE rate
+        </span>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2 text-[10px]">
+        <div class="flex items-center space-x-1.5">
+          <span class="px-1.5 py-0.5 rounded font-black text-emerald-900 bg-emerald-100 border border-emerald-300">BEST</span>
+          <span class="text-slate-600 font-medium"><strong>極上</strong>（オフショア＆好周期）</span>
+        </div>
+        <div class="flex items-center space-x-1.5">
+          <span class="px-1.5 py-0.5 rounded font-bold text-emerald-700 bg-emerald-50 border border-emerald-200">GOOD</span>
+          <span class="text-slate-600 font-medium"><strong>良い</strong>（整った良波）</span>
+        </div>
+        <div class="flex items-center space-x-1.5">
+          <span class="px-1.5 py-0.5 rounded font-semibold text-sky-700 bg-sky-50 border border-sky-200">FAIR</span>
+          <span class="text-slate-600 font-medium"><strong>普通</strong>（十分サーフ可能）</span>
+        </div>
+        <div class="flex items-center space-x-1.5">
+          <span class="px-1.5 py-0.5 rounded font-semibold text-amber-700 bg-amber-50 border border-amber-200">POOR</span>
+          <span class="text-slate-600 font-medium"><strong>イマイチ</strong>（オンショア乱れ）</span>
+        </div>
+        <div class="flex items-center space-x-1.5">
+          <span class="px-1.5 py-0.5 rounded font-bold text-rose-700 bg-rose-50 border border-rose-200">CLOSE</span>
+          <span class="text-slate-600 font-medium"><strong>危険</strong>（波がデカすぎる）</span>
+        </div>
+        <div class="flex items-center space-x-1.5">
+          <span class="px-1.5 py-0.5 rounded font-medium text-slate-500 bg-slate-100 border border-slate-200">FLAT</span>
+          <span class="text-slate-600 font-medium"><strong>波なし</strong>（割れない）</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 管理者リンク（最下部） -->
+    <footer class="pt-6 pb-4 text-center">
+      <a href="admin.html" class="text-[10px] text-slate-300 hover:text-slate-500 font-medium inline-flex items-center gap-1 transition">
+        <i class="fa-solid fa-lock text-[9px]"></i>
+        <span>Admin</span>
+      </a>
+    </footer>
+
+  </main>
+
+  <!-- 投稿用モーダルダイアログ（過去12時間・1時間ごとに波サイズ＆レート個別設定対応） -->
+  <div id="reportModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-3">
+    <div class="bg-white rounded-3xl p-4 sm:p-5 w-full max-w-lg shadow-2xl border border-slate-100 space-y-3 max-h-[92vh] flex flex-col">
+      <!-- モーダルヘッダー -->
+      <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 rounded-lg bg-sky-500/10 text-sky-600 flex items-center justify-center">
+            <i class="fa-solid fa-pen-to-square text-sm"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-sm text-slate-800">波レポート登録</h3>
+          </div>
+        </div>
+        <button onclick="closeReportModal()" class="w-7 h-7 rounded-full bg-slate-100 text-slate-400 hover:text-slate-600 flex items-center justify-center">
+          <i class="fa-solid fa-xmark text-xs"></i>
+        </button>
+      </div>
+
+      <!-- スクロールエリア -->
+      <div class="overflow-y-auto space-y-3 pr-1">
+        <!-- 説明と一括補助ツールバー -->
+        <div class="flex items-center justify-between bg-sky-50/70 p-2 rounded-xl border border-sky-100">
+          <span class="text-[10px] text-sky-800 font-medium">
+            <i class="fa-solid fa-circle-info text-sky-600 mr-1"></i>入っていた時間のチェックを入れ、各時間のサイズ・レートを調整
+          </span>
+          <div class="space-x-1.5 flex-shrink-0">
+            <button type="button" onclick="selectAllHours(true)" class="text-[10px] text-sky-700 bg-white px-2 py-0.5 rounded border border-sky-200 hover:bg-sky-50 font-bold">直近2時間</button>
+            <button type="button" onclick="selectAllHours(false)" class="text-[10px] text-slate-500 bg-white px-2 py-0.5 rounded border border-slate-200 hover:bg-slate-50 font-bold">全解除</button>
+          </div>
+        </div>
+
+        <!-- 1時間ごとの個別入力テーブル -->
+        <div class="border border-slate-200 rounded-2xl overflow-hidden shadow-sm bg-white">
+          <div class="grid grid-cols-12 text-[10px] font-bold text-slate-600 bg-slate-100/90 py-2 px-2 border-b border-slate-200 tracking-wider">
+            <div class="col-span-1 text-center">入水</div>
+            <div class="col-span-2">時刻</div>
+            <div class="col-span-2 text-center">ナウファス</div>
+            <div class="col-span-4 text-center">波Rate（体感評価）</div>
+            <div class="col-span-3 text-center">サイズ感</div>
+          </div>
+          <div id="modalPastHoursList" class="divide-y divide-slate-100 max-h-56 overflow-y-auto text-xs">
+            <!-- JSで動的に過去12時間の個別行（チェックボックス、Rate選択、サイズ選択）を生成 -->
+          </div>
+        </div>
+
+        <!-- メモ・コメント（任意） -->
+        <div class="space-y-1">
+          <label class="text-[11px] font-bold text-slate-700 block">セッション全体のひとことメモ（任意）</label>
+          <input type="text" id="commentInput" placeholder="例: 9時は面ツルで胸セット、11時頃からオンショアが入りチョッピー気味" class="w-full text-xs py-2 px-3 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-500">
+        </div>
+      </div>
+
+      <!-- 送信フッター -->
+      <div class="pt-2 border-t border-slate-100">
+        <button onclick="submitReport()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-blue-600 text-white font-bold text-sm shadow-md shadow-sky-500/30 active:scale-95 transition flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <span>選択した時間の個別波レポを登録する</span>
+        </button>
+        <p class="text-[9px] text-center text-slate-400 mt-1">※各時間ごとに独立した評価として蓄積され、ナウファス実測との相関学習に活用されます</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const DIR_ARROWS = {
+      'N': '↓', 'NNE': '↙', 'NE': '↙', 'ENE': '←',
+      'E': '←', 'ESE': '←', 'SE': '↖', 'SSE': '↑',
+      'S': '↑', 'SSW': '↗', 'SW': '↗', 'WSW': '→',
+      'W': '→', 'WNW': '↘', 'NW': '↘', 'NNW': '↓'
+    };
+
+    function getArrow(dir) {
+      return DIR_ARROWS[dir] || '・';
+    }
+
+    // エリア定義（案B: 6大エリア）
+    const AREAS = {
+      takahama_wakasa: {
+        id: 'takahama_wakasa',
+        name: '高浜・若狭',
+        spots: ['nabae', 'toriihama']
+      },
+      tsuruga_mihama: {
+        id: 'tsuruga_mihama',
+        name: '敦賀・美浜',
+        spots: ['suishohama', 'sugahama', 'kurosaki']
+      },
+      echizen_mikuni: {
+        id: 'echizen_mikuni',
+        name: '越前・三国',
+        spots: ['echizen', 'takasu', 'mikuni', 'hamaji', 'namimatsu', 'shioya']
+      },
+      ishikawa_noto: {
+        id: 'ishikawa_noto',
+        name: '石川・能登',
+        spots: ['uchinada', 'taki_marina', 'taki_reef', 'shibagaki_pension', 'shibagaki_kita']
+      },
+      ise_shima: {
+        id: 'ise_shima',
+        name: '伊勢志摩',
+        spots: ['kounohama', 'ichigohama', 'nambari']
+      },
+      enshunada: {
+        id: 'enshunada',
+        name: '遠州灘',
+        spots: ['terasawa', 'shiomizaka', 'arai', 'maisaka', 'samejima']
+      }
+    };
+
+    let currentAreaKey = 'tsuruga_mihama';
+
+    // 全24ポイントのルール＆基本設定
+    const SPOT_RULES = {
+      // 1. 【高浜・若狭】
+      nabae: {
+        id: '2082',
+        name: '難波江',
+        areaGroup: 'takahama_wakasa',
+        area: '大飯郡高浜町・内浦湾奥',
+        beachFacing: 'NE',
+        nowphasRef: 'tsuruga',
+        nowphasName: '敦賀港 (122)',
+        dist: '約42km',
+        offshoreWinds: ['SW', 'SSW', 'WSW', 'S'],
+        bestWaveDirs: ['NE', 'NNE', 'N'],
+        minPlayWave: 0.8,
+        chestHeadWave: 1.3,
+        closeoutWave: 2.0,
+        minPeriod: 5.5,
+        bestPeriod: 7.5,
+        defaultForecast: { wave: 1.1, period: 7.0, waveDir: 'NE', windDir: 'SW', windSpeed: 2.8 },
+        sunRise: '05:55', sunSet: '17:44', tideName: '中潮', tideHigh: '03:40', tideLow: '10:55'
+      },
+      toriihama: {
+        id: '2079',
+        name: '鳥居浜',
+        areaGroup: 'takahama_wakasa',
+        area: '大飯郡高浜町・鳥居浜海岸',
+        beachFacing: 'N',
+        nowphasRef: 'tsuruga',
+        nowphasName: '敦賀港 (122)',
+        dist: '約38km',
+        offshoreWinds: ['S', 'SSE', 'SSW', 'SE'],
+        bestWaveDirs: ['NNW', 'NW', 'WNW', 'N'],
+        minPlayWave: 0.7,
+        chestHeadWave: 1.2,
+        closeoutWave: 1.8,
+        minPeriod: 5.5,
+        bestPeriod: 7.5,
+        defaultForecast: { wave: 0.9, period: 6.8, waveDir: 'NNW', windDir: 'S', windSpeed: 2.5 },
+        sunRise: '05:55', sunSet: '17:44', tideName: '中潮', tideHigh: '03:40', tideLow: '10:55'
+      },
+
+      // 2. 【敦賀・美浜】
+      suishohama: {
+        id: '2067',
+        name: '水晶浜',
+        areaGroup: 'tsuruga_mihama',
+        area: '敦賀半島西岸・竹波',
+        beachFacing: 'W',
+        nowphasRef: 'tsuruga',
+        nowphasName: '敦賀港 (122)',
+        dist: '約9km',
+        offshoreWinds: ['E', 'ENE', 'ESE'],
+        bestWaveDirs: ['NE', 'NNE', 'N', 'NNW', 'NW', 'WNW', 'W'],
+        minPlayWave: 0.7,
+        chestHeadWave: 1.0,
+        closeoutWave: 1.5,
+        minPeriod: 5.0,
+        bestPeriod: 7.5,
+        defaultForecast: { wave: 1.0, period: 7.2, waveDir: 'NE', windDir: 'E', windSpeed: 2.3 },
+        sunRise: '05:52', sunSet: '17:41', tideName: '中潮', tideHigh: '03:34', tideLow: '10:47'
+      },
+      sugahama: {
+        id: '2053',
+        name: '菅浜',
+        areaGroup: 'tsuruga_mihama',
+        area: '若狭・美浜町菅浜',
+        beachFacing: 'NW',
+        nowphasRef: 'tsuruga',
+        nowphasName: '敦賀港 (122)',
+        dist: '約10km',
+        offshoreWinds: ['E', 'ENE', 'ESE'],
+        bestWaveDirs: ['N', 'NNW', 'NW', 'WNW', 'W'],
+        minPlayWave: 1.6,
+        chestHeadWave: 1.8,
+        closeoutWave: 2.6,
+        minPeriod: 6.0,
+        bestPeriod: 8.0,
+        defaultForecast: { wave: 1.8, period: 7.8, waveDir: 'N', windDir: 'E', windSpeed: 2.0 },
+        sunRise: '05:52', sunSet: '17:41', tideName: '中潮', tideHigh: '03:34', tideLow: '10:47'
+      },
+      kurosaki: {
+        id: '2033',
+        name: '黒崎',
+        areaGroup: 'tsuruga_mihama',
+        area: '敦賀半島西・坂尻',
+        beachFacing: 'N',
+        nowphasRef: 'tsuruga',
+        nowphasName: '敦賀港 (122)',
+        dist: '約12km',
+        offshoreWinds: ['SE', 'SSE', 'ESE'],
+        bestWaveDirs: ['N', 'NNE', 'NE'],
+        minPlayWave: 0.7,
+        chestHeadWave: 1.3,
+        closeoutWave: 1.8,
+        minPeriod: 6.0,
+        bestPeriod: 7.5,
+        defaultForecast: { wave: 1.2, period: 7.4, waveDir: 'N', windDir: 'SE', windSpeed: 2.4 },
+        sunRise: '05:52', sunSet: '17:41', tideName: '中潮', tideHigh: '03:34', tideLow: '10:47'
+      },
+
+      // 3. 【越前・三国】
+      echizen: {
+        id: '2054',
+        name: '越前リーフ',
+        areaGroup: 'echizen_mikuni',
+        area: '越前海岸・丹生郡越前町',
+        beachFacing: 'W',
+        nowphasRef: 'fukui',
+        nowphasName: '福井港 (117)',
+        dist: '約15km',
+        offshoreWinds: ['E', 'ENE', 'ESE'],
+        bestWaveDirs: ['NE', 'NNE', 'N'],
+        minPlayWave: 0.9,
+        chestHeadWave: 1.1,
+        closeoutWave: 1.6,
+        minPeriod: 6.0,
+        bestPeriod: 7.5,
+        defaultForecast: { wave: 1.1, period: 7.5, waveDir: 'NE', windDir: 'E', windSpeed: 2.8 },
+        sunRise: '05:50', sunSet: '17:39', tideName: '中潮', tideHigh: '03:30', tideLow: '10:40'
+      },
+      takasu: {
+        id: '2062',
+        name: '鷹巣',
+        areaGroup: 'echizen_mikuni',
+        area: '福井市・鷹巣海水浴場',
+        beachFacing: 'WNW',
+        nowphasRef: 'fukui',
+        nowphasName: '福井港 (117)',
+        dist: '約12km',
+        offshoreWinds: ['E', 'ESE', 'SE'],
+        bestWaveDirs: ['WNW', 'NW', 'NNW', 'W'],
+        minPlayWave: 0.8,
+        chestHeadWave: 1.2,
+        closeoutWave: 1.8,
+        minPeriod: 5.5,
+        bestPeriod: 7.5,
+        defaultForecast: { wave: 1.0, period: 7.0, waveDir: 'WNW', windDir: 'E', windSpeed: 2.6 },
+        sunRise: '05:50', sunSet: '17:39', tideName: '中潮', tideHigh: '03:30', tideLow: '10:40'
+      },
+      mikuni: {
+        id: '2098',
+        name: '三国サンセット',
+        areaGroup: 'echizen_mikuni',
+        area: '坂井市三国町宿・米納津',
+        beachFacing: 'W',
+        nowphasRef: 'fukui',
+        nowphasName: '福井港 (117)',
+        dist: '約2km',
+        offshoreWinds: ['E', 'ENE', 'ESE'],
+        bestWaveDirs: ['W', 'WNW', 'NW', 'NNW'],
+        minPlayWave: 0.8,
+        chestHeadWave: 1.3,
+        closeoutWave: 2.0,
+        minPeriod: 5.5,
+        bestPeriod: 7.5,
+        defaultForecast: { wave: 1.2, period: 7.2, waveDir: 'WNW', windDir: 'E', windSpeed: 2.4 },
+        sunRise: '05:50', sunSet: '17:39', tideName: '中潮', tideHigh: '03:30', tideLow: '10:40'
+      },
+      hamaji: {
+        id: '2089',
+        name: '浜地',
+        areaGroup: 'echizen_mikuni',
+        area: '坂井市三国町・浜地海岸',
+        beachFacing: 'NW',
+        nowphasRef: 'fukui',
+        nowphasName: '福井港 (117)',
+        dist: '約4km',
+        offshoreWinds: ['S', 'SSE', 'SE'],
+        bestWaveDirs: ['W', 'WNW', 'NW'],
+        minPlayWave: 0.7,
+        chestHeadWave: 1.2,
+        closeoutWave: 2.0,
+        minPeriod: 5.0,
+        bestPeriod: 7.5,
+        defaultForecast: { wave: 1.0, period: 7.0, waveDir: 'NW', windDir: 'SSE', windSpeed: 2.2 },
+        sunRise: '05:50', sunSet: '17:39', tideName: '中潮', tideHigh: '03:30', tideLow: '10:40'
+      },
+      namimatsu: {
+        id: '1905',
+        name: '波松',
+        areaGroup: 'echizen_mikuni',
+        area: 'あわら市・波松海岸',
+        beachFacing: 'NW',
+        nowphasRef: 'fukui',
+        nowphasName: '福井港 (117)',
+        dist: '約8km',
+        offshoreWinds: ['ESE', 'SE', 'E'],
+        bestWaveDirs: ['W', 'WNW', 'NW'],
+        minPlayWave: 0.6,
+        chestHeadWave: 1.2,
+        closeoutWave: 1.8,
+        minPeriod: 5.0,
+        bestPeriod: 7.5,
+        defaultForecast: { wave: 1.1, period: 7.1, waveDir: 'WNW', windDir: 'ESE', windSpeed: 2.5 },
+        sunRise: '05:50', sunSet: '17:39', tideName: '中潮', tideHigh: '03:30', tideLow: '10:40'
+      },
+      shioya: {
+        id: '1905',
+        name: '塩谷',
+        areaGroup: 'echizen_mikuni',
+        area: 'あわら市/加賀市境・塩屋海岸',
+        beachFacing: 'WNW',
+        nowphasRef: 'fukui',
+        nowphasName: '福井港 (117)',
+        dist: '約10km',
+        offshoreWinds: ['SE', 'ESE', 'E'],
+        bestWaveDirs: ['W', 'WNW', 'NW'],
+        minPlayWave: 0.7,
+        chestHeadWave: 1.2,
+        closeoutWave: 2.0,
+        minPeriod: 5.5,
+        bestPeriod: 7.5,
+        defaultForecast: { wave: 1.0, period: 7.0, waveDir: 'WNW', windDir: 'SE', windSpeed: 2.3 },
+        sunRise: '05:50', sunSet: '17:39', tideName: '中潮', tideHigh: '03:30', tideLow: '10:40'
+      },
+
+      // 4. 【石川・能登】
+      uchinada: {
+        id: '1873',
+        name: '内灘',
+        areaGroup: 'ishikawa_noto',
+        area: '河北郡内灘町・内灘海岸',
+        beachFacing: 'WNW',
+        nowphasRef: 'kanazawa',
+        nowphasName: '金沢港 (106)',
+        dist: '約3km',
+        offshoreWinds: ['ESE', 'SE', 'E'],
+        bestWaveDirs: ['NW', 'WNW', 'W'],
+        minPlayWave: 0.7,
+        chestHeadWave: 1.3,
+        closeoutWave: 2.2,
+        minPeriod: 5.5,
+        bestPeriod: 7.5,
+        defaultForecast: { wave: 1.1, period: 7.2, waveDir: 'NW', windDir: 'ESE', windSpeed: 2.6 },
+        sunRise: '05:48', sunSet: '17:37', tideName: '中潮', tideHigh: '03:25', tideLow: '10:35'
+      },
+      taki_marina: {
+        id: '1931',
+        name: '滝マリーナ',
+        areaGroup: 'ishikawa_noto',
+        area: '羽咋市滝町・滝港マリーナ',
+        beachFacing: 'WSW',
+        nowphasRef: 'kanazawa',
+        nowphasName: '金沢港 (106)',
+        dist: '約35km',
+        offshoreWinds: ['NE', 'ENE', 'E'],
+        bestWaveDirs: ['W', 'WNW', 'NW'],
+        minPlayWave: 0.9,
+        chestHeadWave: 1.5,
+        closeoutWave: 2.8,
+        minPeriod: 6.0,
+        bestPeriod: 8.0,
+        defaultForecast: { wave: 1.3, period: 7.5, waveDir: 'WNW', windDir: 'ENE', windSpeed: 2.4 },
+        sunRise: '05:47', sunSet: '17:36', tideName: '中潮', tideHigh: '03:20', tideLow: '10:30'
+      },
+      taki_reef: {
+        id: '1929',
+        name: '滝リーフ',
+        areaGroup: 'ishikawa_noto',
+        area: '羽咋市滝町・滝港リーフ',
+        beachFacing: 'WSW',
+        nowphasRef: 'kanazawa',
+        nowphasName: '金沢港 (106)',
+        dist: '約35km',
+        offshoreWinds: ['NE', 'ENE', 'E'],
+        bestWaveDirs: ['W', 'WNW', 'NW'],
+        minPlayWave: 1.0,
+        chestHeadWave: 1.5,
+        closeoutWave: 2.8,
+        minPeriod: 6.5,
+        bestPeriod: 8.5,
+        defaultForecast: { wave: 1.4, period: 7.8, waveDir: 'WNW', windDir: 'NE', windSpeed: 2.5 },
+        sunRise: '05:47', sunSet: '17:36', tideName: '中潮', tideHigh: '03:20', tideLow: '10:30'
+      },
+      shibagaki_pension: {
+        id: '1910',
+        name: '柴垣 ペンション前',
+        areaGroup: 'ishikawa_noto',
+        area: '羽咋市柴垣町・長手島南',
+        beachFacing: 'WSW',
+        nowphasRef: 'kanazawa',
+        nowphasName: '金沢港 (106)',
+        dist: '約40km',
+        offshoreWinds: ['ENE', 'E', 'ESE'],
+        bestWaveDirs: ['W', 'WNW'],
+        minPlayWave: 0.7,
+        chestHeadWave: 1.3,
+        closeoutWave: 2.0,
+        minPeriod: 5.5,
+        bestPeriod: 7.5,
+        defaultForecast: { wave: 1.0, period: 7.1, waveDir: 'W', windDir: 'E', windSpeed: 2.3 },
+        sunRise: '05:47', sunSet: '17:36', tideName: '中潮', tideHigh: '03:20', tideLow: '10:30'
+      },
+      shibagaki_kita: {
+        id: '1911',
+        name: '柴垣 北',
+        areaGroup: 'ishikawa_noto',
+        area: '羽咋市柴垣町・長手島北',
+        beachFacing: 'NW',
+        nowphasRef: 'kanazawa',
+        nowphasName: '金沢港 (106)',
+        dist: '約40km',
+        offshoreWinds: ['ESE', 'SE'],
+        bestWaveDirs: ['W', 'WNW', 'NW'],
+        minPlayWave: 0.6,
+        chestHeadWave: 1.2,
+        closeoutWave: 1.8,
+        minPeriod: 5.0,
+        bestPeriod: 7.5,
+        defaultForecast: { wave: 1.1, period: 7.2, waveDir: 'NW', windDir: 'SE', windSpeed: 2.4 },
+        sunRise: '05:47', sunSet: '17:36', tideName: '中潮', tideHigh: '03:20', tideLow: '10:30'
+      },
+
+      // 5. 【伊勢志摩】
+      kounohama: {
+        id: '7195',
+        name: '国府の浜',
+        areaGroup: 'ise_shima',
+        area: '志摩市阿児町国府・国府白浜',
+        beachFacing: 'ESE',
+        nowphasRef: 'isewan',
+        nowphasName: '伊勢湾口沖 (816)',
+        dist: '約25km',
+        offshoreWinds: ['W', 'WNW', 'WSW', 'NW'],
+        bestWaveDirs: ['E', 'ESE', 'SE'],
+        minPlayWave: 0.5,
+        chestHeadWave: 1.1,
+        closeoutWave: 1.9,
+        minPeriod: 5.5,
+        bestPeriod: 8.0,
+        defaultForecast: { wave: 0.9, period: 7.5, waveDir: 'ESE', windDir: 'WNW', windSpeed: 2.8 },
+        sunRise: '05:49', sunSet: '17:34', tideName: '中潮', tideHigh: '05:10', tideLow: '11:20'
+      },
+      ichigohama: {
+        id: '11991',
+        name: '市後浜',
+        areaGroup: 'ise_shima',
+        area: '志摩市志摩町・阿児町志島',
+        beachFacing: 'ESE',
+        nowphasRef: 'isewan',
+        nowphasName: '伊勢湾口沖 (816)',
+        dist: '約23km',
+        offshoreWinds: ['W', 'WNW', 'WSW'],
+        bestWaveDirs: ['E', 'ESE', 'SE'],
+        minPlayWave: 0.8,
+        chestHeadWave: 1.3,
+        closeoutWave: 2.3,
+        minPeriod: 6.0,
+        bestPeriod: 8.5,
+        defaultForecast: { wave: 1.1, period: 7.8, waveDir: 'ESE', windDir: 'W', windSpeed: 2.6 },
+        sunRise: '05:49', sunSet: '17:34', tideName: '中潮', tideHigh: '05:10', tideLow: '11:20'
+      },
+      nambari: {
+        id: '51130',
+        name: '南張',
+        areaGroup: 'ise_shima',
+        area: '志摩市浜島町南張',
+        beachFacing: 'S',
+        nowphasRef: 'owase',
+        nowphasName: '三重尾鷲沖 (811)',
+        dist: '約30km',
+        offshoreWinds: ['N', 'NNW', 'NNE'],
+        bestWaveDirs: ['S', 'SSW'],
+        minPlayWave: 1.3,
+        chestHeadWave: 1.6,
+        closeoutWave: 3.0,
+        minPeriod: 6.5,
+        bestPeriod: 9.0,
+        defaultForecast: { wave: 1.5, period: 8.2, waveDir: 'S', windDir: 'N', windSpeed: 2.5 },
+        sunRise: '05:50', sunSet: '17:35', tideName: '中潮', tideHigh: '05:15', tideLow: '11:25'
+      },
+
+      // 6. 【遠州灘】
+      terasawa: {
+        id: '3983',
+        name: '寺沢',
+        areaGroup: 'enshunada',
+        area: '愛知県豊橋市寺沢町・表浜',
+        beachFacing: 'SSW',
+        nowphasRef: 'isewan',
+        nowphasName: '伊勢湾口沖 (816)',
+        dist: '約30km',
+        offshoreWinds: ['N', 'NNW'],
+        bestWaveDirs: ['S', 'SSW', 'SW'],
+        minPlayWave: 0.6,
+        chestHeadWave: 1.2,
+        closeoutWave: 2.0,
+        minPeriod: 5.5,
+        bestPeriod: 8.0,
+        defaultForecast: { wave: 1.0, period: 7.2, waveDir: 'SSW', windDir: 'NNW', windSpeed: 3.0 },
+        sunRise: '05:46', sunSet: '17:31', tideName: '中潮', tideHigh: '05:00', tideLow: '11:10'
+      },
+      shiomizaka: {
+        id: '1183',
+        name: '潮見坂',
+        areaGroup: 'enshunada',
+        area: '静岡県湖西市白須賀・潮見坂',
+        beachFacing: 'S',
+        nowphasRef: 'omaezaki',
+        nowphasName: '静岡御前崎沖 (812)',
+        dist: '約50km',
+        offshoreWinds: ['N', 'NNW'],
+        bestWaveDirs: ['S', 'SSW', 'SE'],
+        minPlayWave: 0.6,
+        chestHeadWave: 1.2,
+        closeoutWave: 2.0,
+        minPeriod: 5.5,
+        bestPeriod: 8.0,
+        defaultForecast: { wave: 1.0, period: 7.3, waveDir: 'S', windDir: 'N', windSpeed: 3.1 },
+        sunRise: '05:45', sunSet: '17:30', tideName: '中潮', tideHigh: '04:55', tideLow: '11:05'
+      },
+      arai: {
+        id: '4891',
+        name: '新居',
+        areaGroup: 'enshunada',
+        area: '静岡県湖西市新居町・今切口西',
+        beachFacing: 'S',
+        nowphasRef: 'omaezaki',
+        nowphasName: '静岡御前崎沖 (812)',
+        dist: '約45km',
+        offshoreWinds: ['N', 'NW', 'NNW'],
+        bestWaveDirs: ['S', 'SE', 'SW'],
+        minPlayWave: 0.6,
+        chestHeadWave: 1.2,
+        closeoutWave: 2.2,
+        minPeriod: 6.0,
+        bestPeriod: 8.5,
+        defaultForecast: { wave: 1.1, period: 7.5, waveDir: 'S', windDir: 'NW', windSpeed: 2.9 },
+        sunRise: '05:45', sunSet: '17:30', tideName: '中潮', tideHigh: '04:55', tideLow: '11:05'
+      },
+      maisaka: {
+        id: '640',
+        name: '舞阪',
+        areaGroup: 'enshunada',
+        area: '静岡県浜松市中央区舞阪町・今切口東',
+        beachFacing: 'S',
+        nowphasRef: 'omaezaki',
+        nowphasName: '静岡御前崎沖 (812)',
+        dist: '約42km',
+        offshoreWinds: ['N', 'NNE', 'NNW'],
+        bestWaveDirs: ['S', 'SE', 'SW'],
+        minPlayWave: 0.6,
+        chestHeadWave: 1.2,
+        closeoutWave: 2.2,
+        minPeriod: 6.0,
+        bestPeriod: 8.5,
+        defaultForecast: { wave: 1.1, period: 7.5, waveDir: 'S', windDir: 'NNE', windSpeed: 2.8 },
+        sunRise: '05:45', sunSet: '17:30', tideName: '中潮', tideHigh: '04:55', tideLow: '11:05'
+      },
+      samejima: {
+        id: '2496',
+        name: '鮫島',
+        areaGroup: 'enshunada',
+        area: '静岡県磐田市鮫島・天竜川東',
+        beachFacing: 'S',
+        nowphasRef: 'omaezaki',
+        nowphasName: '静岡御前崎沖 (812)',
+        dist: '約30km',
+        offshoreWinds: ['NNW', 'N'],
+        bestWaveDirs: ['SE', 'ESE', 'SW', 'SSW'],
+        minPlayWave: 0.6,
+        chestHeadWave: 1.2,
+        closeoutWave: 2.0,
+        minPeriod: 5.5,
+        bestPeriod: 8.0,
+        defaultForecast: { wave: 1.0, period: 7.4, waveDir: 'SE', windDir: 'NNW', windSpeed: 3.2 },
+        sunRise: '05:44', sunSet: '17:29', tideName: '中潮', tideHigh: '04:50', tideLow: '11:00'
+      }
+    };
+
+    // ナウファス観測所サマリー（デフォルト値＆フォールバック）
+    const NOWPHAS_SUMMARY = {
+      tsuruga: { wave: '0.27', period: '4.2', dir: 'WNW', time: '18:40' },
+      fukui: { wave: '0.56', period: '5.5', dir: 'N', time: '18:40' },
+      kanazawa: { wave: '0.45', period: '5.0', dir: 'NW', time: '18:40' },
+      isewan: { wave: '0.62', period: '6.5', dir: 'SE', time: '18:40' },
+      omaezaki: { wave: '0.78', period: '7.2', dir: 'ESE', time: '18:40' },
+      owase: { wave: '0.85', period: '7.8', dir: 'SE', time: '18:40' }
+    };
+
+    let LIVE_DATA = null;
+
+    // 複数サーファーの投稿データ蓄積ストア（全24スポット自動永続化対応）
+    const STORAGE_KEY = 'SURF_BASE_USER_REPORTS_V1';
+    let userReports = {};
+    Object.keys(SPOT_RULES).forEach(k => {
+      userReports[k] = [];
+    });
+
+
+    function loadSavedReports() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          userReports = JSON.parse(saved);
+        }
+      } catch (e) {
+        console.warn('Failed to load user reports from localStorage:', e);
+      }
+    }
+
+    function saveUserReports() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(userReports));
+      } catch (e) {
+        console.warn('Failed to save user reports to localStorage:', e);
+      }
+    }
+
+    loadSavedReports();
+
+    function evaluateCondition(spotKey, wave, period, waveDir, windDir, windSpeed) {
+      const rule = SPOT_RULES[spotKey];
+      
+      if (wave >= rule.closeoutWave) {
+        return { rating: 'CLOSE', badgeClass: 'bg-rose-100 text-rose-800 border-rose-300', dot: 'bg-rose-500', size: 'クローズ危険', reason: 'サイズ過大・危険', color: 'text-rose-600 bg-rose-50 border-rose-200' };
+      }
+      if (wave < rule.minPlayWave) {
+        return { rating: 'FLAT', badgeClass: 'bg-slate-100 text-slate-700 border-slate-300', dot: 'bg-slate-400', size: 'スネ〜膝未満', reason: 'サイズ不足', color: 'text-slate-400 bg-slate-50 border-slate-200' };
+      }
+
+      let sizeStr = '腰〜胸';
+      if (wave >= rule.closeoutWave * 0.9) {
+        sizeStr = '頭オーバー〜クローズ寸前';
+      } else if (wave >= rule.chestHeadWave) {
+        sizeStr = '胸〜肩・頭';
+      } else if (wave >= (rule.minPlayWave + rule.chestHeadWave) / 2) {
+        sizeStr = '腰〜腹・胸';
+      } else if (wave >= rule.minPlayWave) {
+        sizeStr = '腿〜腰';
+      } else {
+        sizeStr = 'スネ〜膝';
+      }
+
+      const isOffshore = rule.offshoreWinds.includes(windDir);
+      const isWeakWind = parseFloat(windSpeed) <= 3.5;
+      const isGoodWaveDir = rule.bestWaveDirs.includes(waveDir);
+      const isGoodPeriod = period >= rule.minPeriod;
+
+      if (isOffshore && isGoodWaveDir && isGoodPeriod) {
+        if (period >= rule.bestPeriod - 0.5) {
+          return { rating: 'BEST', badgeClass: 'bg-emerald-100 text-emerald-900 border-emerald-400 font-black', dot: 'bg-emerald-500', size: sizeStr, reason: '極上オフショア＆好周期！', color: 'text-emerald-800 bg-emerald-100 font-bold border-emerald-300' };
+        }
+        return { rating: 'GOOD', badgeClass: 'bg-emerald-100 text-emerald-800 border-emerald-300', dot: 'bg-emerald-500', size: sizeStr, reason: '整ったオフショア波', color: 'text-emerald-700 bg-emerald-50 font-bold border-emerald-200' };
+      } else if (isOffshore || (isWeakWind && isGoodWaveDir)) {
+        return { rating: 'FAIR', badgeClass: 'bg-sky-100 text-sky-800 border-sky-300', dot: 'bg-sky-500', size: sizeStr, reason: '十分サーフ可能', color: 'text-sky-700 bg-sky-50 font-semibold border-sky-200' };
+      } else {
+        return { rating: 'POOR', badgeClass: 'bg-amber-100 text-amber-800 border-amber-300', dot: 'bg-amber-500', size: sizeStr, reason: 'オンショア・乱れ気味', color: 'text-amber-700 bg-amber-50 border-amber-200' };
+      }
+    }
+
+    // タイムライン生成（過去12h ＋ 海天気予報3.5日/84h）
+    function generateTimeline(spotKey) {
+      const rule = SPOT_RULES[spotKey];
+      const isFukui = rule.nowphasRef === 'fukui';
+      
+      const timeline = [];
+      const baseDate = new Date();
+      if (LIVE_DATA && LIVE_DATA.updatedAt) {
+        baseDate.setTime(new Date(LIVE_DATA.updatedAt).getTime());
+      }
+      const baseHours = baseDate.getHours();
+      baseDate.setMinutes(0, 0, 0);
+
+      let spotData = LIVE_DATA && LIVE_DATA.spots ? LIVE_DATA.spots[spotKey] : null;
+      if (!spotData && LIVE_DATA && LIVE_DATA.spots) {
+        // サンプルプレビュー用: 同水域の代表スポットの予報データと連動させてシミュレート
+        let refKey = 'suishohama';
+        if (rule.nowphasRef === 'fukui') refKey = 'echizen';
+        else if (rule.nowphasRef === 'kanazawa') refKey = 'echizen';
+        else if (rule.nowphasRef === 'isewan' || rule.nowphasRef === 'omaezaki' || rule.nowphasRef === 'owase') refKey = 'suishohama';
+        
+        const refData = LIVE_DATA.spots[refKey];
+        if (refData) {
+          spotData = JSON.parse(JSON.stringify(refData));
+        }
+      }
+      
+      // ナウファス実測履歴の取得（指定の観測所、未取得時は敦賀または福井をフォールバック参照）
+      let npHistory = [];
+      if (LIVE_DATA && LIVE_DATA.nowphas) {
+        if (LIVE_DATA.nowphas[rule.nowphasRef] && LIVE_DATA.nowphas[rule.nowphasRef].history) {
+          npHistory = LIVE_DATA.nowphas[rule.nowphasRef].history;
+        } else if (LIVE_DATA.nowphas.tsuruga && LIVE_DATA.nowphas.tsuruga.history) {
+          npHistory = LIVE_DATA.nowphas.tsuruga.history;
+        }
+      }
+
+      // -12h (過去12時間) から +84h (3.5日後) まで1時間刻み
+      for (let offset = -12; offset <= 84; offset++) {
+        const d = new Date(baseDate.getTime() + offset * 3600 * 1000);
+        const month = d.getMonth() + 1;
+        const day = d.getDate();
+        const dowIdx = d.getDay(); // 0:日, 1:月, 2:火, 3:水, 4:木, 5:金, 6:土
+        const dowNames = ['日', '月', '火', '水', '木', '金', '土'];
+        const dowStr = dowNames[dowIdx];
+        const dowColor = dowIdx === 0 ? 'text-rose-600 font-bold' : (dowIdx === 6 ? 'text-blue-600 font-bold' : 'text-slate-500 font-medium');
+
+        const hour = String(d.getHours()).padStart(2, '0');
+        const timeLabel = `${hour}:00`;
+        const dayLabel = `${month}/${day}`;
+
+        const isPast = offset < 0;
+        const isCurrent = offset === 0;
+
+        // 海天気予報（LIVE_DATAがあれば実データを使用、なければフォールバック推移）
+        let fcWave = rule.defaultForecast.wave + Math.sin(offset * 0.12) * 0.35 - (offset * 0.003);
+        fcWave = Math.max(0.4, Number(fcWave.toFixed(2)));
+
+        let fcPeriodNum = rule.defaultForecast.period + Math.cos(offset * 0.1) * 0.8;
+        fcPeriodNum = Math.max(4.0, Number(fcPeriodNum.toFixed(1)));
+        let fcPeriod = fcPeriodNum + '秒';
+
+        let fcWaveDir = rule.defaultForecast.waveDir;
+        let windDir = rule.defaultForecast.windDir;
+        let windSpeed = (2.0 + Math.abs(Math.sin(offset * 0.15)) * 2.5).toFixed(1);
+
+        // LIVE_DATAの海天気実測・予報とマッチング (hourData & wavePoints)
+        if (spotData && Array.isArray(spotData.hourData)) {
+          // 日付(dayLabel)と時刻(time)が完全一致する予報データを検索
+          const hItem = spotData.hourData.find(h => {
+            if (h.dayLabel && h.dayLabel !== dayLabel) return false;
+            return h.time === timeLabel;
+          }) || (offset >= 0 && offset < spotData.hourData.length ? spotData.hourData[offset] : null);
+            
+          if (hItem) {
+            if (hItem.windDir) windDir = hItem.windDir;
+            if (hItem.windSpeed !== null && hItem.windSpeed !== undefined) windSpeed = Number(hItem.windSpeed).toFixed(1);
+            if (hItem.wave !== null && hItem.wave !== undefined) fcWave = hItem.wave;
+            if (hItem.period !== null && hItem.period !== undefined) {
+              fcPeriodNum = hItem.period;
+              fcPeriod = hItem.period + '秒';
+            }
+            if (hItem.waveDir) fcWaveDir = hItem.waveDir;
+          }
+        } else if (spotData && Array.isArray(spotData.wavePoints) && spotData.wavePoints.length > 0) {
+          // 最も近い予報波高を取得
+          const wpMatch = spotData.wavePoints.find(p => p.time.endsWith(timeLabel));
+          if (wpMatch && wpMatch.wave !== undefined) {
+            fcWave = wpMatch.wave;
+          }
+        }
+
+        let realWave = '-';
+        let realPeriod = '-';
+        let realDir = '-';
+
+        let checkWave = fcWave;
+        let checkPeriod = fcPeriodNum;
+        let checkWaveDir = fcWaveDir;
+
+        let isEstimated = false;
+        // ナウファス実測履歴とのマッチング（通常実測を最優先・水圧推定補足値の識別対応）
+        if (isPast || isCurrent) {
+          let matchedNp = null;
+          if (npHistory && npHistory.length > 0) {
+            // その時間の正時、または直近20分・40分実測を検索（日付完全一致・新しい順）
+            const candidates = npHistory.slice().reverse().filter(n => {
+              if (n.dayLabel && n.dayLabel !== dayLabel) return false;
+              return n.time.startsWith(hour);
+            });
+            // 優先度1: 通常の超音波実測値（推定値でないもの）
+            matchedNp = candidates.find(n => !n.isEstimated && n.dir && n.dir !== '-');
+            // 優先度2: 通常実測がなければ最新の候補（推定値含む）
+            if (!matchedNp && candidates.length > 0) {
+              matchedNp = candidates[0];
+            }
+            // NOW行で該当正時の実測が未反映の場合は、本日最新の実測を採用
+            if (!matchedNp && isCurrent) {
+              const todayRecords = npHistory.filter(n => !n.dayLabel || n.dayLabel === dayLabel);
+              matchedNp = todayRecords.length > 0 ? todayRecords[todayRecords.length - 1] : npHistory[npHistory.length - 1];
+            }
+          }
+
+          if (matchedNp) {
+            isEstimated = !!matchedNp.isEstimated;
+            realWave = matchedNp.wave;
+            
+            // 周期の検証: 推定値かつ周期が3秒未満の異常値の場合は、予報周期を採用
+            const pVal = parseFloat(matchedNp.period);
+            if (isEstimated && (isNaN(pVal) || pVal < 3.0)) {
+              realPeriod = fcPeriod;
+            } else {
+              realPeriod = matchedNp.period + '秒';
+            }
+
+            realDir = matchedNp.dir && matchedNp.dir !== '-' ? matchedNp.dir : '-';
+            checkWave = parseFloat(matchedNp.wave);
+            checkPeriod = !isNaN(pVal) && pVal >= 3.0 ? pVal : fcPeriodNum;
+            checkWaveDir = realDir !== '-' ? realDir : fcWaveDir;
+          } else {
+            // 実測値が存在しない過去時刻は「-」表示（架空の数値を捏造しない）
+            realWave = '-';
+            realPeriod = '-';
+            realDir = '-';
+            checkWave = fcWave;
+            checkPeriod = fcPeriodNum;
+            checkWaveDir = fcWaveDir;
+          }
+        }
+
+        // ユーザー投稿があれば優先反映
+        const reportsAtHour = (userReports[spotKey] || []).filter(r => {
+          if (r.dayLabel && r.dayLabel !== dayLabel) return false;
+          return r.time.startsWith(hour);
+        });
+
+        const userVoteCount = reportsAtHour.length;
+        let rateInfo = evaluateCondition(spotKey, checkWave, checkPeriod, checkWaveDir, windDir, windSpeed);
+        let userSize = '';
+        if (userVoteCount > 0) {
+          const latestReport = reportsAtHour[reportsAtHour.length - 1];
+          rateInfo.rating = latestReport.rate;
+          if (latestReport.size) {
+            rateInfo.size = latestReport.size;
+            userSize = latestReport.size;
+          }
+
+          const rateColors = {
+            'BEST': 'text-emerald-900 bg-emerald-100 font-black border-emerald-400',
+            'GOOD': 'text-emerald-700 bg-emerald-50 font-bold border-emerald-300',
+            'FAIR': 'text-sky-700 bg-sky-50 font-semibold border-sky-300',
+            'POOR': 'text-amber-700 bg-amber-50 font-semibold border-amber-300',
+            'FLAT': 'text-slate-500 bg-slate-100 font-medium border-slate-300',
+            'CLOSE': 'text-rose-700 bg-rose-50 font-bold border-rose-300'
+          };
+          rateInfo.color = rateColors[latestReport.rate] || rateInfo.color;
+        }
+
+        timeline.push({
+          offset,
+          dayLabel,
+          dowStr,
+          dowColor,
+          time: timeLabel,
+          isPast,
+          isCurrent,
+          windDir,
+          windSpeed,
+          fcWave,
+          fcPeriod,
+          fcWaveDir,
+          realWave,
+          realPeriod,
+          realDir,
+          isEstimated,
+          rate: rateInfo.rating,
+          rateColor: rateInfo.color,
+          userVoteCount,
+          userSize,
+          sizeEstimate: rateInfo.size
+        });
+      }
+
+      return timeline;
+    }
+
+    let currentSpotKey = 'suishohama';
+
+    // エリア切り替え関数
+    function selectArea(areaKey) {
+      if (!AREAS[areaKey]) return;
+      currentAreaKey = areaKey;
+
+      // 1段目エリアタブのアクティブ表示更新
+      document.querySelectorAll('.area-tab').forEach(btn => {
+        btn.classList.remove('bg-sky-700', 'text-white', 'shadow-sm');
+        btn.classList.add('text-slate-600');
+        const badge = btn.querySelector('span:last-child');
+        if (badge) {
+          badge.className = 'text-[9px] bg-slate-300 px-1 rounded-full text-slate-700 font-normal';
+        }
+      });
+      const activeAreaBtn = document.getElementById('area-tab-' + areaKey);
+      if (activeAreaBtn) {
+        activeAreaBtn.classList.remove('text-slate-600');
+        activeAreaBtn.classList.add('bg-sky-700', 'text-white', 'shadow-sm');
+        const badge = activeAreaBtn.querySelector('span:last-child');
+        if (badge) {
+          badge.className = 'text-[9px] bg-sky-800/80 px-1 rounded-full text-sky-200 font-normal';
+        }
+      }
+
+      // 2段目スポットタブの再描画
+      renderSpotTabs();
+
+      // エリア内の先頭スポットを選択
+      const firstSpot = AREAS[areaKey].spots[0];
+      selectSpot(firstSpot);
+    }
+
+    // 2段目スポットボタンの動的生成
+    function renderSpotTabs() {
+      const container = document.getElementById('spotTabBar');
+      if (!container) return;
+
+      const currentSpots = AREAS[currentAreaKey].spots;
+      container.innerHTML = currentSpots.map(key => {
+        const spot = SPOT_RULES[key];
+        const isActive = (key === currentSpotKey);
+        const activeClass = isActive 
+          ? 'bg-sky-600 text-white shadow font-bold border-sky-600' 
+          : 'bg-white/80 text-slate-600 hover:text-slate-900 border-slate-200 shadow-sm';
+        return `
+          <button onclick="selectSpot('${key}')" id="tab-${key}" class="spot-tab flex-1 min-w-[70px] py-1.5 px-2.5 text-center rounded-xl text-xs transition duration-150 border ${activeClass} whitespace-nowrap">
+            <div class="font-bold text-xs">${spot.name}</div>
+          </button>
+        `;
+      }).join('');
+    }
+
+    // スポット切り替え関数
+    function selectSpot(spotKey) {
+      if (!SPOT_RULES[spotKey]) return;
+      currentSpotKey = spotKey;
+
+      // もし選ばれたスポットが現在のエリアと異なるならエリアも同期
+      const spotAreaGroup = SPOT_RULES[spotKey].areaGroup;
+      if (spotAreaGroup && spotAreaGroup !== currentAreaKey) {
+        currentAreaKey = spotAreaGroup;
+        selectArea(currentAreaKey);
+        return;
+      }
+
+      // 2段目スポットタブのアクティブスタイル更新
+      document.querySelectorAll('.spot-tab').forEach(btn => {
+        btn.classList.remove('bg-sky-600', 'text-white', 'shadow', 'font-bold', 'border-sky-600');
+        btn.classList.add('bg-white/80', 'text-slate-600', 'border-slate-200', 'shadow-sm');
+      });
+      const activeTab = document.getElementById('tab-' + spotKey);
+      if (activeTab) {
+        activeTab.classList.remove('bg-white/80', 'text-slate-600', 'border-slate-200', 'shadow-sm');
+        activeTab.classList.add('bg-sky-600', 'text-white', 'shadow', 'font-bold', 'border-sky-600');
+      }
+
+      renderSpot();
+    }
+
+    function renderSpot() {
+      const rule = SPOT_RULES[currentSpotKey];
+      const np = NOWPHAS_SUMMARY[rule.nowphasRef];
+
+      // ヒーロー情報
+      document.getElementById('spotHeroName').textContent = rule.name;
+      document.getElementById('spotAreaBadge').textContent = rule.area;
+      document.getElementById('nowphasName').textContent = rule.nowphasName;
+      document.getElementById('distBadge').textContent = rule.dist;
+
+      // 日の出・日の入り・タイド
+      let spotData = LIVE_DATA && LIVE_DATA.spots ? LIVE_DATA.spots[currentSpotKey] : null;
+      if (!spotData && LIVE_DATA && LIVE_DATA.spots) {
+        const refKey = (rule.nowphasRef === 'fukui') ? 'echizen' : 'suishohama';
+        const refData = LIVE_DATA.spots[refKey];
+        if (refData) {
+          spotData = JSON.parse(JSON.stringify(refData));
+          spotData.tide = { tideName: rule.tideName, tideHigh: rule.tideHigh, tideLow: rule.tideLow };
+          spotData.sun = { sunRise: rule.sunRise, sunSet: rule.sunSet };
+        }
+      }
+      const curTide = (spotData && spotData.tide) ? spotData.tide : { tideName: rule.tideName, tideHigh: rule.tideHigh, tideLow: rule.tideLow };
+      const curSun = (spotData && spotData.sun) ? spotData.sun : { sunRise: rule.sunRise, sunSet: rule.sunSet };
+
+      document.getElementById('sunRiseTime').textContent = curSun.sunRise;
+      document.getElementById('sunSetTime').textContent = curSun.sunSet;
+      document.getElementById('tideNameBadge').textContent = curTide.tideName;
+      document.getElementById('tideHigh').textContent = curTide.tideHigh;
+      document.getElementById('tideLow').textContent = curTide.tideLow;
+
+      // 実測
+      const isEst = !!np.isEstimated;
+      document.getElementById('heroRealWave').textContent = isEst ? `(${np.wave})` : np.wave;
+      const npPeriodVal = parseFloat(np.period);
+      document.getElementById('heroRealPeriod').textContent = (isEst && (isNaN(npPeriodVal) || npPeriodVal < 3.0)) ? '—' : np.period + '秒';
+      document.getElementById('heroRealDir').textContent = np.dir && np.dir !== '-' ? np.dir : '—';
+      document.getElementById('heroRealDirArrow').textContent = np.dir && np.dir !== '-' ? getArrow(np.dir) : '';
+      document.getElementById('heroRealTime').textContent = np.time + (isEst ? ' 推定' : ' 実測');
+
+      // 予報（LIVE_DATAがあれば現在時刻に最も近い予報、なければデフォルト値）
+      let defWave = rule.defaultForecast.wave;
+      let defPeriod = rule.defaultForecast.period;
+      let defWaveDir = rule.defaultForecast.waveDir;
+      let defWindSpeed = rule.defaultForecast.windSpeed;
+      let defWindDir = rule.defaultForecast.windDir;
+      let fcTimeLabel = '予報';
+
+      if (spotData && spotData.hourData && spotData.hourData.length > 0) {
+        // 現在のJST時刻に合わせてマッチング
+        const nowObj = new Date();
+        if (LIVE_DATA.updatedAt) nowObj.setTime(new Date(LIVE_DATA.updatedAt).getTime());
+        const curM = nowObj.getMonth() + 1;
+        const curD = nowObj.getDate();
+        const curH = String(nowObj.getHours()).padStart(2, '0');
+        const curDayLabel = `${curM}/${curD}`;
+        const curTimeLabel = `${curH}:00`;
+
+        const matchedH = spotData.hourData.find(h => {
+          if (h.dayLabel && h.dayLabel !== curDayLabel) return false;
+          return h.time === curTimeLabel;
+        }) || spotData.hourData[0];
+
+        if (matchedH) {
+          fcTimeLabel = matchedH.time + ' 予報';
+          if (matchedH.windDir) defWindDir = matchedH.windDir;
+          if (matchedH.windSpeed !== null && matchedH.windSpeed !== undefined) defWindSpeed = Number(matchedH.windSpeed);
+          if (matchedH.wave !== null && matchedH.wave !== undefined) defWave = matchedH.wave;
+          if (matchedH.period !== null && matchedH.period !== undefined) defPeriod = matchedH.period;
+          if (matchedH.waveDir) defWaveDir = matchedH.waveDir;
+        }
+      } else if (spotData && spotData.wavePoints && spotData.wavePoints.length > 0) {
+        defWave = spotData.wavePoints[0].wave;
+      }
+
+      document.getElementById('heroForecastTime').textContent = fcTimeLabel;
+      document.getElementById('heroForecastWave').textContent = Number(defWave).toFixed(2);
+      document.getElementById('heroForecastPeriod').textContent = Number(defPeriod).toFixed(1) + '秒';
+      document.getElementById('heroForecastWaveDir').textContent = defWaveDir;
+      document.getElementById('heroForecastWaveDirArrow').textContent = getArrow(defWaveDir);
+      document.getElementById('heroWindSpeed').textContent = defWindSpeed + 'm';
+      document.getElementById('heroWindDir').textContent = defWindDir;
+      document.getElementById('heroWindDirArrow').textContent = getArrow(defWindDir);
+
+      // レーティング評価実行
+      const evalRes = evaluateCondition(
+        currentSpotKey,
+        parseFloat(np.wave),
+        parseFloat(np.period),
+        np.dir,
+        defWindDir,
+        defWindSpeed
+      );
+
+      const badge = document.getElementById('surfConditionBadge');
+      badge.className = `inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border text-xs font-bold mt-0.5 ${evalRes.badgeClass}`;
+      badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full ${evalRes.dot} animate-ping"></span><span>${evalRes.rating}</span>`;
+      document.getElementById('waveSizeEstimate').textContent = evalRes.size;
+      document.getElementById('conditionReason').textContent = evalRes.reason;
+
+      // 差分計算
+      const diff = (parseFloat(np.wave) - Number(defWave)).toFixed(2);
+      const diffElem = document.getElementById('diffValue');
+      const diffComment = document.getElementById('diffComment');
+      
+      if (diff > 0.1) {
+        diffElem.textContent = `+${diff}m`;
+        diffElem.className = 'text-emerald-700 font-bold';
+        diffComment.textContent = '実測高め・狙い目';
+      } else if (diff < -0.15) {
+        diffElem.textContent = `${diff}m`;
+        diffElem.className = 'text-amber-700 font-bold';
+        diffComment.textContent = '湾内ウネリ減衰';
+      } else {
+        diffElem.textContent = `${diff}m`;
+        diffElem.className = 'text-sky-700 font-bold';
+        diffComment.textContent = '予報一致';
+      }
+
+      // ユーザー投稿サマリー更新
+      const spotReps = userReports[currentSpotKey];
+      document.getElementById('reportCountBadge').textContent = `${spotReps.length}票`;
+      if (spotReps.length > 0) {
+        const last = spotReps[spotReps.length - 1];
+        document.getElementById('userAvgRate').textContent = last.rate;
+        document.getElementById('userAvgSize').textContent = last.size;
+      } else {
+        document.getElementById('userAvgRate').textContent = '未報告';
+        document.getElementById('userAvgSize').textContent = '—';
+      }
+
+      renderTrendSvg(currentSpotKey);
+      renderTimeline();
+    }
+
+    // 波高推移ミニグラフ（3.5日スケール対応）
+    function renderTrendSvg(spotKey) {
+      const svg = document.getElementById('trendSvg');
+      svg.innerHTML = '';
+
+      const rule = SPOT_RULES[spotKey];
+      const maxVal = spotKey === 'sugahama' ? 3.0 : 2.0;
+
+      const timeline = generateTimeline(spotKey);
+      const pastItems = timeline.filter(t => t.offset <= 0); // 過去12h〜現在
+      const futureItems = timeline.filter(t => t.offset >= 0); // 現在〜未来84h
+
+      // 実測値がある場合は実測値、なければ予報値
+      const pastWaves = pastItems.map(t => t.realWave !== '-' ? parseFloat(t.realWave) : t.fcWave);
+      const currentWave = pastWaves[pastWaves.length - 1];
+
+      // 未来84hは3時間おきにサンプリングしてグラフ化
+      const futureWaves = [currentWave];
+      for (let i = 3; i <= 84; i += 3) {
+        const item = futureItems.find(t => t.offset === i);
+        if (item) {
+          futureWaves.push(item.fcWave);
+        }
+      }
+
+      const W = 320;
+      const H = 80;
+      const pad = 10;
+
+      const totalPoints = pastWaves.length + futureWaves.length - 1;
+      const stepX = (W - pad * 2) / totalPoints;
+
+      const minPlayY = H - pad - (rule.minPlayWave / maxVal) * (H - pad * 2);
+
+      const playLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      playLine.setAttribute('x1', '0');
+      playLine.setAttribute('x2', W);
+      playLine.setAttribute('y1', Math.max(5, minPlayY));
+      playLine.setAttribute('y2', Math.max(5, minPlayY));
+      playLine.setAttribute('stroke', '#cbd5e1');
+      playLine.setAttribute('stroke-dasharray', '2,2');
+      playLine.setAttribute('stroke-width', '1');
+      svg.appendChild(playLine);
+
+      let pastD = '';
+      let nowX = pad;
+      let nowY = H - pad;
+
+      pastWaves.forEach((val, idx) => {
+        const x = pad + idx * stepX;
+        const y = H - pad - (Math.max(0, val) / maxVal) * (H - pad * 2);
+        if (idx === 0) pastD += `M ${x},${y}`;
+        else pastD += ` L ${x},${y}`;
+        nowX = x;
+        nowY = y;
+      });
+
+      const pastPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      pastPath.setAttribute('d', pastD);
+      pastPath.setAttribute('fill', 'none');
+      pastPath.setAttribute('stroke', '#10b981');
+      pastPath.setAttribute('stroke-width', '2.5');
+      svg.appendChild(pastPath);
+
+      let futureD = `M ${nowX},${nowY}`;
+      futureWaves.slice(1).forEach((val, idx) => {
+        const x = nowX + (idx + 1) * stepX;
+        const y = H - pad - (Math.max(0, val) / maxVal) * (H - pad * 2);
+        futureD += ` L ${x},${y}`;
+      });
+
+      const futurePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      futurePath.setAttribute('d', futureD);
+      futurePath.setAttribute('fill', 'none');
+      futurePath.setAttribute('stroke', '#0284c7');
+      futurePath.setAttribute('stroke-width', '2');
+      futurePath.setAttribute('stroke-dasharray', '4,3');
+      svg.appendChild(futurePath);
+
+      const pin = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      pin.setAttribute('cx', nowX);
+      pin.setAttribute('cy', nowY);
+      pin.setAttribute('r', '4');
+      pin.setAttribute('fill', '#0284c7');
+      pin.setAttribute('stroke', '#ffffff');
+      pin.setAttribute('stroke-width', '2');
+      svg.appendChild(pin);
+
+      const txt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      txt.setAttribute('x', nowX);
+      txt.setAttribute('y', Math.max(14, nowY - 7));
+      txt.setAttribute('font-size', '8');
+      txt.setAttribute('font-weight', 'bold');
+      txt.setAttribute('fill', '#0369a1');
+      txt.setAttribute('text-anchor', 'middle');
+      txt.textContent = `${currentWave.toFixed(2)}m`;
+      svg.appendChild(txt);
+    }
+
+    function renderTimeline() {
+      const list = document.getElementById('timelineList');
+      list.innerHTML = '';
+      const data = generateTimeline(currentSpotKey);
+
+      data.forEach(row => {
+        const item = document.createElement('div');
+        const isCurrent = row.isCurrent;
+        
+        item.className = `grid grid-cols-12 items-center py-2 px-1 text-center transition ${
+          isCurrent 
+            ? 'bg-sky-100/70 border-y border-sky-300 font-bold' 
+            : row.isPast 
+              ? 'hover:bg-slate-50 opacity-95 bg-white' 
+              : 'hover:bg-slate-50 opacity-80 bg-slate-50/50'
+        }`;
+
+        let realContent = `<span class="text-slate-400 font-medium">-</span>`;
+        if (row.realWave !== '-') {
+          const waveDisplay = row.isEstimated ? `(${row.realWave})` : row.realWave;
+          realContent = `
+            <div class="flex items-center justify-center gap-0.5" ${row.isEstimated ? 'title="水圧センサーによる推定値"' : ''}>
+              ${row.realDir && row.realDir !== '-' ? `<span class="text-[10px] text-emerald-600 font-bold leading-none">${getArrow(row.realDir)}</span>` : ''}
+              <span class="font-teko text-base font-bold text-emerald-700 leading-none">${waveDisplay}<span class="text-[9px] ml-0.5">m</span></span>
+              <span class="text-[9px] text-slate-500 font-medium">(${row.realPeriod})</span>
+            </div>
+          `;
+        }
+
+        let windColor = 'text-slate-600';
+        if (parseFloat(row.windSpeed) >= 5) windColor = 'text-amber-600 font-bold';
+        if (parseFloat(row.windSpeed) >= 7) windColor = 'text-rose-600 font-bold';
+
+        const voteBadge = row.userVoteCount > 0 
+          ? `<span class="text-[8px] bg-amber-100 text-amber-800 px-1 py-0.2 rounded font-bold border border-amber-300" title="${row.userVoteCount}件のレポ">👥${row.userVoteCount}</span>` 
+          : '';
+
+        item.innerHTML = `
+          <!-- 日時 -->
+          <div class="col-span-2 text-left pl-1 leading-tight flex flex-col justify-center">
+            <span class="text-[9px] text-slate-400 font-medium leading-none">${row.dayLabel}</span>
+            <span class="text-[9px] ${row.dowColor} leading-none mt-0.5">(${row.dowStr})</span>
+            <div class="flex items-center gap-0.5 mt-0.5">
+              <span class="${isCurrent ? 'text-sky-800 font-black' : 'text-slate-700 font-semibold'} text-[11px] leading-none">
+                ${row.time}
+              </span>
+              ${isCurrent ? '<span class="text-[8px] text-sky-600 font-bold leading-none">NOW</span>' : ''}
+            </div>
+          </div>
+
+          <!-- 風向・風速（矢印付き） -->
+          <div class="col-span-2 flex flex-col items-center justify-center leading-tight">
+            <span class="text-[10px] text-sky-700 font-bold flex items-center gap-0.5">
+              <span>${getArrow(row.windDir)}</span>${row.windDir}
+            </span>
+            <span class="text-[11px] ${windColor}">${row.windSpeed}<span class="text-[8px]">m</span></span>
+          </div>
+
+          <!-- 海天気予報 【波高・周期】 -->
+          <div class="col-span-3 flex items-center justify-center gap-0.5 bg-sky-50/50 py-1 rounded">
+            ${row.fcWaveDir && row.fcWaveDir !== '-' ? `<span class="text-[10px] text-sky-600 font-bold leading-none">${getArrow(row.fcWaveDir)}</span>` : ''}
+            <span class="font-teko text-base font-bold text-sky-800 leading-none">${row.fcWave}<span class="text-[9px] ml-0.5">m</span></span>
+            <span class="text-[9px] text-sky-600 font-medium">(${row.fcPeriod})</span>
+          </div>
+
+          <!-- ナウファス実測 【波高・周期】 -->
+          <div class="col-span-3 bg-emerald-50/50 py-1 rounded">
+            ${realContent}
+          </div>
+
+          <!-- 1時間ごと波Rateバッジ ＆ 投票数 ＆ サイズ感 -->
+          <div class="col-span-2 flex flex-col items-center justify-center gap-0.5">
+            <div class="flex items-center justify-center gap-1">
+              <span class="text-[9px] px-1 py-0.5 rounded border leading-none font-bold ${row.rateColor}">
+                ${row.rate}
+              </span>
+              ${voteBadge}
+            </div>
+            ${row.userSize ? `<span class="text-[8px] text-amber-700 bg-amber-50 px-1 rounded font-bold border border-amber-200">${row.userSize}</span>` : `<span class="text-[8px] text-slate-400 font-medium">${row.sizeEstimate || ''}</span>`}
+          </div>
+        `;
+
+        list.appendChild(item);
+      });
+    }
+
+    let selectedRate = 'GOOD';
+
+    // 過去12時間の選択テーブル生成
+    function renderModalPastHours() {
+      const container = document.getElementById('modalPastHoursList');
+      container.innerHTML = '';
+
+      const rule = SPOT_RULES[currentSpotKey];
+      const isFukui = rule.nowphasRef === 'fukui';
+      const baseDate = new Date();
+      if (LIVE_DATA && LIVE_DATA.updatedAt) {
+        baseDate.setTime(new Date(LIVE_DATA.updatedAt).getTime());
+      }
+      baseDate.setMinutes(0, 0, 0);
+
+      const npHistory = LIVE_DATA && LIVE_DATA.nowphas && LIVE_DATA.nowphas[rule.nowphasRef] ? LIVE_DATA.nowphas[rule.nowphasRef].history : [];
+
+      // 過去12時間分（-11h 〜 0h/NOW）
+      for (let offset = 0; offset >= -11; offset--) {
+        const d = new Date(baseDate.getTime() + offset * 3600 * 1000);
+        const month = d.getMonth() + 1;
+        const day = d.getDate();
+        const dowIdx = d.getDay();
+        const dowNames = ['日', '月', '火', '水', '木', '金', '土'];
+        const dowStr = dowNames[dowIdx];
+        const dowColor = dowIdx === 0 ? 'text-rose-600 font-bold' : (dowIdx === 6 ? 'text-blue-600 font-bold' : 'text-slate-500 font-medium');
+
+        const hour = String(d.getHours()).padStart(2, '0');
+        const timeLabel = `${hour}:00`;
+        const dayLabel = `${month}/${day}`;
+        const isCurrent = offset === 0;
+
+        let rVal = '-';
+        let rPer = '-';
+        let matchedNp = null;
+        if (npHistory && npHistory.length > 0) {
+          const candidates = npHistory.slice().reverse().filter(n => n.time.startsWith(hour));
+          matchedNp = candidates.find(n => !n.isEstimated && n.dir && n.dir !== '-');
+          if (!matchedNp && candidates.length > 0) {
+            matchedNp = candidates[0];
+          }
+          if (!matchedNp && isCurrent) {
+            matchedNp = npHistory[npHistory.length - 1];
+          }
+        }
+
+        if (matchedNp) {
+          const isEst = !!matchedNp.isEstimated;
+          rVal = isEst ? `(${matchedNp.wave})` : matchedNp.wave;
+          const pVal = parseFloat(matchedNp.period);
+          rPer = (isEst && (isNaN(pVal) || pVal < 3.0)) ? '—' : matchedNp.period;
+        } else {
+          rVal = '-';
+          rPer = '-';
+        }
+
+        const reportsAtHour = (userReports[currentSpotKey] || []).filter(r => {
+          if (r.dayLabel && r.dayLabel !== dayLabel) return false;
+          return r.time.startsWith(hour);
+        });
+
+        // 直近2時間はデフォルトチェック
+        const isChecked = offset === 0 || offset === -1;
+
+        const row = document.createElement('div');
+        row.id = `modal-row-${offset}`;
+        row.className = `grid grid-cols-12 items-center py-2 px-2 hover:bg-slate-50 transition border-b border-slate-100 ${isChecked ? 'bg-sky-50/40' : 'bg-white opacity-70'}`;
+
+        // 過去のレポがあればその値を初期値に、なければFAIR / 腹〜胸
+        let initialRate = reportsAtHour.length > 0 ? reportsAtHour[reportsAtHour.length - 1].rate : 'FAIR';
+        let initialSize = reportsAtHour.length > 0 ? reportsAtHour[reportsAtHour.length - 1].size : '腹〜胸';
+
+        row.innerHTML = `
+          <!-- チェックボックス（入水時間） -->
+          <div class="col-span-1 text-center">
+            <input type="checkbox" name="reportHour" value="${offset}" data-day="${dayLabel}" data-time="${timeLabel}" ${isChecked ? 'checked' : ''} onchange="toggleHourRow(${offset}, this.checked)" class="hour-checkbox rounded text-sky-600 focus:ring-sky-500 w-4 h-4 cursor-pointer">
+          </div>
+
+          <!-- 時刻 -->
+          <div class="col-span-2 pl-1 font-bold text-slate-700">
+            <div class="text-[11px]">${timeLabel}</div>
+            <div class="text-[8px] ${dowColor} whitespace-nowrap">${dayLabel}(${dowStr}) ${isCurrent ? '<span class="bg-sky-100 text-sky-700 px-1 rounded font-bold">NOW</span>' : ''}</div>
+          </div>
+
+          <!-- ナウファス実測 -->
+          <div class="col-span-2 text-center leading-tight">
+            <span class="font-teko text-sm font-bold text-emerald-700 leading-none">${rVal}m</span>
+            <div class="text-[9px] text-slate-400 font-medium">(${rPer}s)</div>
+          </div>
+
+          <!-- 1時間ごとの個別Rate選択 -->
+          <div class="col-span-4 px-1">
+            <select id="rate-select-${offset}" ${isChecked ? '' : 'disabled'} class="hour-rate-select w-full text-[11px] py-1 px-1.5 rounded-lg border border-slate-200 bg-white font-bold text-slate-700 focus:ring-1 focus:ring-sky-500">
+              <option value="BEST" ${initialRate === 'BEST' ? 'selected' : ''} class="font-black text-emerald-800">BEST（極上）</option>
+              <option value="GOOD" ${initialRate === 'GOOD' ? 'selected' : ''} class="font-bold text-emerald-700">GOOD（良い）</option>
+              <option value="FAIR" ${initialRate === 'FAIR' ? 'selected' : ''} class="font-semibold text-sky-700">FAIR（普通）</option>
+              <option value="POOR" ${initialRate === 'POOR' ? 'selected' : ''} class="font-semibold text-amber-700">POOR（イマイチ）</option>
+              <option value="FLAT" ${initialRate === 'FLAT' ? 'selected' : ''} class="text-slate-500">FLAT（割れない）</option>
+              <option value="CLOSE" ${initialRate === 'CLOSE' ? 'selected' : ''} class="font-bold text-rose-700">CLOSE（危険）</option>
+            </select>
+          </div>
+
+          <!-- 1時間ごとの個別サイズ選択 -->
+          <div class="col-span-3">
+            <select id="size-select-${offset}" ${isChecked ? '' : 'disabled'} class="hour-size-select w-full text-[11px] py-1 px-1 rounded-lg border border-slate-200 bg-white font-medium text-slate-700 focus:ring-1 focus:ring-sky-500">
+              <option value="スネ〜膝" ${initialSize === 'スネ〜膝' ? 'selected' : ''}>スネ〜膝</option>
+              <option value="腿〜腰" ${initialSize === '腿〜腰' ? 'selected' : ''}>腿〜腰</option>
+              <option value="腰〜腹" ${initialSize === '腰〜腹' ? 'selected' : ''}>腰〜腹</option>
+              <option value="腹〜胸" ${initialSize === '腹〜胸' ? 'selected' : ''}>腹〜胸</option>
+              <option value="胸〜肩" ${initialSize === '胸〜肩' ? 'selected' : ''}>胸〜肩</option>
+              <option value="肩〜頭" ${initialSize === '肩〜頭' ? 'selected' : ''}>肩〜頭</option>
+              <option value="頭オーバー" ${initialSize === '頭オーバー' ? 'selected' : ''}>頭オーバー</option>
+            </select>
+          </div>
+        `;
+        container.appendChild(row);
+      }
+    }
+
+    // チェックボックスのON/OFFに応じて入力欄の活性化を連動
+    function toggleHourRow(offset, checked) {
+      const row = document.getElementById(`modal-row-${offset}`);
+      const rateSelect = document.getElementById(`rate-select-${offset}`);
+      const sizeSelect = document.getElementById(`size-select-${offset}`);
+
+      if (checked) {
+        row.classList.remove('opacity-70', 'bg-white');
+        row.classList.add('bg-sky-50/40');
+        rateSelect.disabled = false;
+        sizeSelect.disabled = false;
+      } else {
+        row.classList.add('opacity-70', 'bg-white');
+        row.classList.remove('bg-sky-50/40');
+        rateSelect.disabled = true;
+        sizeSelect.disabled = true;
+      }
+    }
+
+    function selectAllHours(recentOnly) {
+      const boxes = document.querySelectorAll('.hour-checkbox');
+      boxes.forEach((box, idx) => {
+        const offset = box.value;
+        const shouldCheck = recentOnly ? (idx === 0 || idx === 1) : false;
+        box.checked = shouldCheck;
+        toggleHourRow(offset, shouldCheck);
+      });
+    }
+
+    function openReportModal() {
+      renderModalPastHours();
+      document.getElementById('reportModal').classList.remove('hidden');
+      document.getElementById('reportModal').classList.add('flex');
+    }
+
+    function closeReportModal() {
+      document.getElementById('reportModal').classList.add('hidden');
+      document.getElementById('reportModal').classList.remove('flex');
+    }
+
+    function submitReport() {
+      const checkedBoxes = Array.from(document.querySelectorAll('.hour-checkbox:checked'));
+      if (checkedBoxes.length === 0) {
+        alert('海に入っていた時間帯（チェックボックス）を1つ以上選択してください。');
+        return;
+      }
+
+      const comment = document.getElementById('commentInput').value;
+      const spotReports = userReports[currentSpotKey] || [];
+      const submittedDetails = [];
+
+      checkedBoxes.forEach(box => {
+        const offset = box.value;
+        const dayLabel = box.dataset.day;
+        const timeLabel = box.dataset.time;
+        const rate = document.getElementById(`rate-select-${offset}`).value;
+        const size = document.getElementById(`size-select-${offset}`).value;
+
+        spotReports.push({
+          dayLabel: dayLabel,
+          time: timeLabel,
+          rate: rate,
+          size: size,
+          comment: comment,
+          user: 'あなた'
+        });
+
+        submittedDetails.push(`${timeLabel}: [${rate} / ${size}]`);
+      });
+
+      userReports[currentSpotKey] = spotReports;
+      saveUserReports();
+
+      closeReportModal();
+      const count = checkedBoxes.length;
+      alert(`【投稿完了】\n${SPOT_RULES[currentSpotKey].name}の${count}時間分に、各時間ごとの独立した波サイズ＆レートを登録しました！\n\n${submittedDetails.slice(0, 3).join('\n')}${submittedDetails.length > 3 ? '\n…他' : ''}\n\n1時間ごとの実測データと紐づき、タイムラインに即座に反映されました。`);
+      
+      renderSpot();
+    }
+
+    async function fetchSpotRules() {
+      try {
+        const res = await fetch('spot_rules.json?t=' + Date.now());
+        if (res.ok) {
+          const rulesData = await res.json();
+          for (const key of Object.keys(rulesData)) {
+            if (SPOT_RULES[key]) {
+              Object.assign(SPOT_RULES[key], rulesData[key]);
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('Spot rules fetch fallback to defaults:', e);
+      }
+    }
+
+    async function fetchLiveData() {
+      try {
+        await fetchSpotRules();
+        const res = await fetch('data.json?t=' + Date.now());
+        if (res.ok) {
+          const data = await res.json();
+          LIVE_DATA = data;
+          if (data.nowphas) {
+            ['tsuruga', 'fukui', 'kanazawa', 'isewan', 'omaezaki', 'owase'].forEach(k => {
+              if (data.nowphas[k] && data.nowphas[k].latest) {
+                NOWPHAS_SUMMARY[k] = data.nowphas[k].latest;
+              }
+            });
+          }
+          if (data.updatedAtLabel) {
+            const timeOnly = data.updatedAtLabel.split(' ')[1] || data.updatedAtLabel;
+            document.getElementById('lastUpdated').textContent = timeOnly;
+          }
+          renderSpot();
+        }
+      } catch (e) {
+        console.warn('Live data fetch fallback:', e);
+      }
+    }
+
+    function refreshData() {
+      const pullIndicator = document.getElementById('pullIndicator');
+      const pullText = document.getElementById('pullText');
+      const pullIcon = document.getElementById('pullIcon');
+
+      pullIndicator.classList.remove('opacity-0', '-translate-y-12');
+      pullIndicator.classList.add('opacity-100', 'translate-y-4');
+      pullText.textContent = 'データ更新中...';
+      pullIcon.classList.add('fa-spin');
+
+      return fetchLiveData().finally(() => {
+        pullText.textContent = '更新完了！';
+        setTimeout(() => {
+          pullIndicator.classList.add('opacity-0', '-translate-y-12');
+          pullIndicator.classList.remove('opacity-100', 'translate-y-4');
+          pullIcon.classList.remove('fa-spin');
+          pullText.textContent = '引いて最新データに更新';
+        }, 600);
+      });
+    }
+
+    // Pull-to-refresh（上から引っ張って更新）
+    let touchStartY = 0;
+    let isPulling = false;
+
+    window.addEventListener('touchstart', (e) => {
+      if (window.scrollY === 0) {
+        touchStartY = e.touches[0].clientY;
+        isPulling = true;
+      } else {
+        isPulling = false;
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (!isPulling || window.scrollY > 0) return;
+      const currentY = e.touches[0].clientY;
+      const diffY = currentY - touchStartY;
+      const pullIndicator = document.getElementById('pullIndicator');
+      const pullIcon = document.getElementById('pullIcon');
+      const pullText = document.getElementById('pullText');
+
+      if (diffY > 15) {
+        pullIndicator.classList.remove('opacity-0', '-translate-y-12');
+        pullIndicator.classList.add('opacity-100');
+        const pullProgress = Math.min(diffY, 70);
+        pullIndicator.style.transform = `translateY(${pullProgress}px)`;
+
+        if (diffY > 60) {
+          pullText.textContent = '指を離して更新';
+          pullIcon.style.transform = 'rotate(180deg)';
+        } else {
+          pullText.textContent = '引いて最新データに更新';
+          pullIcon.style.transform = 'rotate(0deg)';
+        }
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchend', (e) => {
+      if (!isPulling) return;
+      isPulling = false;
+      const pullIndicator = document.getElementById('pullIndicator');
+      pullIndicator.style.transform = '';
+
+      const changedY = e.changedTouches[0].clientY;
+      if (changedY - touchStartY > 60) {
+        refreshData();
+      } else {
+        pullIndicator.classList.add('opacity-0', '-translate-y-12');
+        pullIndicator.classList.remove('opacity-100');
+      }
+    }, { passive: true });
+
+    renderSpot();
+    fetchLiveData();
+  </script>
+</body>
+</html>
