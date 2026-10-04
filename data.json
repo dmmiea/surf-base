@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-10-04T21:58:32.232Z",
-  "updatedAtLabel": "2026/10/05 06:58",
+  "updatedAt": "2026-10-04T22:17:23.251Z",
+  "updatedAtLabel": "2026/10/05 07:17",
   "nowphas": {
     "tsuruga": {
       "latest": {
-        "time": "06:20",
+        "time": "06:40",
         "dayLabel": "10/5",
         "ymd": "20261005",
-        "wave": "0.84",
+        "wave": "0.89",
         "period": "1.5",
         "dir": "-",
         "isEstimated": true
@@ -840,15 +840,24 @@
           "period": "1.5",
           "dir": "-",
           "isEstimated": true
+        },
+        {
+          "time": "06:40",
+          "dayLabel": "10/5",
+          "ymd": "20261005",
+          "wave": "0.89",
+          "period": "1.5",
+          "dir": "-",
+          "isEstimated": true
         }
       ]
     },
     "fukui": {
       "latest": {
-        "time": "06:20",
+        "time": "06:40",
         "dayLabel": "10/5",
         "ymd": "20261005",
-        "wave": "0.66",
+        "wave": "0.68",
         "period": "7.4",
         "dir": "N",
         "isEstimated": false
@@ -1681,17 +1690,26 @@
           "period": "7.4",
           "dir": "N",
           "isEstimated": false
+        },
+        {
+          "time": "06:40",
+          "dayLabel": "10/5",
+          "ymd": "20261005",
+          "wave": "0.68",
+          "period": "7.4",
+          "dir": "N",
+          "isEstimated": false
         }
       ]
     },
     "kanazawa": {
       "latest": {
-        "time": "06:20",
+        "time": "06:40",
         "dayLabel": "10/5",
         "ymd": "20261005",
-        "wave": "0.49",
-        "period": "6.1",
-        "dir": "NE",
+        "wave": "0.53",
+        "period": "6.2",
+        "dir": "NNW",
         "isEstimated": false
       },
       "history": [
@@ -2521,6 +2539,15 @@
           "wave": "0.49",
           "period": "6.1",
           "dir": "NE",
+          "isEstimated": false
+        },
+        {
+          "time": "06:40",
+          "dayLabel": "10/5",
+          "ymd": "20261005",
+          "wave": "0.53",
+          "period": "6.2",
+          "dir": "NNW",
           "isEstimated": false
         }
       ]
