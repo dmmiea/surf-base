@@ -6,6 +6,12 @@
   <title>SURF BASE - 波レポ投稿＆答え合わせダッシュボード</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="SURF BASE">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
     
@@ -58,12 +64,19 @@
         </div>
       </div>
       
-      <div class="text-right whitespace-nowrap">
-        <div class="flex items-center justify-end space-x-1.5">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span class="text-[11px] font-bold text-emerald-600">LIVE</span>
+      <div class="flex items-center space-x-2">
+        <button onclick="openNotificationModal()" id="btnNotification" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition flex items-center justify-center relative shadow-sm border border-slate-200/80 active:scale-95" title="波予報プッシュ通知設定">
+          <i class="fa-regular fa-bell text-xs"></i>
+          <span id="notifStatusDot" class="w-2 h-2 rounded-full bg-emerald-500 absolute top-0.5 right-0.5 hidden"></span>
+        </button>
+
+        <div class="text-right whitespace-nowrap">
+          <div class="flex items-center justify-end space-x-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span class="text-[11px] font-bold text-emerald-600">LIVE</span>
+          </div>
+          <span id="lastUpdated" class="text-[10px] text-slate-400 font-medium whitespace-nowrap block">--:--</span>
         </div>
-        <span id="lastUpdated" class="text-[10px] text-slate-400 font-medium whitespace-nowrap block">--:--</span>
       </div>
     </div>
   </header>
@@ -1303,7 +1316,286 @@
       }
 
       // 2段目スポットタブの再描画
-      renderSpotTabs();
+      
+    // ==========================================
+    // WEB PUSH & 通知設定機能
+    // ==========================================
+    const VAPID_PUBLIC_KEY = 'BFSQAMCCvrwMz1i32UHuCHCS5hC9UHvRcnmo4ex4StB1ok-qh_KFFOOwZVBc6h_-GGHUOIbfgpsAsf5aQPvIdkk';
+    const NOTIF_PREFS_KEY = 'SURF_BASE_NOTIF_PREFS_V1';
+    let currentSubscription = null;
+
+    // Service Worker 登録
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').then(reg => {
+          console.log('[SW] Registered successfully:', reg.scope);
+          checkPushSubscriptionStatus();
+        }).catch(err => {
+          console.warn('[SW] Registration failed:', err);
+        });
+      });
+
+      navigator.serviceWorker.addEventListener('message', (event) => {
+        if (event.data && event.data.action === 'SELECT_SPOT') {
+          selectSpot(event.data.spotKey);
+        }
+      });
+    }
+
+    function checkPushSubscriptionStatus() {
+      if (!('Notification' in window) || !('serviceWorker' in navigator)) {
+        updateNotifUIStatus('unsupported');
+        return;
+      }
+
+      if (Notification.permission === 'granted') {
+        navigator.serviceWorker.ready.then(reg => {
+          reg.pushManager.getSubscription().then(sub => {
+            if (sub) {
+              currentSubscription = sub;
+              updateNotifUIStatus('granted');
+            } else {
+              updateNotifUIStatus('ready_to_subscribe');
+            }
+          });
+        });
+      } else if (Notification.permission === 'denied') {
+        updateNotifUIStatus('denied');
+      } else {
+        updateNotifUIStatus('default');
+      }
+    }
+
+    function updateNotifUIStatus(status) {
+      const statusText = document.getElementById('notifStatusText');
+      const btnToggle = document.getElementById('btnTogglePush');
+      const dot = document.getElementById('notifStatusDot');
+      const testContainer = document.getElementById('testNotifContainer');
+      const subArea = document.getElementById('subCodeArea');
+
+      if (!statusText || !btnToggle) return;
+
+      if (status === 'granted') {
+        statusText.innerHTML = '<span class="text-emerald-600 font-bold">✅ 有効（購読中）</span>';
+        btnToggle.textContent = '通知設定中';
+        btnToggle.className = 'px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300';
+        btnToggle.onclick = null;
+        if (dot) dot.classList.remove('hidden');
+        if (testContainer) testContainer.classList.remove('hidden');
+        if (subArea && currentSubscription) {
+          subArea.classList.remove('hidden');
+          const tokenInput = document.getElementById('subTokenInput');
+          if (tokenInput) tokenInput.value = JSON.stringify(currentSubscription);
+        }
+      } else if (status === 'denied') {
+        statusText.innerHTML = '<span class="text-rose-600 font-bold">❌ ブラウザで拒否されています</span>';
+        btnToggle.textContent = '設定から許可してください';
+        btnToggle.className = 'px-3 py-1 rounded-full text-xs font-bold bg-rose-50 text-rose-600 border border-rose-200';
+        btnToggle.disabled = true;
+        if (dot) dot.classList.add('hidden');
+        if (testContainer) testContainer.classList.add('hidden');
+      } else {
+        statusText.textContent = '未有効化（タップして開始）';
+        btnToggle.textContent = '通知を有効にする';
+        btnToggle.className = 'px-3.5 py-1.5 rounded-full text-xs font-bold bg-sky-600 text-white hover:bg-sky-700 shadow-sm active:scale-95';
+        btnToggle.onclick = requestPushSubscription;
+        btnToggle.disabled = false;
+        if (dot) dot.classList.add('hidden');
+        if (testContainer) testContainer.classList.add('hidden');
+      }
+    }
+
+    // URL Safe Base64 を Uint8Array に変換
+    function urlBase64ToUint8Array(base64String) {
+      const padding = '='.repeat((4 - base64String.length % 4) % 4);
+      const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
+      const rawData = window.atob(base64);
+      const outputArray = new Uint8Array(rawData.length);
+      for (let i = 0; i < rawData.length; ++i) {
+        outputArray[i] = rawData.charCodeAt(i);
+      }
+      return outputArray;
+    }
+
+    async function requestPushSubscription() {
+      if (!('Notification' in window)) {
+        alert('お使いのブラウザはWeb通知に対応していません。');
+        return;
+      }
+
+      try {
+        const permission = await Notification.requestPermission();
+        if (permission !== 'granted') {
+          updateNotifUIStatus('denied');
+          alert('通知が許可されませんでした。設定画面から通知を許可してください。');
+          return;
+        }
+
+        const reg = await navigator.serviceWorker.ready;
+        const sub = await reg.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY)
+        });
+
+        currentSubscription = sub;
+        updateNotifUIStatus('granted');
+        saveNotificationPreferences();
+        alert('🎉 プッシュ通知の登録が完了しました！\nテスト通知ボタンで動作を確認できます。');
+      } catch (err) {
+        console.error('Subscription error:', err);
+        alert('プッシュ通知の登録中にエラーが発生しました: ' + err.message);
+      }
+    }
+
+    function triggerTestNotification() {
+      if (!('Notification' in window) || Notification.permission !== 'granted') {
+        alert('通知が許可されていません');
+        return;
+      }
+
+      navigator.serviceWorker.ready.then(reg => {
+        reg.showNotification('🏄‍♂️ SURF BASE: テスト通知', {
+          body: 'iPhoneへのプッシュ通知接続が成功しました！波予報が届きます。',
+          icon: 'icons/icon-192.png',
+          badge: 'icons/icon-192.png',
+          vibrate: [100, 50, 100],
+          data: { url: './index.html' }
+        });
+      });
+    }
+
+    function copySubToken() {
+      const input = document.getElementById('subTokenInput');
+      if (!input) return;
+      input.select();
+      navigator.clipboard.writeText(input.value).then(() => {
+        const msg = document.getElementById('copyMsg');
+        if (msg) {
+          msg.textContent = '✅ コピーしました！チャット欄に貼り付けて送信してください';
+          msg.className = 'text-[9px] text-sky-600 font-bold';
+        }
+      });
+    }
+
+    function openNotificationModal() {
+      checkPushSubscriptionStatus();
+      renderFavSpotSelector();
+      loadNotificationPreferences();
+
+      // iOS PWA ガイドの表示切替（スタンドアロン起動時は非表示、Safariブラウザ時は表示）
+      const isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+      const guide = document.getElementById('iosPwaGuide');
+      if (guide) {
+        guide.style.display = isStandalone ? 'none' : 'block';
+      }
+
+      document.getElementById('notificationModal').classList.remove('hidden');
+    }
+
+    function closeNotificationModal() {
+      document.getElementById('notificationModal').classList.add('hidden');
+    }
+
+    function renderFavSpotSelector() {
+      const container = document.getElementById('favSpotList');
+      if (!container) return;
+
+      const prefs = getNotificationPreferences();
+      const favs = new Set(prefs.favSpots || []);
+
+      container.innerHTML = Object.keys(SPOT_RULES).map(key => {
+        const spot = SPOT_RULES[key];
+        const isChecked = favs.has(key);
+        return `
+          <label class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs cursor-pointer border transition ${isChecked ? 'bg-sky-600 text-white font-bold border-sky-600 shadow-sm' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'}">
+            <input type="checkbox" value="${key}" ${isChecked ? 'checked' : ''} onchange="onFavSpotChange(this)" class="sr-only">
+            <span>${spot.tabName || spot.name}</span>
+          </label>
+        `;
+      }).join('');
+    }
+
+    function onFavSpotChange(cb) {
+      const label = cb.closest('label');
+      if (cb.checked) {
+        label.className = 'inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs cursor-pointer border transition bg-sky-600 text-white font-bold border-sky-600 shadow-sm';
+      } else {
+        label.className = 'inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs cursor-pointer border transition bg-white text-slate-700 border-slate-200 hover:bg-slate-100';
+      }
+    }
+
+    function toggleAllFavSpots() {
+      const container = document.getElementById('favSpotList');
+      if (!container) return;
+      const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+      const allChecked = Array.from(checkboxes).every(c => c.checked);
+      checkboxes.forEach(c => {
+        c.checked = !allChecked;
+        onFavSpotChange(c);
+      });
+      document.getElementById('btnToggleAllFav').textContent = allChecked ? 'すべて選択' : '全解除';
+    }
+
+    function getNotificationPreferences() {
+      try {
+        const saved = localStorage.getItem(NOTIF_PREFS_KEY);
+        if (saved) return JSON.parse(saved);
+      } catch (e) {}
+      return {
+        morning: true,
+        evening: true,
+        instant: true,
+        autoPickup: true,
+        favSpots: ['suishohama', 'sugahama', 'kounohama']
+      };
+    }
+
+    function loadNotificationPreferences() {
+      const prefs = getNotificationPreferences();
+      const m = document.getElementById('timingMorning');
+      const e = document.getElementById('timingEvening');
+      const i = document.getElementById('timingInstant');
+      const a = document.getElementById('chkAutoPickup');
+
+      if (m) m.checked = !!prefs.morning;
+      if (e) e.checked = !!prefs.evening;
+      if (i) i.checked = !!prefs.instant;
+      if (a) a.checked = !!prefs.autoPickup;
+    }
+
+    function saveNotificationPreferences() {
+      const container = document.getElementById('favSpotList');
+      const favSpots = [];
+      if (container) {
+        container.querySelectorAll('input[type="checkbox"]:checked').forEach(c => favSpots.push(c.value));
+      }
+
+      const prefs = {
+        morning: document.getElementById('timingMorning')?.checked ?? true,
+        evening: document.getElementById('timingEvening')?.checked ?? true,
+        instant: document.getElementById('timingInstant')?.checked ?? true,
+        autoPickup: document.getElementById('chkAutoPickup')?.checked ?? true,
+        favSpots
+      };
+
+      try {
+        localStorage.setItem(NOTIF_PREFS_KEY, JSON.stringify(prefs));
+      } catch (e) {}
+
+      // もし購読情報があれば、設定も含めてトークン入力を更新
+      if (currentSubscription) {
+        const fullPayload = {
+          ...currentSubscription.toJSON(),
+          preferences: prefs
+        };
+        const tokenInput = document.getElementById('subTokenInput');
+        if (tokenInput) tokenInput.value = JSON.stringify(fullPayload);
+      }
+
+      closeNotificationModal();
+    }
+
+    renderSpotTabs();
 
       // エリア内の先頭スポットを選択
       const firstSpot = AREAS[areaKey].spots[0];

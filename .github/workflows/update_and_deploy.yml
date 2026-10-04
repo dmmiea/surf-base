@@ -30,16 +30,26 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install Dependencies
+        run: |
+          npm ci || npm install --production
+
       - name: Run Fetch Data Script
         run: |
           node scripts/fetch_data.js
 
-      - name: Commit and Push Updated data.json
+      - name: Send Push Notifications (Morning / Evening / Size-up Alerts)
+        env:
+          WEB_PUSH_SUBSCRIPTION: ${{ secrets.WEB_PUSH_SUBSCRIPTION }}
+        run: |
+          node scripts/send_push_notification.js
+
+      - name: Commit and Push Updated Data and Notification History
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add data.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: update live surf data [skip ci]" && git push)
+          git add data.json scripts/notification_history.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: update live surf data & notification history [skip ci]" && git push)
 
   deploy-pages:
     needs: update-data

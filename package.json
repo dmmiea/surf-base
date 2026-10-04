@@ -1,0 +1,13 @@
+{
+  "name": "surf-base",
+  "version": "1.0.0",
+  "description": "SURF BASE - Wave Forecast & Observation Dashboard",
+  "main": "scripts/fetch_data.js",
+  "scripts": {
+    "fetch": "node scripts/fetch_data.js",
+    "notify": "node scripts/send_push_notification.js"
+  },
+  "dependencies": {
+    "web-push": "^3.6.7"
+  }
+}
