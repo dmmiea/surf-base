@@ -1,16 +1,16 @@
 {
-  "updatedAt": "2026-10-05T06:56:49.919Z",
-  "updatedAtLabel": "2026/10/05 15:56",
+  "updatedAt": "2026-10-05T07:22:06.402Z",
+  "updatedAtLabel": "2026/10/05 16:22",
   "nowphas": {
     "tsuruga": {
       "latest": {
-        "time": "15:20",
+        "time": "16:00",
         "dayLabel": "10/5",
         "ymd": "20261005",
-        "wave": "0.17",
-        "period": "4.8",
-        "dir": "NNE",
-        "isEstimated": false
+        "wave": "0.88",
+        "period": "1.5",
+        "dir": "-",
+        "isEstimated": true
       },
       "history": [
         {
@@ -435,15 +435,33 @@
           "period": "4.8",
           "dir": "NNE",
           "isEstimated": false
+        },
+        {
+          "time": "15:40",
+          "dayLabel": "10/5",
+          "ymd": "20261005",
+          "wave": "0.85",
+          "period": "1.6",
+          "dir": "-",
+          "isEstimated": true
+        },
+        {
+          "time": "16:00",
+          "dayLabel": "10/5",
+          "ymd": "20261005",
+          "wave": "0.88",
+          "period": "1.5",
+          "dir": "-",
+          "isEstimated": true
         }
       ]
     },
     "fukui": {
       "latest": {
-        "time": "15:20",
+        "time": "16:00",
         "dayLabel": "10/5",
         "ymd": "20261005",
-        "wave": "0.46",
+        "wave": "0.53",
         "period": "5.2",
         "dir": "N",
         "isEstimated": false
@@ -871,16 +889,34 @@
           "period": "5.2",
           "dir": "N",
           "isEstimated": false
+        },
+        {
+          "time": "15:40",
+          "dayLabel": "10/5",
+          "ymd": "20261005",
+          "wave": "0.47",
+          "period": "5.0",
+          "dir": "N",
+          "isEstimated": false
+        },
+        {
+          "time": "16:00",
+          "dayLabel": "10/5",
+          "ymd": "20261005",
+          "wave": "0.53",
+          "period": "5.2",
+          "dir": "N",
+          "isEstimated": false
         }
       ]
     },
     "kanazawa": {
       "latest": {
-        "time": "15:20",
+        "time": "16:00",
         "dayLabel": "10/5",
         "ymd": "20261005",
-        "wave": "0.65",
-        "period": "3.7",
+        "wave": "0.77",
+        "period": "4.0",
         "dir": "WSW",
         "isEstimated": false
       },
@@ -1305,6 +1341,24 @@
           "ymd": "20261005",
           "wave": "0.65",
           "period": "3.7",
+          "dir": "WSW",
+          "isEstimated": false
+        },
+        {
+          "time": "15:40",
+          "dayLabel": "10/5",
+          "ymd": "20261005",
+          "wave": "0.74",
+          "period": "3.8",
+          "dir": "WSW",
+          "isEstimated": false
+        },
+        {
+          "time": "16:00",
+          "dayLabel": "10/5",
+          "ymd": "20261005",
+          "wave": "0.77",
+          "period": "4.0",
           "dir": "WSW",
           "isEstimated": false
         }
