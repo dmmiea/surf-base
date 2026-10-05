@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-10-05T01:35:18.583Z",
-  "updatedAtLabel": "2026/10/05 10:35",
+  "updatedAt": "2026-10-05T01:57:53.770Z",
+  "updatedAtLabel": "2026/10/05 10:57",
   "nowphas": {
     "tsuruga": {
       "latest": {
-        "time": "10:00",
+        "time": "10:20",
         "dayLabel": "10/5",
         "ymd": "20261005",
         "wave": "0.87",
@@ -939,17 +939,26 @@
           "period": "1.6",
           "dir": "-",
           "isEstimated": true
+        },
+        {
+          "time": "10:20",
+          "dayLabel": "10/5",
+          "ymd": "20261005",
+          "wave": "0.87",
+          "period": "1.6",
+          "dir": "-",
+          "isEstimated": true
         }
       ]
     },
     "fukui": {
       "latest": {
-        "time": "10:00",
+        "time": "10:20",
         "dayLabel": "10/5",
         "ymd": "20261005",
-        "wave": "0.57",
+        "wave": "0.58",
         "period": "7.3",
-        "dir": "N",
+        "dir": "NNW",
         "isEstimated": false
       },
       "history": [
@@ -1879,17 +1888,26 @@
           "period": "7.3",
           "dir": "N",
           "isEstimated": false
+        },
+        {
+          "time": "10:20",
+          "dayLabel": "10/5",
+          "ymd": "20261005",
+          "wave": "0.58",
+          "period": "7.3",
+          "dir": "NNW",
+          "isEstimated": false
         }
       ]
     },
     "kanazawa": {
       "latest": {
-        "time": "10:00",
+        "time": "10:20",
         "dayLabel": "10/5",
         "ymd": "20261005",
-        "wave": "0.46",
-        "period": "5.8",
-        "dir": "WSW",
+        "wave": "0.44",
+        "period": "5.9",
+        "dir": "NNE",
         "isEstimated": false
       },
       "history": [
@@ -2818,6 +2836,15 @@
           "wave": "0.46",
           "period": "5.8",
           "dir": "WSW",
+          "isEstimated": false
+        },
+        {
+          "time": "10:20",
+          "dayLabel": "10/5",
+          "ymd": "20261005",
+          "wave": "0.44",
+          "period": "5.9",
+          "dir": "NNE",
           "isEstimated": false
         }
       ]
