@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-10-05T08:50:10.835Z",
-  "updatedAtLabel": "2026/10/05 17:50",
+  "updatedAt": "2026-10-05T09:03:06.960Z",
+  "updatedAtLabel": "2026/10/05 18:03",
   "nowphas": {
     "tsuruga": {
       "latest": {
-        "time": "17:20",
+        "time": "17:40",
         "dayLabel": "10/5",
         "ymd": "20261005",
-        "wave": "0.67",
+        "wave": "0.68",
         "period": "1.6",
         "dir": "-",
         "isEstimated": true
@@ -489,15 +489,24 @@
           "period": "1.6",
           "dir": "-",
           "isEstimated": true
+        },
+        {
+          "time": "17:40",
+          "dayLabel": "10/5",
+          "ymd": "20261005",
+          "wave": "0.68",
+          "period": "1.6",
+          "dir": "-",
+          "isEstimated": true
         }
       ]
     },
     "fukui": {
       "latest": {
-        "time": "17:20",
+        "time": "17:40",
         "dayLabel": "10/5",
         "ymd": "20261005",
-        "wave": "0.44",
+        "wave": "0.41",
         "period": "4.6",
         "dir": "NNE",
         "isEstimated": false
@@ -979,16 +988,25 @@
           "period": "4.6",
           "dir": "NNE",
           "isEstimated": false
+        },
+        {
+          "time": "17:40",
+          "dayLabel": "10/5",
+          "ymd": "20261005",
+          "wave": "0.41",
+          "period": "4.6",
+          "dir": "NNE",
+          "isEstimated": false
         }
       ]
     },
     "kanazawa": {
       "latest": {
-        "time": "17:20",
+        "time": "17:40",
         "dayLabel": "10/5",
         "ymd": "20261005",
-        "wave": "0.84",
-        "period": "4.1",
+        "wave": "0.82",
+        "period": "4.0",
         "dir": "W",
         "isEstimated": false
       },
@@ -1467,6 +1485,15 @@
           "ymd": "20261005",
           "wave": "0.84",
           "period": "4.1",
+          "dir": "W",
+          "isEstimated": false
+        },
+        {
+          "time": "17:40",
+          "dayLabel": "10/5",
+          "ymd": "20261005",
+          "wave": "0.82",
+          "period": "4.0",
           "dir": "W",
           "isEstimated": false
         }
