@@ -1,15 +1,15 @@
 {
-  "updatedAt": "2026-10-06T07:59:05.574Z",
-  "updatedAtLabel": "2026/10/06 16:59",
+  "updatedAt": "2026-10-06T08:20:27.830Z",
+  "updatedAtLabel": "2026/10/06 17:20",
   "nowphas": {
     "tsuruga": {
       "latest": {
-        "time": "16:20",
+        "time": "17:00",
         "dayLabel": "10/6",
         "ymd": "20261006",
-        "wave": "0.99",
-        "period": "5.7",
-        "dir": "NNE",
+        "wave": "1.10",
+        "period": "6.0",
+        "dir": "WNW",
         "isEstimated": false
       },
       "history": [
@@ -462,17 +462,35 @@
           "period": "5.7",
           "dir": "NNE",
           "isEstimated": false
+        },
+        {
+          "time": "16:40",
+          "dayLabel": "10/6",
+          "ymd": "20261006",
+          "wave": "1.02",
+          "period": "6.1",
+          "dir": "WNW",
+          "isEstimated": false
+        },
+        {
+          "time": "17:00",
+          "dayLabel": "10/6",
+          "ymd": "20261006",
+          "wave": "1.10",
+          "period": "6.0",
+          "dir": "WNW",
+          "isEstimated": false
         }
       ]
     },
     "fukui": {
       "latest": {
-        "time": "16:20",
+        "time": "17:00",
         "dayLabel": "10/6",
         "ymd": "20261006",
-        "wave": "1.43",
-        "period": "6.2",
-        "dir": "WNW",
+        "wave": "1.56",
+        "period": "6.5",
+        "dir": "NW",
         "isEstimated": false
       },
       "history": [
@@ -925,17 +943,35 @@
           "period": "6.2",
           "dir": "WNW",
           "isEstimated": false
+        },
+        {
+          "time": "16:40",
+          "dayLabel": "10/6",
+          "ymd": "20261006",
+          "wave": "1.41",
+          "period": "6.3",
+          "dir": "NW",
+          "isEstimated": false
+        },
+        {
+          "time": "17:00",
+          "dayLabel": "10/6",
+          "ymd": "20261006",
+          "wave": "1.56",
+          "period": "6.5",
+          "dir": "NW",
+          "isEstimated": false
         }
       ]
     },
     "kanazawa": {
       "latest": {
-        "time": "16:20",
+        "time": "17:00",
         "dayLabel": "10/6",
         "ymd": "20261006",
-        "wave": "1.14",
-        "period": "5.8",
-        "dir": "W",
+        "wave": "1.27",
+        "period": "5.7",
+        "dir": "WNW",
         "isEstimated": false
       },
       "history": [
@@ -1387,6 +1423,24 @@
           "wave": "1.14",
           "period": "5.8",
           "dir": "W",
+          "isEstimated": false
+        },
+        {
+          "time": "16:40",
+          "dayLabel": "10/6",
+          "ymd": "20261006",
+          "wave": "1.08",
+          "period": "5.8",
+          "dir": "WNW",
+          "isEstimated": false
+        },
+        {
+          "time": "17:00",
+          "dayLabel": "10/6",
+          "ymd": "20261006",
+          "wave": "1.27",
+          "period": "5.7",
+          "dir": "WNW",
           "isEstimated": false
         }
       ]
