@@ -1,1576 +1,1090 @@
 {
-  "updatedAt": "2026-10-06T19:59:09.138Z",
-  "updatedAtLabel": "2026/10/07 04:59",
+  "updatedAt": "2026-10-08T10:56:56.270Z",
+  "updatedAtLabel": "2026/10/08 19:56",
   "nowphas": {
     "tsuruga": {
       "latest": {
-        "time": "04:20",
-        "dayLabel": "10/7",
-        "ymd": "20261007",
-        "wave": "1.13",
-        "period": "6.6",
-        "dir": "NNW",
+        "time": "19:20",
+        "dayLabel": "10/8",
+        "ymd": "20261008",
+        "wave": "0.37",
+        "period": "4.9",
+        "dir": "WSW",
         "isEstimated": false
       },
       "history": [
         {
           "time": "00:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.16",
-          "period": "4.5",
-          "dir": "WNW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.66",
+          "period": "5.8",
+          "dir": "N",
           "isEstimated": false
         },
         {
           "time": "00:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.18",
-          "period": "4.2",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.65",
+          "period": "5.8",
           "dir": "NE",
           "isEstimated": false
         },
         {
           "time": "00:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.82",
-          "period": "1.5",
-          "dir": "-",
-          "isEstimated": true
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.61",
+          "period": "5.6",
+          "dir": "NW",
+          "isEstimated": false
         },
         {
           "time": "01:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.23",
-          "period": "4.0",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "01:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.19",
-          "period": "4.6",
-          "dir": "NNW",
-          "isEstimated": false
-        },
-        {
-          "time": "01:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.23",
-          "period": "4.7",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "02:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.25",
-          "period": "4.7",
-          "dir": "NNE",
-          "isEstimated": false
-        },
-        {
-          "time": "02:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.30",
-          "period": "4.3",
-          "dir": "NNW",
-          "isEstimated": false
-        },
-        {
-          "time": "02:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.28",
-          "period": "4.5",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.59",
+          "period": "5.7",
           "dir": "WNW",
           "isEstimated": false
         },
         {
-          "time": "03:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.32",
-          "period": "4.6",
-          "dir": "W",
+          "time": "01:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.60",
+          "period": "5.8",
+          "dir": "WNW",
           "isEstimated": false
         },
         {
-          "time": "03:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.30",
-          "period": "4.5",
+          "time": "01:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.60",
+          "period": "5.5",
           "dir": "N",
           "isEstimated": false
         },
         {
+          "time": "02:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.61",
+          "period": "5.6",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "02:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.54",
+          "period": "5.7",
+          "dir": "W",
+          "isEstimated": false
+        },
+        {
+          "time": "02:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.57",
+          "period": "5.9",
+          "dir": "W",
+          "isEstimated": false
+        },
+        {
+          "time": "03:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.53",
+          "period": "5.8",
+          "dir": "N",
+          "isEstimated": false
+        },
+        {
+          "time": "03:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.54",
+          "period": "5.7",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
           "time": "03:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.31",
-          "period": "4.5",
-          "dir": "SW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.60",
+          "period": "5.8",
+          "dir": "NNW",
           "isEstimated": false
         },
         {
           "time": "04:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.32",
-          "period": "4.6",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.53",
+          "period": "5.6",
           "dir": "NNE",
           "isEstimated": false
         },
         {
           "time": "04:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.33",
-          "period": "4.6",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "04:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.34",
-          "period": "4.4",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.52",
+          "period": "5.8",
           "dir": "NNW",
           "isEstimated": false
         },
         {
+          "time": "04:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.50",
+          "period": "5.5",
+          "dir": "NW",
+          "isEstimated": false
+        },
+        {
           "time": "05:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.35",
-          "period": "4.3",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.52",
+          "period": "5.7",
           "dir": "N",
           "isEstimated": false
         },
         {
           "time": "05:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.36",
-          "period": "4.3",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.59",
+          "period": "5.9",
           "dir": "SW",
           "isEstimated": false
         },
         {
           "time": "05:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.48",
-          "period": "4.1",
-          "dir": "N",
-          "isEstimated": false
-        },
-        {
-          "time": "06:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.64",
-          "period": "4.1",
-          "dir": "WSW",
-          "isEstimated": false
-        },
-        {
-          "time": "06:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.73",
-          "period": "4.3",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "06:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.73",
-          "period": "4.3",
-          "dir": "W",
-          "isEstimated": false
-        },
-        {
-          "time": "07:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.88",
-          "period": "4.6",
-          "dir": "NNE",
-          "isEstimated": false
-        },
-        {
-          "time": "07:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.87",
-          "period": "4.6",
-          "dir": "WSW",
-          "isEstimated": false
-        },
-        {
-          "time": "07:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
           "wave": "0.86",
           "period": "1.5",
           "dir": "-",
           "isEstimated": true
         },
         {
-          "time": "08:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.74",
-          "period": "4.8",
+          "time": "06:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.52",
+          "period": "5.6",
+          "dir": "WNW",
+          "isEstimated": false
+        },
+        {
+          "time": "06:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.55",
+          "period": "5.1",
           "dir": "NNE",
           "isEstimated": false
         },
         {
+          "time": "06:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.60",
+          "period": "5.1",
+          "dir": "WSW",
+          "isEstimated": false
+        },
+        {
+          "time": "07:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.56",
+          "period": "5.3",
+          "dir": "NE",
+          "isEstimated": false
+        },
+        {
+          "time": "07:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.50",
+          "period": "5.3",
+          "dir": "WSW",
+          "isEstimated": false
+        },
+        {
+          "time": "07:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.60",
+          "period": "4.5",
+          "dir": "NNE",
+          "isEstimated": false
+        },
+        {
+          "time": "08:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.50",
+          "period": "5.1",
+          "dir": "N",
+          "isEstimated": false
+        },
+        {
           "time": "08:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.75",
-          "period": "4.8",
-          "dir": "W",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.54",
+          "period": "5.3",
+          "dir": "WNW",
           "isEstimated": false
         },
         {
           "time": "08:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.84",
-          "period": "4.9",
-          "dir": "NW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.50",
+          "period": "5.3",
+          "dir": "NE",
           "isEstimated": false
         },
         {
           "time": "09:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.84",
-          "period": "5.0",
-          "dir": "NW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.52",
+          "period": "5.3",
+          "dir": "N",
           "isEstimated": false
         },
         {
           "time": "09:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.81",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.51",
+          "period": "5.4",
+          "dir": "N",
+          "isEstimated": false
+        },
+        {
+          "time": "09:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.53",
+          "period": "5.3",
+          "dir": "NE",
+          "isEstimated": false
+        },
+        {
+          "time": "10:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.47",
+          "period": "5.2",
+          "dir": "W",
+          "isEstimated": false
+        },
+        {
+          "time": "10:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.51",
+          "period": "5.3",
+          "dir": "NE",
+          "isEstimated": false
+        },
+        {
+          "time": "10:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.50",
+          "period": "5.4",
+          "dir": "NNE",
+          "isEstimated": false
+        },
+        {
+          "time": "11:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.45",
           "period": "5.3",
           "dir": "NNW",
           "isEstimated": false
         },
         {
-          "time": "09:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.79",
-          "period": "5.5",
-          "dir": "N",
-          "isEstimated": false
-        },
-        {
-          "time": "10:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.82",
-          "period": "5.7",
-          "dir": "NNE",
-          "isEstimated": false
-        },
-        {
-          "time": "10:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.87",
-          "period": "6.0",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "10:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.95",
-          "period": "6.3",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "11:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.86",
-          "period": "6.0",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
           "time": "11:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.98",
-          "period": "5.9",
-          "dir": "NW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.43",
+          "period": "5.2",
+          "dir": "SW",
           "isEstimated": false
         },
         {
           "time": "11:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.93",
-          "period": "6.5",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.42",
+          "period": "5.5",
           "dir": "WNW",
           "isEstimated": false
         },
         {
           "time": "12:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.98",
-          "period": "6.6",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "12:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.97",
-          "period": "6.1",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "12:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.94",
-          "period": "5.9",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.46",
+          "period": "5.5",
           "dir": "NW",
           "isEstimated": false
         },
         {
+          "time": "12:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.67",
+          "period": "1.5",
+          "dir": "-",
+          "isEstimated": true
+        },
+        {
+          "time": "12:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.77",
+          "period": "1.7",
+          "dir": "-",
+          "isEstimated": true
+        },
+        {
           "time": "13:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.89",
-          "period": "6.1",
-          "dir": "WNW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.44",
+          "period": "5.1",
+          "dir": "WSW",
           "isEstimated": false
         },
         {
           "time": "13:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.97",
-          "period": "5.7",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.47",
+          "period": "5.0",
           "dir": "WSW",
           "isEstimated": false
         },
         {
           "time": "13:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.98",
-          "period": "6.1",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "14:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.94",
-          "period": "5.6",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "14:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.96",
-          "period": "5.6",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "14:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.00",
-          "period": "5.7",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "15:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.98",
-          "period": "5.5",
-          "dir": "W",
-          "isEstimated": false
-        },
-        {
-          "time": "15:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.92",
-          "period": "5.4",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.50",
+          "period": "4.8",
           "dir": "WSW",
           "isEstimated": false
         },
         {
-          "time": "15:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.97",
-          "period": "5.4",
+          "time": "14:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.40",
+          "period": "4.7",
+          "dir": "W",
+          "isEstimated": false
+        },
+        {
+          "time": "14:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.51",
+          "period": "4.6",
           "dir": "N",
           "isEstimated": false
         },
         {
+          "time": "14:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.49",
+          "period": "4.6",
+          "dir": "NNE",
+          "isEstimated": false
+        },
+        {
+          "time": "15:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.50",
+          "period": "4.5",
+          "dir": "NE",
+          "isEstimated": false
+        },
+        {
+          "time": "15:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.47",
+          "period": "4.7",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "15:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.43",
+          "period": "4.7",
+          "dir": "SW",
+          "isEstimated": false
+        },
+        {
           "time": "16:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.03",
-          "period": "6.1",
-          "dir": "WNW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.50",
+          "period": "5.0",
+          "dir": "NE",
           "isEstimated": false
         },
         {
           "time": "16:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.99",
-          "period": "5.7",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.45",
+          "period": "4.8",
           "dir": "NNE",
           "isEstimated": false
         },
         {
           "time": "16:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.02",
-          "period": "6.1",
-          "dir": "WNW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.49",
+          "period": "4.5",
+          "dir": "NE",
           "isEstimated": false
         },
         {
           "time": "17:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.10",
-          "period": "6.0",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "17:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.03",
-          "period": "6.0",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "17:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.13",
-          "period": "6.5",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "18:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.07",
-          "period": "6.2",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "18:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.08",
-          "period": "6.3",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "18:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.04",
-          "period": "6.2",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "19:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.01",
-          "period": "6.2",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "19:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.06",
-          "period": "6.6",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "19:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.13",
-          "period": "6.7",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "20:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.07",
-          "period": "6.7",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "20:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.12",
-          "period": "6.5",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "20:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.15",
-          "period": "6.6",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "21:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.10",
-          "period": "6.7",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "21:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.10",
-          "period": "6.8",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "21:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.98",
-          "period": "6.5",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "22:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.04",
-          "period": "6.5",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "22:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.02",
-          "period": "6.5",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "22:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.18",
-          "period": "6.6",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "23:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.07",
-          "period": "6.5",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "23:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.11",
-          "period": "6.8",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "23:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.11",
-          "period": "6.5",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "00:00",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.07",
-          "period": "6.5",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "00:20",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.11",
-          "period": "6.7",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "00:40",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.14",
-          "period": "6.8",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "01:00",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.21",
-          "period": "6.5",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "01:20",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.12",
-          "period": "6.7",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "01:40",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.09",
-          "period": "6.7",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "02:00",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.13",
-          "period": "6.8",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "02:20",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.17",
-          "period": "6.5",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "02:40",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.06",
-          "period": "6.7",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "03:00",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.08",
-          "period": "6.5",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "03:20",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.14",
-          "period": "6.7",
-          "dir": "NNW",
-          "isEstimated": false
-        },
-        {
-          "time": "03:40",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.04",
-          "period": "6.7",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "04:00",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.08",
-          "period": "6.5",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "04:20",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.13",
-          "period": "6.6",
-          "dir": "NNW",
-          "isEstimated": false
-        }
-      ]
-    },
-    "fukui": {
-      "latest": {
-        "time": "04:20",
-        "dayLabel": "10/7",
-        "ymd": "20261007",
-        "wave": "1.55",
-        "period": "6.3",
-        "dir": "NW",
-        "isEstimated": false
-      },
-      "history": [
-        {
-          "time": "00:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.27",
-          "period": "5.2",
-          "dir": "NNW",
-          "isEstimated": false
-        },
-        {
-          "time": "00:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.26",
-          "period": "4.9",
-          "dir": "N",
-          "isEstimated": false
-        },
-        {
-          "time": "00:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.30",
-          "period": "5.1",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.46",
+          "period": "4.8",
           "dir": "W",
           "isEstimated": false
         },
         {
-          "time": "01:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.35",
-          "period": "4.9",
-          "dir": "E",
+          "time": "17:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.50",
+          "period": "4.8",
+          "dir": "NW",
           "isEstimated": false
         },
         {
-          "time": "01:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
+          "time": "17:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.50",
+          "period": "4.4",
+          "dir": "NNE",
+          "isEstimated": false
+        },
+        {
+          "time": "18:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.46",
+          "period": "4.7",
+          "dir": "NW",
+          "isEstimated": false
+        },
+        {
+          "time": "18:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.44",
+          "period": "4.9",
+          "dir": "SW",
+          "isEstimated": false
+        },
+        {
+          "time": "18:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.42",
+          "period": "5.1",
+          "dir": "NNE",
+          "isEstimated": false
+        },
+        {
+          "time": "19:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
           "wave": "0.40",
           "period": "4.9",
           "dir": "WNW",
           "isEstimated": false
         },
         {
-          "time": "01:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.44",
-          "period": "4.8",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "02:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.48",
-          "period": "4.7",
-          "dir": "WSW",
-          "isEstimated": false
-        },
-        {
-          "time": "02:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.50",
-          "period": "4.6",
-          "dir": "WSW",
-          "isEstimated": false
-        },
-        {
-          "time": "02:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.49",
-          "period": "4.6",
-          "dir": "WSW",
-          "isEstimated": false
-        },
-        {
-          "time": "03:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.49",
-          "period": "4.5",
-          "dir": "WSW",
-          "isEstimated": false
-        },
-        {
-          "time": "03:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.48",
-          "period": "4.5",
-          "dir": "W",
-          "isEstimated": false
-        },
-        {
-          "time": "03:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.52",
-          "period": "4.5",
-          "dir": "WSW",
-          "isEstimated": false
-        },
-        {
-          "time": "04:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.61",
-          "period": "4.3",
-          "dir": "WSW",
-          "isEstimated": false
-        },
-        {
-          "time": "04:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.75",
-          "period": "4.1",
-          "dir": "W",
-          "isEstimated": false
-        },
-        {
-          "time": "04:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.80",
-          "period": "4.1",
-          "dir": "WSW",
-          "isEstimated": false
-        },
-        {
-          "time": "05:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.91",
-          "period": "4.2",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "05:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.94",
-          "period": "4.3",
-          "dir": "WSW",
-          "isEstimated": false
-        },
-        {
-          "time": "05:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.94",
-          "period": "4.4",
-          "dir": "W",
-          "isEstimated": false
-        },
-        {
-          "time": "06:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.90",
-          "period": "4.3",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "06:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.92",
-          "period": "4.5",
-          "dir": "WSW",
-          "isEstimated": false
-        },
-        {
-          "time": "06:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.92",
-          "period": "4.6",
-          "dir": "NNW",
-          "isEstimated": false
-        },
-        {
-          "time": "07:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.91",
-          "period": "4.6",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "07:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.88",
-          "period": "4.8",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "07:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.94",
-          "period": "4.9",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "08:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.87",
-          "period": "5.1",
-          "dir": "W",
-          "isEstimated": false
-        },
-        {
-          "time": "08:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.94",
-          "period": "5.3",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "08:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.96",
-          "period": "5.3",
-          "dir": "W",
-          "isEstimated": false
-        },
-        {
-          "time": "09:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.02",
-          "period": "5.7",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "09:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.06",
-          "period": "6.1",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "09:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.13",
-          "period": "6.2",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "10:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.24",
-          "period": "6.6",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "10:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.27",
-          "period": "6.8",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "10:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.23",
-          "period": "6.6",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "11:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.23",
-          "period": "6.8",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "11:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.28",
-          "period": "6.7",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "11:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.16",
-          "period": "6.7",
-          "dir": "NNW",
-          "isEstimated": false
-        },
-        {
-          "time": "12:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.25",
-          "period": "6.7",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "12:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.21",
-          "period": "6.4",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "12:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.20",
-          "period": "6.2",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "13:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.25",
-          "period": "6.3",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "13:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.18",
-          "period": "6.0",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "13:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.28",
-          "period": "6.0",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "14:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.31",
-          "period": "6.1",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "14:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.32",
-          "period": "5.7",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "14:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.41",
-          "period": "5.9",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "15:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.41",
-          "period": "5.8",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "15:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.32",
-          "period": "5.9",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "15:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.33",
-          "period": "5.7",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "16:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.40",
-          "period": "6.1",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "16:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.43",
-          "period": "6.2",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "16:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.41",
-          "period": "6.3",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "17:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.56",
-          "period": "6.5",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "17:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.48",
-          "period": "6.5",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "17:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.43",
-          "period": "6.4",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "18:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.35",
-          "period": "6.2",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "18:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.49",
-          "period": "6.5",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "18:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.50",
-          "period": "6.3",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "19:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.45",
-          "period": "6.5",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
           "time": "19:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.50",
-          "period": "6.7",
-          "dir": "NW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.37",
+          "period": "4.9",
+          "dir": "WSW",
           "isEstimated": false
-        },
-        {
-          "time": "19:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.49",
-          "period": "6.4",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "20:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.57",
-          "period": "6.6",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "20:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.41",
-          "period": "6.3",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "20:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.42",
-          "period": "6.7",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "21:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.58",
-          "period": "6.7",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "21:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.58",
-          "period": "6.6",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "21:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.61",
-          "period": "6.3",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "22:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.57",
-          "period": "6.4",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "22:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.59",
-          "period": "6.4",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "22:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.50",
-          "period": "6.4",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "23:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.57",
-          "period": "6.8",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "23:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.63",
-          "period": "6.8",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "23:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.51",
-          "period": "6.6",
-          "dir": "NW",
-          "isEstimated": false
-        },
+        }
+      ]
+    },
+    "fukui": {
+      "latest": {
+        "time": "19:20",
+        "dayLabel": "10/8",
+        "ymd": "20261008",
+        "wave": "0.52",
+        "period": "5.1",
+        "dir": "NW",
+        "isEstimated": false
+      },
+      "history": [
         {
           "time": "00:00",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.47",
-          "period": "6.6",
-          "dir": "NW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.78",
+          "period": "5.6",
+          "dir": "NNW",
           "isEstimated": false
         },
         {
           "time": "00:20",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.47",
-          "period": "6.6",
-          "dir": "WNW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.80",
+          "period": "5.8",
+          "dir": "NNW",
           "isEstimated": false
         },
         {
           "time": "00:40",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.59",
-          "period": "6.7",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.73",
+          "period": "5.4",
           "dir": "NNW",
           "isEstimated": false
         },
         {
           "time": "01:00",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.67",
-          "period": "6.7",
-          "dir": "WNW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.71",
+          "period": "5.8",
+          "dir": "NNW",
           "isEstimated": false
         },
         {
           "time": "01:20",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.60",
-          "period": "6.8",
-          "dir": "NW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.73",
+          "period": "5.5",
+          "dir": "NNW",
           "isEstimated": false
         },
         {
           "time": "01:40",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.49",
-          "period": "6.5",
-          "dir": "NNW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.80",
+          "period": "5.8",
+          "dir": "N",
           "isEstimated": false
         },
         {
           "time": "02:00",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.48",
-          "period": "6.6",
-          "dir": "NW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.73",
+          "period": "5.8",
+          "dir": "N",
           "isEstimated": false
         },
         {
           "time": "02:20",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.57",
-          "period": "6.4",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "02:40",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.52",
-          "period": "6.2",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.69",
+          "period": "5.7",
           "dir": "NNW",
           "isEstimated": false
         },
         {
+          "time": "02:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.66",
+          "period": "5.7",
+          "dir": "N",
+          "isEstimated": false
+        },
+        {
           "time": "03:00",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.58",
-          "period": "6.2",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.73",
+          "period": "5.9",
           "dir": "NNW",
           "isEstimated": false
         },
         {
           "time": "03:20",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.44",
-          "period": "6.2",
-          "dir": "NW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.68",
+          "period": "5.9",
+          "dir": "N",
           "isEstimated": false
         },
         {
           "time": "03:40",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.52",
-          "period": "5.9",
-          "dir": "NW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.67",
+          "period": "5.5",
+          "dir": "NNW",
           "isEstimated": false
         },
         {
           "time": "04:00",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.54",
-          "period": "6.3",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.65",
+          "period": "5.6",
           "dir": "NNW",
           "isEstimated": false
         },
         {
           "time": "04:20",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.55",
-          "period": "6.3",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.69",
+          "period": "5.9",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "04:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.71",
+          "period": "5.8",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "05:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.69",
+          "period": "5.8",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "05:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.71",
+          "period": "6.0",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "05:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.68",
+          "period": "5.9",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "06:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.70",
+          "period": "5.7",
+          "dir": "N",
+          "isEstimated": false
+        },
+        {
+          "time": "06:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.66",
+          "period": "5.7",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "06:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.63",
+          "period": "5.7",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "07:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.63",
+          "period": "5.9",
+          "dir": "N",
+          "isEstimated": false
+        },
+        {
+          "time": "07:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.64",
+          "period": "5.9",
+          "dir": "N",
+          "isEstimated": false
+        },
+        {
+          "time": "07:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.61",
+          "period": "5.8",
+          "dir": "N",
+          "isEstimated": false
+        },
+        {
+          "time": "08:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.62",
+          "period": "5.8",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "08:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.59",
+          "period": "5.7",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "08:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.55",
+          "period": "5.7",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "09:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.58",
+          "period": "5.7",
+          "dir": "N",
+          "isEstimated": false
+        },
+        {
+          "time": "09:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.55",
+          "period": "5.6",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "09:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.54",
+          "period": "5.6",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "10:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.50",
+          "period": "5.6",
+          "dir": "N",
+          "isEstimated": false
+        },
+        {
+          "time": "10:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.50",
+          "period": "5.5",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "10:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.48",
+          "period": "5.6",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "11:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.49",
+          "period": "5.6",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "11:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.47",
+          "period": "5.6",
+          "dir": "N",
+          "isEstimated": false
+        },
+        {
+          "time": "11:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.48",
+          "period": "5.7",
+          "dir": "N",
+          "isEstimated": false
+        },
+        {
+          "time": "12:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.51",
+          "period": "5.6",
+          "dir": "N",
+          "isEstimated": false
+        },
+        {
+          "time": "12:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.50",
+          "period": "5.4",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "12:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.49",
+          "period": "5.1",
+          "dir": "N",
+          "isEstimated": false
+        },
+        {
+          "time": "13:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.51",
+          "period": "4.9",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "13:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.52",
+          "period": "4.8",
+          "dir": "N",
+          "isEstimated": false
+        },
+        {
+          "time": "13:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.53",
+          "period": "4.8",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "14:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.54",
+          "period": "4.9",
+          "dir": "NW",
+          "isEstimated": false
+        },
+        {
+          "time": "14:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.53",
+          "period": "4.9",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "14:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.55",
+          "period": "4.8",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "15:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.53",
+          "period": "4.6",
+          "dir": "N",
+          "isEstimated": false
+        },
+        {
+          "time": "15:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.53",
+          "period": "4.9",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "15:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.51",
+          "period": "4.6",
+          "dir": "WNW",
+          "isEstimated": false
+        },
+        {
+          "time": "16:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.55",
+          "period": "5.0",
+          "dir": "WNW",
+          "isEstimated": false
+        },
+        {
+          "time": "16:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.56",
+          "period": "4.9",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "16:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.51",
+          "period": "5.0",
+          "dir": "N",
+          "isEstimated": false
+        },
+        {
+          "time": "17:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.50",
+          "period": "5.0",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "17:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.53",
+          "period": "5.2",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "17:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.46",
+          "period": "5.0",
+          "dir": "NNE",
+          "isEstimated": false
+        },
+        {
+          "time": "18:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.49",
+          "period": "4.9",
+          "dir": "WNW",
+          "isEstimated": false
+        },
+        {
+          "time": "18:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.49",
+          "period": "4.9",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "18:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.52",
+          "period": "4.8",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "19:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.50",
+          "period": "5.0",
+          "dir": "N",
+          "isEstimated": false
+        },
+        {
+          "time": "19:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.52",
+          "period": "5.1",
           "dir": "NW",
           "isEstimated": false
         }
@@ -1578,788 +1092,545 @@
     },
     "kanazawa": {
       "latest": {
-        "time": "04:20",
-        "dayLabel": "10/7",
-        "ymd": "20261007",
-        "wave": "1.33",
-        "period": "6.4",
-        "dir": "WNW",
-        "isEstimated": false
+        "time": "19:20",
+        "dayLabel": "10/8",
+        "ymd": "20261008",
+        "wave": "0.59",
+        "period": "3.5",
+        "dir": "-",
+        "isEstimated": true
       },
       "history": [
         {
           "time": "00:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.42",
-          "period": "3.8",
-          "dir": "SSW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.91",
+          "period": "6.0",
+          "dir": "NNW",
           "isEstimated": false
         },
         {
           "time": "00:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.42",
-          "period": "4.1",
-          "dir": "WNW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.88",
+          "period": "5.9",
+          "dir": "NW",
           "isEstimated": false
         },
         {
           "time": "00:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.41",
-          "period": "4.0",
-          "dir": "WNW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.91",
+          "period": "5.9",
+          "dir": "NNW",
           "isEstimated": false
         },
         {
           "time": "01:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.44",
-          "period": "4.4",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.77",
+          "period": "5.6",
           "dir": "NW",
           "isEstimated": false
         },
         {
           "time": "01:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.39",
-          "period": "4.2",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "01:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.42",
-          "period": "4.4",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "02:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.43",
-          "period": "4.4",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "02:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.44",
-          "period": "4.5",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.89",
+          "period": "6.0",
           "dir": "NW",
           "isEstimated": false
         },
         {
+          "time": "01:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.82",
+          "period": "5.8",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "02:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.79",
+          "period": "6.0",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "02:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.81",
+          "period": "5.9",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
           "time": "02:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.52",
-          "period": "4.6",
-          "dir": "WNW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.85",
+          "period": "6.0",
+          "dir": "NNW",
           "isEstimated": false
         },
         {
           "time": "03:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.54",
-          "period": "4.6",
-          "dir": "WNW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.84",
+          "period": "5.9",
+          "dir": "NNW",
           "isEstimated": false
         },
         {
           "time": "03:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.54",
-          "period": "4.4",
-          "dir": "WNW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.86",
+          "period": "6.0",
+          "dir": "NNW",
           "isEstimated": false
         },
         {
           "time": "03:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.59",
-          "period": "4.4",
-          "dir": "W",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.77",
+          "period": "5.9",
+          "dir": "NNW",
           "isEstimated": false
         },
         {
           "time": "04:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.67",
-          "period": "4.3",
-          "dir": "WNW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.74",
+          "period": "5.7",
+          "dir": "NNW",
           "isEstimated": false
         },
         {
           "time": "04:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.71",
-          "period": "4.2",
-          "dir": "WNW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.76",
+          "period": "5.8",
+          "dir": "NW",
           "isEstimated": false
         },
         {
           "time": "04:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.66",
-          "period": "4.2",
-          "dir": "WNW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.78",
+          "period": "5.9",
+          "dir": "NNW",
           "isEstimated": false
         },
         {
           "time": "05:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.74",
-          "period": "4.3",
-          "dir": "WNW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.70",
+          "period": "5.7",
+          "dir": "NNW",
           "isEstimated": false
         },
         {
           "time": "05:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.75",
-          "period": "4.1",
-          "dir": "WNW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.83",
+          "period": "5.8",
+          "dir": "NNW",
           "isEstimated": false
         },
         {
           "time": "05:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.80",
-          "period": "4.3",
-          "dir": "WNW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.77",
+          "period": "5.7",
+          "dir": "NNW",
           "isEstimated": false
         },
         {
           "time": "06:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.78",
-          "period": "4.3",
-          "dir": "WNW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.68",
+          "period": "5.6",
+          "dir": "NNW",
           "isEstimated": false
         },
         {
           "time": "06:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.81",
-          "period": "4.4",
-          "dir": "WNW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.73",
+          "period": "5.7",
+          "dir": "NNW",
           "isEstimated": false
         },
         {
           "time": "06:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.78",
-          "period": "4.5",
-          "dir": "W",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.70",
+          "period": "5.6",
+          "dir": "NNW",
           "isEstimated": false
         },
         {
           "time": "07:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.80",
-          "period": "4.4",
-          "dir": "WSW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.68",
+          "period": "5.6",
+          "dir": "NNW",
           "isEstimated": false
         },
         {
           "time": "07:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.78",
-          "period": "4.5",
-          "dir": "WNW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.66",
+          "period": "5.6",
+          "dir": "NNW",
           "isEstimated": false
         },
         {
           "time": "07:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.73",
-          "period": "4.7",
-          "dir": "WNW",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.68",
+          "period": "5.7",
+          "dir": "NNW",
           "isEstimated": false
         },
         {
           "time": "08:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.74",
-          "period": "4.7",
-          "dir": "W",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.66",
+          "period": "5.7",
+          "dir": "NNW",
           "isEstimated": false
         },
         {
           "time": "08:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.77",
-          "period": "4.9",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.66",
+          "period": "5.5",
           "dir": "NW",
           "isEstimated": false
         },
         {
           "time": "08:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.73",
-          "period": "4.9",
-          "dir": "W",
-          "isEstimated": false
-        },
-        {
-          "time": "09:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.81",
-          "period": "5.2",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "09:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.85",
-          "period": "5.5",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "09:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.90",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.69",
           "period": "5.7",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "10:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.88",
-          "period": "5.9",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "10:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.98",
-          "period": "6.1",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "10:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.08",
-          "period": "6.1",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "11:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.98",
-          "period": "6.1",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "11:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "0.98",
-          "period": "6.1",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "11:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.07",
-          "period": "6.4",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "12:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.10",
-          "period": "6.0",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "12:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.11",
-          "period": "5.8",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "12:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.16",
-          "period": "5.7",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "13:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.20",
-          "period": "6.1",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "13:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.20",
-          "period": "5.9",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "13:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.19",
-          "period": "6.1",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "14:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.11",
-          "period": "5.7",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "14:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.08",
-          "period": "5.6",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "14:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.09",
-          "period": "5.5",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "15:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.19",
-          "period": "6.0",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "15:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.19",
-          "period": "6.0",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "15:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.16",
-          "period": "5.8",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "16:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.09",
-          "period": "5.7",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "16:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.14",
-          "period": "5.8",
-          "dir": "W",
-          "isEstimated": false
-        },
-        {
-          "time": "16:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.08",
-          "period": "5.8",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "17:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.27",
-          "period": "5.7",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "17:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.15",
-          "period": "5.8",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "17:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.14",
-          "period": "5.9",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "18:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.16",
-          "period": "5.9",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "18:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.19",
-          "period": "5.6",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "18:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.14",
-          "period": "5.6",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "19:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.24",
-          "period": "5.9",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "19:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.24",
-          "period": "5.7",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "19:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.35",
-          "period": "5.7",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "20:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.33",
-          "period": "5.9",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "20:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.20",
-          "period": "5.7",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "20:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.24",
-          "period": "5.9",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "21:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.22",
-          "period": "5.8",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "21:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.32",
-          "period": "5.9",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "21:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.28",
-          "period": "5.7",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "22:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.29",
-          "period": "5.9",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "22:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.24",
-          "period": "5.6",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "22:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.24",
-          "period": "5.8",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "23:00",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.25",
-          "period": "5.9",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "23:20",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.33",
-          "period": "6.2",
-          "dir": "WNW",
-          "isEstimated": false
-        },
-        {
-          "time": "23:40",
-          "dayLabel": "10/6",
-          "ymd": "20261006",
-          "wave": "1.31",
-          "period": "6.1",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "00:00",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.29",
-          "period": "6.1",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "00:20",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.26",
-          "period": "6.4",
           "dir": "NNW",
           "isEstimated": false
         },
         {
-          "time": "00:40",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.29",
-          "period": "6.1",
+          "time": "09:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.61",
+          "period": "5.5",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "09:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.67",
+          "period": "5.6",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "09:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.60",
+          "period": "5.5",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "10:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.65",
+          "period": "5.5",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "10:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.62",
+          "period": "5.4",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "10:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.63",
+          "period": "5.5",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "11:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.59",
+          "period": "5.5",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "11:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.56",
+          "period": "5.5",
           "dir": "NW",
           "isEstimated": false
         },
         {
-          "time": "01:00",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.24",
-          "period": "5.8",
+          "time": "11:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.58",
+          "period": "5.4",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "12:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.58",
+          "period": "5.3",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "12:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.53",
+          "period": "5.1",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "12:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.53",
+          "period": "5.0",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "13:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.56",
+          "period": "5.1",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "13:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.54",
+          "period": "5.1",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "13:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.53",
+          "period": "4.9",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "14:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.54",
+          "period": "5.1",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "14:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.56",
+          "period": "4.9",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "14:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.57",
+          "period": "4.9",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "15:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.50",
+          "period": "4.3",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "15:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.51",
+          "period": "4.2",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "15:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.53",
+          "period": "4.4",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "16:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.51",
+          "period": "4.3",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "16:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.51",
+          "period": "4.3",
+          "dir": "NNE",
+          "isEstimated": false
+        },
+        {
+          "time": "16:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.51",
+          "period": "4.5",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "17:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.49",
+          "period": "4.4",
+          "dir": "NNW",
+          "isEstimated": false
+        },
+        {
+          "time": "17:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.49",
+          "period": "4.8",
           "dir": "NW",
           "isEstimated": false
         },
         {
-          "time": "01:20",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.46",
-          "period": "6.3",
+          "time": "17:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.49",
+          "period": "4.8",
           "dir": "NW",
           "isEstimated": false
         },
         {
-          "time": "01:40",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.27",
-          "period": "6.1",
-          "dir": "WNW",
-          "isEstimated": false
+          "time": "18:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.6",
+          "period": "3.7",
+          "dir": "-",
+          "isEstimated": true
         },
         {
-          "time": "02:00",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.32",
-          "period": "6.2",
-          "dir": "NW",
-          "isEstimated": false
+          "time": "18:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.58",
+          "period": "3.8",
+          "dir": "-",
+          "isEstimated": true
         },
         {
-          "time": "02:20",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.28",
-          "period": "5.9",
-          "dir": "NW",
-          "isEstimated": false
+          "time": "18:40",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.61",
+          "period": "3.7",
+          "dir": "-",
+          "isEstimated": true
         },
         {
-          "time": "02:40",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.30",
-          "period": "6.2",
-          "dir": "NW",
-          "isEstimated": false
+          "time": "19:00",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.57",
+          "period": "3.5",
+          "dir": "-",
+          "isEstimated": true
         },
         {
-          "time": "03:00",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.32",
-          "period": "6.2",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "03:20",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.35",
-          "period": "6.5",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "03:40",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.44",
-          "period": "6.3",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "04:00",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.35",
-          "period": "6.4",
-          "dir": "NW",
-          "isEstimated": false
-        },
-        {
-          "time": "04:20",
-          "dayLabel": "10/7",
-          "ymd": "20261007",
-          "wave": "1.33",
-          "period": "6.4",
-          "dir": "WNW",
-          "isEstimated": false
+          "time": "19:20",
+          "dayLabel": "10/8",
+          "ymd": "20261008",
+          "wave": "0.59",
+          "period": "3.5",
+          "dir": "-",
+          "isEstimated": true
         }
       ]
     },
