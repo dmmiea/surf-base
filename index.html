@@ -121,6 +121,32 @@
       </div>
     </div>
 
+    <!-- 外部障害（海天気.jp）告知バナー -->
+    <div id="umitenkiAlertBanner" class="bg-amber-50/95 border border-amber-200/90 rounded-2xl p-3.5 shadow-sm text-xs text-amber-950">
+      <div class="flex items-start gap-2.5">
+        <div class="w-6 h-6 rounded-lg bg-amber-500 text-white flex items-center justify-center flex-shrink-0 text-xs shadow-sm mt-0.5">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center justify-between gap-1">
+            <span class="font-bold text-amber-900 text-[12px] flex items-center gap-1">
+              海天気.jp 障害に伴う予報更新の停止
+            </span>
+            <span class="text-[9.5px] bg-amber-200/90 text-amber-900 font-bold px-1.5 py-0.5 rounded-full whitespace-nowrap">復旧待ち</span>
+          </div>
+          <p class="text-[11px] text-amber-850 mt-1 leading-relaxed">
+            外部データ元「海天気.jp」のシステム障害（サイバー攻撃対策による制限）のため、<strong>風向・波高の予報データ更新が一時停止</strong>しています。海天気.jpが復旧次第、自動的に最新予報が反映されます。
+          </p>
+          <div class="mt-2 pt-2 border-t border-amber-200/70 flex items-center justify-between text-[10.5px] text-amber-800">
+            <span class="flex items-center gap-1 font-medium">
+              <i class="fa-solid fa-circle-check text-emerald-600 text-[10px]"></i>
+              国交省ナウファス実測値（敦賀・福井・金沢・伊勢湾口・御前崎・尾鷲）は最新LIVE更新中
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- SPOT HERO SUMMARY CARD -->
     <div class="glass-card rounded-2xl p-4 relative overflow-hidden border border-slate-200/90 shadow-md">
       <!-- ヘッダー情報 -->
@@ -2091,6 +2117,28 @@
             const timeOnly = data.updatedAtLabel.split(' ')[1] || data.updatedAtLabel;
             document.getElementById('lastUpdated').textContent = timeOnly;
           }
+
+          // 海天気.jpの復旧自動判定（今日以降の最新予報が存在するか確認）
+          const banner = document.getElementById('umitenkiAlertBanner');
+          if (banner) {
+            const now = new Date();
+            const todayLabel = `${now.getMonth() + 1}/${now.getDate()}`;
+            let hasTodayForecast = false;
+            if (data.spots) {
+              for (const s of Object.values(data.spots)) {
+                if (Array.isArray(s.hourData) && s.hourData.some(h => h.dayLabel === todayLabel)) {
+                  hasTodayForecast = true;
+                  break;
+                }
+              }
+            }
+            if (hasTodayForecast) {
+              banner.classList.add('hidden');
+            } else {
+              banner.classList.remove('hidden');
+            }
+          }
+
           renderSpot();
         }
       } catch (e) {
