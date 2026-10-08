@@ -14,13 +14,13 @@ permissions:
   pages: write
   id-token: write
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
 jobs:
   update-data:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+    concurrency:
+      group: "surf-data-update"
+      cancel-in-progress: true
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -57,6 +57,10 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+    concurrency:
+      group: "pages"
+      cancel-in-progress: true
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
