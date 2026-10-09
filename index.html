@@ -40,9 +40,37 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
+    @keyframes splashFadeIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.92) translateY(8px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+    .animate-splash-logo {
+      animation: splashFadeIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
   </style>
 </head>
 <body class="min-h-screen pb-20 antialiased selection:bg-sky-500 selection:text-white">
+
+  <!-- オープニング・スプラッシュアニメーション -->
+  <div id="splashScreen" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-slate-50 transition-opacity duration-500 ease-out">
+    <div class="flex flex-col items-center justify-center animate-splash-logo select-none">
+      <!-- アプリアイコン -->
+      <div class="w-20 h-20 rounded-3xl ocean-gradient flex items-center justify-center text-white shadow-xl shadow-sky-500/25 mb-3 relative overflow-hidden">
+        <img src="icons/icon.svg" alt="SURF BASE" class="w-14 h-14 drop-shadow-md">
+      </div>
+      <!-- ロゴテキスト -->
+      <div class="text-center">
+        <span class="font-teko text-4xl font-extrabold tracking-widest text-sky-900 leading-none uppercase block">SURF BASE</span>
+        <span class="text-[10.5px] tracking-wider text-sky-600 font-bold uppercase mt-1 block">Wave Forecast & Report</span>
+      </div>
+    </div>
+  </div>
 
   <!-- PULL TO REFRESH INDICATOR -->
   <div id="pullIndicator" class="fixed top-0 left-0 right-0 z-50 flex items-center justify-center transition-all duration-300 pointer-events-none opacity-0 -translate-y-12">
@@ -2607,6 +2635,24 @@
     renderSpotTabs();
     renderSpot();
     fetchLiveData();
+
+    // スプラッシュ画面のオープニングアニメーション制御
+    function hideSplashScreen() {
+      const splash = document.getElementById('splashScreen');
+      if (!splash || splash.dataset.hidden) return;
+      splash.dataset.hidden = 'true';
+      splash.style.opacity = '0';
+      splash.style.pointerEvents = 'none';
+      setTimeout(() => {
+        splash.remove();
+      }, 550);
+    }
+
+    // 画面ロード後に心地よくフェードアウト（最大1.2秒で確実に解除）
+    window.addEventListener('load', () => {
+      setTimeout(hideSplashScreen, 650);
+    });
+    setTimeout(hideSplashScreen, 1200);
   </script>
 </body>
 </html>
