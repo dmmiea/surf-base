@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-10-09T12:24:00.015Z",
-  "updatedAtLabel": "2026/10/09 21:24",
+  "updatedAt": "2026-10-09T12:47:48.518Z",
+  "updatedAtLabel": "2026/10/09 21:47",
   "nowphas": {
     "tsuruga": {
       "latest": {
-        "time": "21:00",
+        "time": "21:20",
         "dayLabel": "10/9",
         "ymd": "20261009",
         "wave": "0.15",
@@ -588,16 +588,25 @@
           "period": "4.3",
           "dir": "NNE",
           "isEstimated": false
+        },
+        {
+          "time": "21:20",
+          "dayLabel": "10/9",
+          "ymd": "20261009",
+          "wave": "0.15",
+          "period": "4.3",
+          "dir": "NNE",
+          "isEstimated": false
         }
       ]
     },
     "fukui": {
       "latest": {
-        "time": "21:00",
+        "time": "21:20",
         "dayLabel": "10/9",
         "ymd": "20261009",
-        "wave": "0.21",
-        "period": "5.0",
+        "wave": "0.24",
+        "period": "6.1",
         "dir": "N",
         "isEstimated": false
       },
@@ -1168,17 +1177,26 @@
           "period": "5.0",
           "dir": "N",
           "isEstimated": false
+        },
+        {
+          "time": "21:20",
+          "dayLabel": "10/9",
+          "ymd": "20261009",
+          "wave": "0.24",
+          "period": "6.1",
+          "dir": "N",
+          "isEstimated": false
         }
       ]
     },
     "kanazawa": {
       "latest": {
-        "time": "21:00",
+        "time": "21:20",
         "dayLabel": "10/9",
         "ymd": "20261009",
-        "wave": "0.18",
-        "period": "4.9",
-        "dir": "NW",
+        "wave": "0.17",
+        "period": "4.8",
+        "dir": "N",
         "isEstimated": false
       },
       "history": [
@@ -1747,6 +1765,15 @@
           "wave": "0.18",
           "period": "4.9",
           "dir": "NW",
+          "isEstimated": false
+        },
+        {
+          "time": "21:20",
+          "dayLabel": "10/9",
+          "ymd": "20261009",
+          "wave": "0.17",
+          "period": "4.8",
+          "dir": "N",
           "isEstimated": false
         }
       ]
