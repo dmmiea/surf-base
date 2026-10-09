@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-10-09T16:50:02.088Z",
-  "updatedAtLabel": "2026/10/10 01:50",
+  "updatedAt": "2026-10-09T17:03:03.601Z",
+  "updatedAtLabel": "2026/10/10 02:03",
   "nowphas": {
     "tsuruga": {
       "latest": {
-        "time": "01:20",
+        "time": "01:40",
         "dayLabel": "10/10",
         "ymd": "20261010",
-        "wave": "0.72",
+        "wave": "0.73",
         "period": "1.4",
         "dir": "-",
         "isEstimated": true
@@ -705,16 +705,25 @@
           "period": "1.4",
           "dir": "-",
           "isEstimated": true
+        },
+        {
+          "time": "01:40",
+          "dayLabel": "10/10",
+          "ymd": "20261010",
+          "wave": "0.73",
+          "period": "1.4",
+          "dir": "-",
+          "isEstimated": true
         }
       ]
     },
     "fukui": {
       "latest": {
-        "time": "01:20",
+        "time": "01:40",
         "dayLabel": "10/10",
         "ymd": "20261010",
-        "wave": "0.20",
-        "period": "5.4",
+        "wave": "0.19",
+        "period": "5.7",
         "dir": "NNE",
         "isEstimated": false
       },
@@ -1402,17 +1411,26 @@
           "period": "5.4",
           "dir": "NNE",
           "isEstimated": false
+        },
+        {
+          "time": "01:40",
+          "dayLabel": "10/10",
+          "ymd": "20261010",
+          "wave": "0.19",
+          "period": "5.7",
+          "dir": "NNE",
+          "isEstimated": false
         }
       ]
     },
     "kanazawa": {
       "latest": {
-        "time": "01:20",
+        "time": "01:40",
         "dayLabel": "10/10",
         "ymd": "20261010",
-        "wave": "0.16",
-        "period": "5.7",
-        "dir": "N",
+        "wave": "0.17",
+        "period": "5.8",
+        "dir": "ENE",
         "isEstimated": false
       },
       "history": [
@@ -2089,6 +2107,15 @@
           "wave": "0.16",
           "period": "5.7",
           "dir": "N",
+          "isEstimated": false
+        },
+        {
+          "time": "01:40",
+          "dayLabel": "10/10",
+          "ymd": "20261010",
+          "wave": "0.17",
+          "period": "5.8",
+          "dir": "ENE",
           "isEstimated": false
         }
       ]
