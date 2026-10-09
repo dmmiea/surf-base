@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-10-09T22:18:05.430Z",
-  "updatedAtLabel": "2026/10/10 07:18",
+  "updatedAt": "2026-10-09T22:36:01.917Z",
+  "updatedAtLabel": "2026/10/10 07:36",
   "nowphas": {
     "tsuruga": {
       "latest": {
-        "time": "06:40",
+        "time": "07:00",
         "dayLabel": "10/10",
         "ymd": "20261010",
-        "wave": "0.91",
+        "wave": "1.02",
         "period": "2.0",
         "dir": "-",
         "isEstimated": true
@@ -849,16 +849,25 @@
           "period": "2.0",
           "dir": "-",
           "isEstimated": true
+        },
+        {
+          "time": "07:00",
+          "dayLabel": "10/10",
+          "ymd": "20261010",
+          "wave": "1.02",
+          "period": "2.0",
+          "dir": "-",
+          "isEstimated": true
         }
       ]
     },
     "fukui": {
       "latest": {
-        "time": "06:40",
+        "time": "07:00",
         "dayLabel": "10/10",
         "ymd": "20261010",
         "wave": "0.21",
-        "period": "4.9",
+        "period": "5.2",
         "dir": "N",
         "isEstimated": false
       },
@@ -1690,17 +1699,26 @@
           "period": "4.9",
           "dir": "N",
           "isEstimated": false
+        },
+        {
+          "time": "07:00",
+          "dayLabel": "10/10",
+          "ymd": "20261010",
+          "wave": "0.21",
+          "period": "5.2",
+          "dir": "N",
+          "isEstimated": false
         }
       ]
     },
     "kanazawa": {
       "latest": {
-        "time": "06:40",
+        "time": "07:00",
         "dayLabel": "10/10",
         "ymd": "20261010",
-        "wave": "0.19",
+        "wave": "0.20",
         "period": "4.1",
-        "dir": "ENE",
+        "dir": "NE",
         "isEstimated": false
       },
       "history": [
@@ -2521,6 +2539,15 @@
           "wave": "0.19",
           "period": "4.1",
           "dir": "ENE",
+          "isEstimated": false
+        },
+        {
+          "time": "07:00",
+          "dayLabel": "10/10",
+          "ymd": "20261010",
+          "wave": "0.20",
+          "period": "4.1",
+          "dir": "NE",
           "isEstimated": false
         }
       ]
