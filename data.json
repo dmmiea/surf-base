@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-10-09T14:58:31.164Z",
-  "updatedAtLabel": "2026/10/09 23:58",
+  "updatedAt": "2026-10-09T15:19:07.803Z",
+  "updatedAtLabel": "2026/10/10 00:19",
   "nowphas": {
     "tsuruga": {
       "latest": {
-        "time": "23:20",
+        "time": "23:40",
         "dayLabel": "10/9",
         "ymd": "20261009",
-        "wave": "0.19",
-        "period": "3.4",
+        "wave": "0.18",
+        "period": "3.6",
         "dir": "W",
         "isEstimated": false
       },
@@ -651,17 +651,26 @@
           "period": "3.4",
           "dir": "W",
           "isEstimated": false
+        },
+        {
+          "time": "23:40",
+          "dayLabel": "10/9",
+          "ymd": "20261009",
+          "wave": "0.18",
+          "period": "3.6",
+          "dir": "W",
+          "isEstimated": false
         }
       ]
     },
     "fukui": {
       "latest": {
-        "time": "23:20",
+        "time": "23:40",
         "dayLabel": "10/9",
         "ymd": "20261009",
         "wave": "0.20",
-        "period": "5.2",
-        "dir": "NNE",
+        "period": "5.7",
+        "dir": "NNW",
         "isEstimated": false
       },
       "history": [
@@ -1294,12 +1303,21 @@
           "period": "5.2",
           "dir": "NNE",
           "isEstimated": false
+        },
+        {
+          "time": "23:40",
+          "dayLabel": "10/9",
+          "ymd": "20261009",
+          "wave": "0.20",
+          "period": "5.7",
+          "dir": "NNW",
+          "isEstimated": false
         }
       ]
     },
     "kanazawa": {
       "latest": {
-        "time": "23:20",
+        "time": "23:40",
         "dayLabel": "10/9",
         "ymd": "20261009",
         "wave": "0.18",
@@ -1931,6 +1949,15 @@
         },
         {
           "time": "23:20",
+          "dayLabel": "10/9",
+          "ymd": "20261009",
+          "wave": "0.18",
+          "period": "5.4",
+          "dir": "NNE",
+          "isEstimated": false
+        },
+        {
+          "time": "23:40",
           "dayLabel": "10/9",
           "ymd": "20261009",
           "wave": "0.18",
