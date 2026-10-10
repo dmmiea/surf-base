@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-10-10T22:32:42.545Z",
-  "updatedAtLabel": "2026/10/11 07:32",
+  "updatedAt": "2026-10-10T22:47:17.855Z",
+  "updatedAtLabel": "2026/10/11 07:47",
   "nowphas": {
     "tsuruga": {
       "latest": {
-        "time": "07:00",
+        "time": "07:20",
         "dayLabel": "10/11",
         "ymd": "20261011",
-        "wave": "0.78",
+        "wave": "0.85",
         "period": "1.5",
         "dir": "-",
         "isEstimated": true
@@ -855,6 +855,15 @@
           "dayLabel": "10/11",
           "ymd": "20261011",
           "wave": "0.78",
+          "period": "1.5",
+          "dir": "-",
+          "isEstimated": true
+        },
+        {
+          "time": "07:20",
+          "dayLabel": "10/11",
+          "ymd": "20261011",
+          "wave": "0.85",
           "period": "1.5",
           "dir": "-",
           "isEstimated": true
