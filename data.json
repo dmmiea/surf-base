@@ -1,16 +1,16 @@
 {
-  "updatedAt": "2026-10-10T20:33:21.938Z",
-  "updatedAtLabel": "2026/10/11 05:33",
+  "updatedAt": "2026-10-10T20:48:02.253Z",
+  "updatedAtLabel": "2026/10/11 05:48",
   "nowphas": {
     "tsuruga": {
       "latest": {
-        "time": "05:00",
+        "time": "05:20",
         "dayLabel": "10/11",
         "ymd": "20261011",
-        "wave": "0.12",
-        "period": "3.9",
-        "dir": "WNW",
-        "isEstimated": false
+        "wave": "0.89",
+        "period": "1.5",
+        "dir": "-",
+        "isEstimated": true
       },
       "history": [
         {
@@ -804,6 +804,15 @@
           "period": "3.9",
           "dir": "WNW",
           "isEstimated": false
+        },
+        {
+          "time": "05:20",
+          "dayLabel": "10/11",
+          "ymd": "20261011",
+          "wave": "0.89",
+          "period": "1.5",
+          "dir": "-",
+          "isEstimated": true
         }
       ]
     },
@@ -1488,12 +1497,12 @@
     },
     "kanazawa": {
       "latest": {
-        "time": "05:00",
+        "time": "05:20",
         "dayLabel": "10/11",
         "ymd": "20261011",
-        "wave": "0.14",
-        "period": "4.1",
-        "dir": "N",
+        "wave": "0.15",
+        "period": "4.6",
+        "dir": "SW",
         "isEstimated": false
       },
       "history": [
@@ -2224,6 +2233,15 @@
           "wave": "0.14",
           "period": "4.1",
           "dir": "N",
+          "isEstimated": false
+        },
+        {
+          "time": "05:20",
+          "dayLabel": "10/11",
+          "ymd": "20261011",
+          "wave": "0.15",
+          "period": "4.6",
+          "dir": "SW",
           "isEstimated": false
         }
       ]
