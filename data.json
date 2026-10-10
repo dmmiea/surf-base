@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-10-10T00:28:52.966Z",
-  "updatedAtLabel": "2026/10/10 09:28",
+  "updatedAt": "2026-10-10T00:55:46.234Z",
+  "updatedAtLabel": "2026/10/10 09:55",
   "nowphas": {
     "tsuruga": {
       "latest": {
-        "time": "09:00",
+        "time": "09:20",
         "dayLabel": "10/10",
         "ymd": "20261010",
-        "wave": "0.71",
-        "period": "1.5",
+        "wave": "0.91",
+        "period": "2.1",
         "dir": "-",
         "isEstimated": true
       },
@@ -912,12 +912,21 @@
           "period": "1.5",
           "dir": "-",
           "isEstimated": true
+        },
+        {
+          "time": "09:20",
+          "dayLabel": "10/10",
+          "ymd": "20261010",
+          "wave": "0.91",
+          "period": "2.1",
+          "dir": "-",
+          "isEstimated": true
         }
       ]
     },
     "fukui": {
       "latest": {
-        "time": "09:00",
+        "time": "09:20",
         "dayLabel": "10/10",
         "ymd": "20261010",
         "wave": "0.21",
@@ -1807,17 +1816,26 @@
           "period": "4.8",
           "dir": "N",
           "isEstimated": false
+        },
+        {
+          "time": "09:20",
+          "dayLabel": "10/10",
+          "ymd": "20261010",
+          "wave": "0.21",
+          "period": "4.8",
+          "dir": "N",
+          "isEstimated": false
         }
       ]
     },
     "kanazawa": {
       "latest": {
-        "time": "09:00",
+        "time": "09:20",
         "dayLabel": "10/10",
         "ymd": "20261010",
-        "wave": "0.21",
-        "period": "3.6",
-        "dir": "WSW",
+        "wave": "0.20",
+        "period": "3.7",
+        "dir": "NE",
         "isEstimated": false
       },
       "history": [
@@ -2701,6 +2719,15 @@
           "wave": "0.21",
           "period": "3.6",
           "dir": "WSW",
+          "isEstimated": false
+        },
+        {
+          "time": "09:20",
+          "dayLabel": "10/10",
+          "ymd": "20261010",
+          "wave": "0.20",
+          "period": "3.7",
+          "dir": "NE",
           "isEstimated": false
         }
       ]
